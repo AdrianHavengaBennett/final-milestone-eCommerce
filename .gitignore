@@ -1,9 +1,11 @@
-# Project-specific
+# Virtual environment
 Include/
 Lib/
 Scripts/
-env.py
 pyvenv.cfg
+
+# Environment variables
+env.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

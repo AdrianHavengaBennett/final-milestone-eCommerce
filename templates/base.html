@@ -1,0 +1,107 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- gets rid of favicon 404 error -->
+    <link rel="shortcut icon" href="#" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <title>Final Project</title>
+
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div id="top-container" class="row">
+                <div class="col-3">
+                    <a class="navbar-brand" href="#">Site Logo</a>
+                </div>
+                <div class="col-6">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search products" aria-label="Search">
+                    </form>
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <a class="top-container-icon" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="col-xs-4">
+                            <a class="top-container-icon" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="col-xs-4">
+                            <a class="top-container-icon" href="#"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mobile nav -->
+        <nav class="navbar navbar-expand-lg d-lg-none">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-item nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Products</a>
+                        <a class="nav-item nav-link" href="/"><i class="fa fa-files-o" aria-hidden="true"></i> Categories</a>
+                        <a class="nav-item nav-link" href="/"><i class="fa fa-mouse-pointer" aria-hidden="true"></i> Click&Collect</a>
+                        <a class="nav-item nav-link" href="/"><i class="fa fa-question-circle-o" aria-hidden="true"></i> FAQ</a>
+                        <a class="nav-item nav-link" href="/"><i class="fa fa-comments-o" aria-hidden="true"></i> Help</a>
+                        <a class="nav-item nav-link" href="/"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a>
+                        <a class="nav-item nav-link" href="/"><i class="fa fa-music" aria-hidden="true"></i> Shows</a>
+                        <a class="nav-item nav-link" href="/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Blog</a>
+                        <a class="nav-item nav-link" href="/"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- desktop nav -->
+        <nav class="navbar navbar-expand-lg d-none d-lg-block">
+            <div class="container">
+                <a class="nav-item nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Products</a>
+                <a class="nav-item nav-link" href="/"><i class="fa fa-files-o" aria-hidden="true"></i> Categories</a>
+                <a class="nav-item nav-link" href="/"><i class="fa fa-mouse-pointer" aria-hidden="true"></i> Click&Collect</a>
+                <a class="nav-item nav-link" href="/"><i class="fa fa-question-circle-o" aria-hidden="true"></i> FAQ</a>
+                <a class="nav-item nav-link" href="/"><i class="fa fa-comments-o" aria-hidden="true"></i> Help</a>
+                <a class="nav-item nav-link" href="/"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a>
+                <a class="nav-item nav-link" href="/"><i class="fa fa-music" aria-hidden="true"></i> Shows</a>
+                <a class="nav-item nav-link" href="/"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Blog</a>
+                <a class="nav-item nav-link" href="/"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p><i class="fa fa-copyright" aria-hidden="true"></i> 2020 Adrian Havenga-Bennett</p>
+    </footer>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript"></script>
+</body>
+</html>
