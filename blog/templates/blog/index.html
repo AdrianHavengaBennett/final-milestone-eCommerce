@@ -7,7 +7,7 @@
 			<li class="breadcrumb-item active" aria-current="page">Blog</li>
 		</ol>
 	</nav>
-	<p class="section-intro">Welcome back, user. Catch up on everything music-related from our community, or start a new conversation.</p>
+	<p class="section-intro">Welcome back, {{ user }}. Catch up on everything music-related from our community, or start a new conversation.</p>
 	<div class="row">
 
 		<!-- mobile layout for side section -->
@@ -16,7 +16,7 @@
 				<form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search Blog" aria-label="Search">
                 </form>
-                <button class="btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> NEW POST</button>
+                <button class="btn" type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> NEW POST</button>
 			</div>
 		</div>
 		<!-- mobile layout for side section end -->
@@ -42,7 +42,7 @@
 				<form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search Blog" aria-label="Search">
                 </form>
-                <button class="btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> NEW POST</button>
+                <button class="btn" type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> NEW POST</button>
 			</div>
 		</div>
 		<!-- desktop layout for side section end -->

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import BlogPost
 
 
-def home(request):
+def show_blogs(request):
 	all_blog_posts = BlogPost.objects.all()
 
 	context = {

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h2 class="section-intro">{{username}}, you have successfully logged out.</h2>
+	<p>
+		<small class="text-muted">
+			 Log back in <a href="{% url 'login' %}">here</a>
+		</small>
+	</p>
+{% endblock %}

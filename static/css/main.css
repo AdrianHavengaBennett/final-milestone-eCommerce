@@ -1,7 +1,14 @@
-body {
+body,
+html {
+  height: 100%;
   background-image: url("/media/images/doodle_red.jpg");
   background-repeat: repeat;
   background-size: 250px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 header,
@@ -12,6 +19,7 @@ footer {
 }
 
 main {
+  flex: 1 0 auto;
   background-color: #f4f4f4;
   margin: .25em 0 .25em 0;
   padding-bottom: .75em;
@@ -44,6 +52,8 @@ ul {
 }
 
 .top-container-icon {
+  display: inline;
+  text-align: center;
   color: #333333;
   font-size: 1.25rem;
   padding: 2px;
@@ -51,6 +61,10 @@ ul {
 
 .top-container-icon:hover {
   color: #E06666;
+}
+
+input[type="search"]::-webkit-input-placeholder {
+  font-size: .75rem;
 }
 
 .nav-item {
@@ -176,9 +190,9 @@ a.article-title:hover {
 }
 
 footer {
+  flex-shrink: 0;
   text-align: center;
   background-color: #333333;
-  position: absolute;
   width: -webkit-fill-available;
 }
 
