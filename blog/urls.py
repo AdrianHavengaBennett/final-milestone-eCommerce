@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import show_blogs
+from .views import show_all_posts
 
 urlpatterns = [
-    path('', show_blogs, name='blog-home'),
+    path('', show_all_posts, name='blog-home'),
 ]

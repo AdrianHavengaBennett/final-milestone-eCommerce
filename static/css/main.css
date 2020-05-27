@@ -38,6 +38,10 @@ ul {
   margin: 0;
 }
 
+.alert {
+  margin-top: 1rem;
+}
+
 .container {
   width: 97%;
 }
@@ -116,9 +120,10 @@ input[type="search"]::-webkit-input-placeholder {
 }
 
 .section-intro {
+  font-size: 1rem;
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 0rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .content-section {
@@ -186,7 +191,11 @@ a.article-title:hover {
 }
 
 .account-heading {
-  font-size: 2.5rem;
+  font-size: 1.25rem;
+}
+
+.text-secondary {
+  font-size: .7rem;
 }
 
 footer {

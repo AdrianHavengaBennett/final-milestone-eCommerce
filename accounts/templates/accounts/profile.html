@@ -1,8 +1,65 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <h2 class="section-intro">Your profile page. Edit at will ...</h2>
 <div class="content-section">
-	
+	<div class="media">
+		<img class="rounded-circle account-img" src="{{ user.profile.profile_image.url }}">
+		<div class="media-body">
+			<h2 class="account-heading">{{ user.username }}</h2>
+			<p class="text-secondary">{{ user.email }}</p>
+		</div>
+	</div>
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<fieldset class="form-group">
+			{{ user_update_form|crispy }}
+			{{ profile_update_form|crispy }}
+		</fieldset>
+		<hr>
+		<p>Colour Schemes:</p>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="red" id="red" value="red" checked>
+			<label class="form-check-label" for="red">
+				Red
+			</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="blue" id="blue" value="blue">
+			<label class="form-check-label" for="blue">
+				Blue
+			</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="green" id="green" value="green">
+			<label class="form-check-label" for="green">
+				Green
+			</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="pink" id="pink" value="pink">
+			<label class="form-check-label" for="pink">
+				Pink
+			</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="purple" id="purple" value="purple">
+			<label class="form-check-label" for="purple">
+				Purple
+			</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="yellow" id="yellow" value="yellow">
+			<label class="form-check-label" for="yellow">
+				Yellow
+			</label>
+		</div>
+		<hr>
+		<div class="form-group">
+			<button class="btn" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> SAVE CHANGES</button>
+		</div>
+	</form>
 </div>
 {% endblock %}
+
