@@ -1,5 +1,10 @@
 from django.shortcuts import render
+from .models import Product
 
 
 def show_products(request):
-	return render(request, 'products/index.html', {'todo': 'All products/main page'})
+	"""Renders all of the products to the index.html page"""
+
+	products = Product.objects.all()
+
+	return render(request, 'products/index.html', {'products': products})

@@ -2,7 +2,13 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<h2 class="section-intro">Your profile page. Edit at will ...</h2>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Profile</li>
+	</ol>
+</nav>
+<p class="section-intro">Your profile page. Edit at will ...</p>
 <div class="content-section">
 	<div class="media">
 		<img class="rounded-circle account-img" src="{{ user.profile.profile_image.url }}">

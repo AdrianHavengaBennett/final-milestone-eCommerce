@@ -29,35 +29,16 @@
                 <div class="col-3">
                     <a class="navbar-brand" href="{% url 'products-home' %}">Site Logo</a>
                 </div>
-                <div class="col-5">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search products" aria-label="Search">
+                <div class="col-6">
+                    <form action="{% url 'products-search' %}" class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" name="p_search" placeholder="Search products" aria-label="Search">
                     </form>
                 </div>
-                <div class="col-4">
-                    <div class="row">
-                        {% if user.is_authenticated %}
-                            <div class="col-xs-4">
-                                <a class="top-container-icon d-none d-lg-block" href="{% url 'logout' %}">
-                                    <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only">Sign out</span>
-                                    <small> Sign Out</small>
-                                </a>
-                            </div>
-                        {% else %}
-                            <div class="col-xs-4">
-                                <a class="top-container-icon d-none d-lg-block" href="{% url 'login' %}">
-                                    <i class="fa fa-sign-in" aria-hidden="true"></i><span class="sr-only">Sign in</span>
-                                    <small> Sign In</small>
-                                </a>
-                            </div>
-                        {% endif %}
-                        <div class="col-xs-4">
-                            <a class="top-container-icon" href="#">
-                                <i class="fa fa-shopping-basket" aria-hidden="true"></i><span class="sr-only">Customer basket</span>
-                                <small> Basket</small>
-                            </a>
-                        </div>
-                    </div>
+                <div class="col-2 offset-1">
+                    <a class="top-container-icon" href="#">
+                        <i class="fa fa-shopping-basket" aria-hidden="true"></i><span class="sr-only">Customer basket</span>
+                        <small class="d-none d-lg-block"> Basket</small>
+                    </a>
                 </div>
             </div>
         </div>

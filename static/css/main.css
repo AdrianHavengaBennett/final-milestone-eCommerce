@@ -1,7 +1,7 @@
 body,
 html {
   height: 100%;
-  background-image: url("/media/images/doodle_red.jpg");
+  background-image: url("/media/bg_images/doodle_red.jpg");
   background-repeat: repeat;
   background-size: 250px;
 }
@@ -136,8 +136,8 @@ input[type="search"]::-webkit-input-placeholder {
 }
 
 .btn {
+  margin-top: 1rem;
   width: 100%;
-  margin: inherit;
   background-color: #E06666;
   color: #fafafa;
 }
@@ -149,6 +149,7 @@ input[type="search"]::-webkit-input-placeholder {
 
 .article-title {
   color: #444444;
+  font-size: 1.25rem;
 }
 
 a.article-title:hover {

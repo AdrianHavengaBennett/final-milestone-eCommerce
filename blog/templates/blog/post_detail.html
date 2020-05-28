@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+			<li class="breadcrumb-item"><a href="{% url 'blog-home' %}">Blog</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+		</ol>
+	</nav>
+	<article class="media content-section">
+		<img class="rounded-circle article-img" src="{{ post.author.profile.profile_image.url }}">
+		<div class="media-body">
+			<div class="article-metadata">
+				<a class="mr-2" href="{% url 'profile' %}">{{ post.author }}</a>
+				<small class="text-muted">{{ post.date_created|date:'d F, Y' }}</small>
+			</div>
+			<h2>{{ post.title }}</h2>
+			<p class="article-content">{{ post.content }}</p>
+		</div>
+	</article>
+	<div class="form-group">
+		<a href="{% url 'edit-post' post.id %}">
+			<button class="btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> EDIT POST</button>
+		</a>
+		<a href="#">
+			<button class="btn"><i class="fa fa-trash" aria-hidden="true"></i> DELETE POST</button>
+		</a>
+{% endblock %}

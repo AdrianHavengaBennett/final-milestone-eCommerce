@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 from blog import urls as blog_urls
 from accounts import urls as accounts_urls
 from products import urls as products_urls
+from search import urls as search_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('accounts/', include(accounts_urls)),
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('blog/', include(blog_urls)),
+    path('search/', include(search_urls)),
 ]
 
 if settings.DEBUG:

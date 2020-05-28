@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Blog</li>
+		</ol>
+	</nav>
+	<p class="section-intro">Welcome back, {{ user }}. Catch up on everything music-related from our community, or start a new conversation.</p>
+	<div class="row">
+
+		<!-- mobile layout for side section -->
+		<div class="col-md-4 d-md-none">
+			<div class="content-section">
+				<form action="{% url 'blog-search' %}" class="form-inline">
+					<div class="row no-gutters">
+						<div class="col-11">
+							<input class="form-control mr-sm-2" type="search" name="b_search" placeholder="Search Blog" aria-label="Search">
+						</div>
+						<div class="col-1">
+							<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+						</div>
+					</div>
+                </form>
+                <a href="{% url 'new-post' %}">
+                	<button class="btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> NEW POST</button>
+                </a>
+			</div>
+		</div>
+		<!-- mobile layout for side section end -->
+
+		<div class="col-md-8">
+			{% for post in posts %}
+				<article class="media content-section">
+					<img class="rounded-circle article-img" src="{{ post.author.profile.profile_image.url }}">
+					<div class="media-body">
+						<div class="article-metadata">
+							<a class="mr-2" href="{% url 'profile' %}">{{ post.author }}</a>
+							<small class="text-muted">{{ post.date_created|date:'d F, Y' }}</small>
+						</div>
+						<h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+						<p class="article-content">{{ post.content }}</p>
+					</div>
+				</article>
+			{% empty %}
+				<p class="section-intro">No results found.</p>
+				<p class="section-intro"><a href="{% url 'blog-home' %}"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back to Blog</a></p>
+			{% endfor %}
+		</div>
+
+		<!-- desktop layout for side section -->
+		<div class="col-md-4 d-none d-md-block">
+			<div class="content-section">
+				<form action="{% url 'blog-search' %}" class="form-inline">
+					<div class="row no-gutters">
+						<div class="col-11">
+							<input class="form-control mr-sm-2" type="search" name="b_search" placeholder="Search Blog" aria-label="Search">
+						</div>
+						<div class="col-1">
+							<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+						</div>
+					</div>
+                </form>
+                <a href="{% url 'new-post' %}">
+                	<button class="btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> NEW POST</button>
+                </a>
+			</div>
+		</div>
+		<!-- desktop layout for side section end -->
+
+	</div>
+{% endblock %}

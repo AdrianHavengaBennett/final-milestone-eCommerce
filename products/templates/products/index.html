@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<p class="section-intro">{{ todo }}</p>
+	{% for product in products %}
+	<article class="media content-section">
+		<img class="rounded-circle article-img" src="{{ product.image.url }}">
+		<div class="media-body">
+			<div class="article-metadata">
+				<small class="text-muted">{{ product.price }}</small>
+			</div>
+			<h2><a class="article-title" href="#">{{ product.name }}</a></h2>
+			<p class="article-content">{{ product.description }}</p>
+		</div>
+	</article>
+	{% empty %}
+	<p class="section-intro">No results found.</p>
+	<p class="section-intro"><a href="{% url 'products-home' %}"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back to Products</a></p>
+	{% endfor %}
 	
 {% endblock %}
