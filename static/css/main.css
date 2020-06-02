@@ -18,11 +18,30 @@ footer {
   position: relative;
 }
 
+p {
+  padding: 0 .75rem;
+}
+
+hr {
+  border: 0.155rem solid #E06666;
+  border-radius: 100%;
+}
+
 main {
   flex: 1 0 auto;
   background-color: #f4f4f4;
   margin: .25em 0 .25em 0;
   padding-bottom: .75em;
+}
+
+section {
+  background-color: #f4f4f4;
+  margin: .25em 0 .25em 0;
+  padding-bottom: .75em;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 h1,
@@ -44,6 +63,59 @@ ul {
 
 .container {
   width: 97%;
+}
+
+#p-search-bar {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  min-width: 70%;
+  margin-left: 3rem;
+}
+
+#p-search-button {
+  
+}
+
+#products-special-carousel {
+  margin-top: .5em;
+}
+
+.carousel-img {
+  margin-bottom: 1em;
+}
+
+.carousel-info-header {
+  font-size: 1.25em;
+  color: #fafafa;
+}
+
+.carousel-info-description {
+  font-size: 1.1em;
+  color: red;
+}
+
+.social-icon {
+  color: #444444;
+  font-size: 1.5rem;
+  padding: 0 1rem 0 1rem;
+  transition: color 0.5s ease;
+}
+
+.fa-facebook-square:hover {
+  color: #3B5998;
+}
+
+.fa-twitter-square:hover {
+  color: #1DA1F2;
+}
+
+.fa-youtube-square:hover {
+  color: #E62117;
+}
+
+.fa-instagram:hover {
+  color: #DD2A7B;
 }
 
 .form-inline .form-control {
@@ -147,6 +219,16 @@ input[type="search"]::-webkit-input-placeholder {
   color: #E06666;
 }
 
+#cc-location {
+  font-weight: 500;
+}
+
+.cc-info {
+  font-size: 10px;
+  margin: 0;
+  padding-bottom: 4px;
+}
+
 .article-title {
   color: #444444;
   font-size: 1.25rem;
@@ -154,7 +236,10 @@ input[type="search"]::-webkit-input-placeholder {
 
 a.article-title:hover {
   color: #428bca;
-  text-decoration: none;
+}
+
+a#product-card {
+  color: #444444;
 }
 
 .article-content {
@@ -165,6 +250,28 @@ a.article-title:hover {
   height: 65px;
   width: 65px;
   margin-right: 16px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 2px 2px #888888;
+  margin: .5em 0;
+}
+
+.product-img {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: -webkit-fill-available;
+  height: 14rem;
+  margin: .75rem .75rem;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+}
+
+.product-price {
+  padding: .5rem 0;
 }
 
 .article-metadata {
@@ -192,6 +299,7 @@ a.article-title:hover {
 }
 
 .account-heading {
+  padding-top: .5rem;
   font-size: 1.25rem;
 }
 
@@ -235,6 +343,9 @@ footer p {
   }
   .container {
     width: 100%;
+  }
+  .social-icon {
+    font-size: 2rem;
   }
 }
 

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+		<li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+	</ol>
+</nav>
+<div class="row">
+	<div class="col-xs-12 col-lg-6">
+		<article class="panel-body card text-center">
+			<h2 class="account-heading text-center">{{ product.name }}</h2>
+			<div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
+		</article>
+	</div>
+	<div class="col-xs-12 col-lg-6">
+		<article class="panel-body card text-center">
+			{% if product.id == 5 or product.id == 6 %}
+            	<del><h3>£150</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
+            {% elif product.id == 7 %}
+            	<del><h3>£300</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
+            {% else %}
+            	<h3 class="product-price">£{{ product.price }}</h3>
+            {% endif %}
+			<hr>
+			<p class="product-description">{{ product.description }}</p>
+		</article>
+	</div>
+</div>
+<div class="form-group">
+	<a href="#">
+		<button class="btn"><i class="fa fa-shopping-basket" aria-hidden="true"></i> ADD TO BASKET</button>
+	</a>
+	<a href="#">
+		<button class="btn"><i class="fa fa-commenting-o" aria-hidden="true"></i> BLOG ABOUT IT</button>
+	</a>
+</div>
+
+{% endblock %}

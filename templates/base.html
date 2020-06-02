@@ -26,15 +26,36 @@
     <header class="site-header">
         <div class="container">
             <div id="top-container" class="row">
-                <div class="col-3">
+                <!-- mobile search -->
+                <form action="{% url 'products-search' %}" id="p-search-bar" class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" name="p-search" placeholder="Search products" aria-label="Search">
+                    <button id="p-search-button" type="submit">
+                        <i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">Search</span>
+                    </button>
+                </form>
+                <div class="col col-xs-2 d-lg-none">
+                    <i id="p-search-icon" class="fa fa-search top-container-icon" aria-hidden="true"></i><span class="sr-only">Search</span>
+                </div>
+                <!-- mobile search end -->
+
+                <!-- site logo -->
+                <div class="col-xs-auto">
                     <a class="navbar-brand" href="{% url 'products-home' %}">Site Logo</a>
                 </div>
-                <div class="col-6">
+
+                <!-- desktop search -->
+                <div class="col col-xs-8 d-none d-lg-block">
                     <form action="{% url 'products-search' %}" class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" name="p_search" placeholder="Search products" aria-label="Search">
+                        <input class="form-control mr-sm-2" type="search" name="p-search" placeholder="Search products" aria-label="Search">
+                        <button id="p-search-button" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">Search</span>
+                        </button>
                     </form>
                 </div>
-                <div class="col-2 offset-1">
+                <!-- desktop search end -->
+
+                <!-- rightside icons -->
+                <div class="col col-xs-2">
                     <a class="top-container-icon" href="#">
                         <i class="fa fa-shopping-basket" aria-hidden="true"></i><span class="sr-only">Customer basket</span>
                         <small class="d-none d-lg-block"> Basket</small>
@@ -52,7 +73,7 @@
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="{% url 'products-home' %}"><i class="fa fa-home" aria-hidden="true"></i><span class="sr-only">All products</span> Products</a>
                         <a class="nav-item nav-link" href="/"><i class="fa fa-files-o" aria-hidden="true"></i><span class="sr-only">All categories</span> Categories</a>
-                        <a class="nav-item nav-link" href="/"><i class="fa fa-mouse-pointer" aria-hidden="true"></i><span class="sr-only">Click and collect</span> Click&Collect</a>
+                        <a class="nav-item nav-link" href="{% url 'click_and_collect' %}"><i class="fa fa-mouse-pointer" aria-hidden="true"></i><span class="sr-only">Click and collect</span> Click&Collect</a>
                         <a class="nav-item nav-link" href="/"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">Frequently asked questions</span> FAQ</a>
                         <a class="nav-item nav-link" href="/"><i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Help chat</span> Help</a>
                         <a class="nav-item nav-link" href="/"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> Contact</a>
@@ -73,7 +94,7 @@
             <div class="container">
                 <a class="nav-item nav-link" href="{% url 'products-home' %}"><i class="fa fa-home" aria-hidden="true"></i><span class="sr-only">All products</span> Products</a>
                 <a class="nav-item nav-link" href="/"><i class="fa fa-files-o" aria-hidden="true"></i><span class="sr-only">All categories</span> Categories</a>
-                <a class="nav-item nav-link" href="/"><i class="fa fa-mouse-pointer" aria-hidden="true"></i><span class="sr-only">Click and collect</span> Click&Collect</a>
+                <a class="nav-item nav-link" href="{% url 'click_and_collect' %}"><i class="fa fa-mouse-pointer" aria-hidden="true"></i><span class="sr-only">Click and collect</span> Click&Collect</a>
                 <a class="nav-item nav-link" href="/"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">Frequently asked questions</span> FAQ</a>
                 <a class="nav-item nav-link" href="/"><i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Help chat</span> Help</a>
                 <a class="nav-item nav-link" href="/"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> Contact</a>
@@ -108,6 +129,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script type="text/javascript"></script>
+    <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
 </body>
 </html>

@@ -1,20 +1,121 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	{% for product in products %}
-	<article class="media content-section">
-		<img class="rounded-circle article-img" src="{{ product.image.url }}">
-		<div class="media-body">
-			<div class="article-metadata">
-				<small class="text-muted">{{ product.price }}</small>
+<div class="media row">
+	<div class="col-xs-12 col-md-8">
+		<div id="products-special-carousel" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#products-special-carousel" data-slide-to="0" class="active"></li>
+				<li data-target="#products-special-carousel" data-slide-to="1"></li>
+				<li data-target="#products-special-carousel" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<a href="{% url 'product-detail' 5 %}">
+						<img src="/media/slide_images/Beef 2.jpg" class="d-block w-100 carousel-img" alt="Special Deals item 1">
+						<div class="carousel-caption">
+							<h5 class="carousel-info-header">Super Cool Beefie Sale!</h5>
+							<p class="carousel-info-description">Was <del>£150</del> Now only <ins>£120</ins>!</p>
+						</div>
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a href="{% url 'product-detail' 6 %}">
+						<img src="/media/slide_images/Beef 3.jpg" class="d-block w-100 carousel-img" alt="Special Deals item 2">
+						<div class="carousel-caption">
+							<h5 class="carousel-info-header">Super Cool Beefie Two Sale!</h5>
+							<p class="carousel-info-description">Was <del>£150</del> Now only <ins>£120</ins>!</p>
+						</div>
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a href="{% url 'product-detail' 7 %}">
+						<img src="/media/slide_images/Beef and Kibble.jpg" class="d-block w-100 carousel-img" alt="Special Deals item 3">
+						<div class="carousel-caption">
+							<h5 class="carousel-info-header">Super Cool Beef And Kibble Sale!</h5>
+							<p class="carousel-info-description">Was <del>£300</del> Now only <ins>£250</ins>!</p>
+						</div>
+					</a>
+				</div>
 			</div>
-			<h2><a class="article-title" href="#">{{ product.name }}</a></h2>
-			<p class="article-content">{{ product.description }}</p>
+			<a class="carousel-control-prev" href="#products-special-carousel" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#products-special-carousel" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
 		</div>
-	</article>
+	</div>
+	{% if not user.is_authenticated %}
+	<div class="col-xs-12 col-md-4">
+		<div class="content-section">
+			<p class="section-intro">Join our growing community blog, and unlock ticket deals for selected upcoming shows.</p>
+			<a href="{% url 'register' %}">
+				<button class="btn"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP NOW</button>
+			</a>
+		</div>
+	</div>
+	{% endif %}
+</div>
+
+<hr>
+
+<h2 class="account-heading text-center">All Products</h2>
+<div class="row">
+	{% for product in products %}
+	<div class="col-xs-12 col-md-6 col-lg-3">
+		<a id="product-card" href="{% url 'product-detail' product.id %}">
+			<div class="panel-body card text-center">
+	            <div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
+	            <h3>{{ product.name }}</h3>
+	            {% if product.id == 5 or product.id == 6 %}
+	            	<del><h3>£150</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
+	            {% elif product.id == 7 %}
+	            	<del><h3>£300</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
+	            {% else %}
+	            	<h3 class="product-price">£{{ product.price }}</h3>
+	            {% endif %}
+	        </div>
+        </a>
+	</div>
 	{% empty %}
 	<p class="section-intro">No results found.</p>
 	<p class="section-intro"><a href="{% url 'products-home' %}"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back to Products</a></p>
 	{% endfor %}
-	
+</div>
+
+
+<hr>
+
+<div class="media content-section">
+	<div class="row">
+		<div class="col-xs-12">
+			<h2 class="account-heading text-center">About Us</h2>
+			<p class="section-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<div class="row justify-content-md-center">
+				<div class="col col-xs-2"></div>
+				<div class="col-xs-auto">
+					<a href="#">
+						<i class="fa fa-facebook-square social-icon" aria-hidden="true"></i>
+					</a>
+
+					<a href="#">
+						<i class="fa fa-twitter-square social-icon" aria-hidden="true"></i>
+					</a>
+
+					<a href="#">
+						<i class="fa fa-youtube-square social-icon" aria-hidden="true"></i>
+					</a>
+
+					<a href="#">
+						<i class="fa fa-instagram social-icon" aria-hidden="true"></i>
+					</a>
+				</div>
+				<div class="col col-xs-2"></div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}

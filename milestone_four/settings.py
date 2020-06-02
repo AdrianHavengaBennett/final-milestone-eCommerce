@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'click_and_collect.apps.ClickAndCollectConfig',
     'search.apps.SearchConfig',
     'products.apps.ProductsConfig',
     'blog.apps.BlogConfig',
