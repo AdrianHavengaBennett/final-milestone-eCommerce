@@ -2,34 +2,40 @@
 
 {% block content %}
 
-<nav aria-label="breadcrumb">
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Click&Collect</li>
-	</ol>
-</nav>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Click&Collect</li>
+		</ol>
+	</nav>
 
-<p class="section-intro">We offer a free click and collect service from the following locations:</p>
+	<p class="section-intro">We offer a free click and collect service from the following locations:</p>
 
-{% for location in locations %}
-<article class="panel-body card">
-	{% if location.postcode == '67771' %}
-		<div id="map2"></div>
-	{% elif location.postcode == '67544' %}
-		<div id="map1"></div>
-	{% endif %}
-	<p id="cc-location" class="cc-info">{{ location.location_name }}</p>
-	<p class="cc-info">{{ location.street_address1 }}</p>
-	<p class="cc-info">{{ location.town_or_city }}</p>
-	<p class="cc-info">{{ location.postcode }}</p>
-	<br>
-	<p class="cc-info">{{ location.location_email }}</p>
-	<p id="cc-phone">{{ location.location_phone }}</p>
-</article>
-{% if not forloop.last %}
-<hr>
-{% endif %}
+	{% for location in locations %}
+		<article class="panel-body card">
+			{% if location.postcode == '67771' %}
+				<div id="map2"></div>
+			{% elif location.postcode == '67544' %}
+				<div id="map1"></div>
+			{% endif %}
+			<p id="cc-location" class="cc-info">{{ location.location_name }}</p>
+			<p class="cc-info">{{ location.street_address1 }}</p>
+			<p class="cc-info">{{ location.town_or_city }}</p>
+			<p class="cc-info">{{ location.postcode }}</p>
+			<br>
+			<p class="cc-info">{{ location.location_email }}</p>
+			<p id="cc-phone">{{ location.location_phone }}</p>
+		</article>
+		{% if not forloop.last %}
+			<hr>
+		{% endif %}
 
-{% endfor %}
+	{% endfor %}
 
 {% endblock %}
+
+{% block g_maps_script %}
+
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ g_maps_api_key }}&callback=initMap"></script>
+
+{% endblock g_maps_script %}
