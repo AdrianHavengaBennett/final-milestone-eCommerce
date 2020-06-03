@@ -11,27 +11,25 @@
 
 <p class="section-intro">We offer a free click and collect service from the following locations:</p>
 
-<div class="row">
-	<div class="col-xs-6">
-		<article class="panel-body card map">
-			<!-- Google Map here -->
-		</article>
-	</div>
-	<div class="col-xs-6">
-		{% for location in locations %}
-		<article class="panel-body card">
-			<p id="cc-location" class="cc-info">{{ location.location_name }}</p>
-			<br>
-			<p class="cc-info">{{ location.street_address1 }}</p>
-			<p class="cc-info">{{ location.town_or_city }}</p>
-			<p class="cc-info">{{ location.postcode }}</p>
-			<br>
-			<p class="cc-info">{{ location.location_email }}</p>
-			<br>
-			<p class="cc-info">{{ location.location_phone }}</p>
-		</article>
-		{% endfor %}
-	</div>
-</div>
+{% for location in locations %}
+<article class="panel-body card">
+	{% if location.postcode == '67771' %}
+		<div id="map2"></div>
+	{% elif location.postcode == '67544' %}
+		<div id="map1"></div>
+	{% endif %}
+	<p id="cc-location" class="cc-info">{{ location.location_name }}</p>
+	<p class="cc-info">{{ location.street_address1 }}</p>
+	<p class="cc-info">{{ location.town_or_city }}</p>
+	<p class="cc-info">{{ location.postcode }}</p>
+	<br>
+	<p class="cc-info">{{ location.location_email }}</p>
+	<p id="cc-phone">{{ location.location_phone }}</p>
+</article>
+{% if not forloop.last %}
+<hr>
+{% endif %}
+
+{% endfor %}
 
 {% endblock %}

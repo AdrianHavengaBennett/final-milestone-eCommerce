@@ -18,9 +18,9 @@
 	<div class="col-xs-12 col-lg-6">
 		<article class="panel-body card text-center">
 			{% if product.id == 5 or product.id == 6 %}
-            	<del><h3>£150</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
+            	<span class="specials-text">Was</span> <del><h3 class="specials-price">£150.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
             {% elif product.id == 7 %}
-            	<del><h3>£300</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
+            	<span class="specials-text">Was</span><del><h3 class="specials-price">£300.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
             {% else %}
             	<h3 class="product-price">£{{ product.price }}</h3>
             {% endif %}
