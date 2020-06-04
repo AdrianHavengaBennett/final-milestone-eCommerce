@@ -5,6 +5,8 @@
 <nav aria-label="breadcrumb">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'categories' %}">Categories</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'category-products' product.category_name.id %}">{{ product.category_name }}</a></li>
 		<li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
 	</ol>
 </nav>
@@ -17,9 +19,9 @@
 	</div>
 	<div class="col-xs-12 col-lg-6">
 		<article class="panel-body card text-center">
-			{% if product.id == 5 or product.id == 6 %}
+			{% if product.id == 1 or product.id == 2 %}
             	<span class="specials-text">Was</span> <del><h3 class="specials-price">£150.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
-            {% elif product.id == 7 %}
+            {% elif product.id == 3 %}
             	<span class="specials-text">Was</span><del><h3 class="specials-price">£300.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
             {% else %}
             	<h3 class="product-price">£{{ product.price }}</h3>

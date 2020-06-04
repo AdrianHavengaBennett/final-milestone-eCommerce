@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'categories' %}">Categories</a></li>
+		<li class="breadcrumb-item active" aria-current="page">{{ category_name }}</li>
+	</ol>
+</nav>
+
+<div class="panel-body card text-center">
+	<div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ category_image }}')"></div>
+	<h2 class="account-heading text-center">All {{ category_name }} Products</h2>
+</div>
+
+<hr>
+
+<div class="row">
+	{% for product in products %}
+	<div class="col-xs-12 col-md-6 col-lg-3">
+		<a id="product-card" href="{% url 'product-detail' product.id %}">
+			<div class="panel-body card text-center">
+	            <div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
+	            <h3>{{ product.name }}</h3>
+	            {% if product.id == 1 or product.id == 2 %}
+	            	<span class="specials-text">Was</span> <del><h3 class="specials-price">£150.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
+            {% elif product.id == 3 %}
+            	<span class="specials-text">Was</span><del><h3 class="specials-price">£300.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
+	            {% else %}
+	            	<h3 class="product-price">£{{ product.price }}</h3>
+	            {% endif %}
+	        </div>
+        </a>
+	</div>
+	{% empty %}
+	<p class="section-intro">No results found.</p>
+	<p class="section-intro"><a href="{% url 'products-home' %}"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back to Products</a></p>
+	{% endfor %}
+</div>
+
+{% endblock %}
+

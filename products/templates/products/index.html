@@ -11,7 +11,7 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<a href="{% url 'product-detail' 5 %}">
+					<a href="{% url 'product-detail' 1 %}">
 						<img src="/media/slide_images/Beef 2.jpg" class="d-block w-100 carousel-img" alt="Special Deals item 1">
 						<div class="carousel-caption">
 							<h5 class="carousel-info-header">Super Cool Beefie Sale!</h5>
@@ -20,7 +20,7 @@
 					</a>
 				</div>
 				<div class="carousel-item">
-					<a href="{% url 'product-detail' 6 %}">
+					<a href="{% url 'product-detail' 2 %}">
 						<img src="/media/slide_images/Beef 3.jpg" class="d-block w-100 carousel-img" alt="Special Deals item 2">
 						<div class="carousel-caption">
 							<h5 class="carousel-info-header">Super Cool Beefie Two Sale!</h5>
@@ -29,7 +29,7 @@
 					</a>
 				</div>
 				<div class="carousel-item">
-					<a href="{% url 'product-detail' 7 %}">
+					<a href="{% url 'product-detail' 3 %}">
 						<img src="/media/slide_images/Beef and Kibble.jpg" class="d-block w-100 carousel-img" alt="Special Deals item 3">
 						<div class="carousel-caption">
 							<h5 class="carousel-info-header">Super Cool Beef And Kibble Sale!</h5>
@@ -70,9 +70,9 @@
 			<div class="panel-body card text-center">
 	            <div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
 	            <h3>{{ product.name }}</h3>
-	            {% if product.id == 5 or product.id == 6 %}
+	            {% if product.id == 1 or product.id == 2 %}
 	            	<del><h3>£150</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
-	            {% elif product.id == 7 %}
+	            {% elif product.id == 3 %}
 	            	<del><h3>£300</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
 	            {% else %}
 	            	<h3 class="product-price">£{{ product.price }}</h3>
