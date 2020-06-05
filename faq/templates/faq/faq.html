@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">FAQ</li>
+		</ol>
+	</nav>
+
+	<div class="row">
+
+		<!-- side section -->
+		<aside class="col-xs-12 col-md-4 order-md-12">
+			<div class="content-section">
+				<form action="{% url 'faqs-search' %}" class="form-inline">
+					<div class="row no-gutters">
+						<div class="col-11">
+							<input class="form-control mr-sm-2" type="search" name="f-search" placeholder="Search FAQ" aria-label="Search">
+						</div>
+						<div class="col-1">
+							<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+						</div>
+					</div>
+                </form>
+                <a href="#">
+                	<button class="btn"><i class="fa fa-comments-o" aria-hidden="true"></i> NO LUCK? TRY THE HELP CHAT</button>
+                </a>
+                <a href="#">
+                	<button class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i> OR CONTACT US</button>
+                </a>
+			</div>
+		</aside>
+
+		<div class="col-xs-12 col-md-8 order-md-1">
+			<article class="accordion" id="faq-accordion">
+				{% for faq in faqs %}
+				<div class="card">
+					<div class="card-header" id="{{ faq.id }}">
+						<h2 class="article-title mb-0">
+							<button id="faq-button" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse{{ faq.id }}" aria-expanded="false" aria-controls="collapseOne">
+								<i class="fa fa-question-circle-o" aria-hidden="true"></i> {{ faq.question }}
+							</button>
+						</h2>
+					</div>
+
+					<div id="collapse{{ faq.id }}" class="collapse" aria-labelledby="{{ faq.id }}" data-parent="#faq-accordion">
+						<div class="card-body">
+							<h2 class="text-center"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Our Answer</h2>
+							<p class="article-content"> {{ faq.answer }}</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- if nothing is returned from search -->
+				{% empty %}
+					<p class="section-intro">No results found.</p>
+				{% endfor %}
+
+				{% if searched %}
+					<div>
+						<p class="section-intro"><a href="{% url 'faqs-home' %}"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back to all FAQ</a></p>
+					</div>
+				{% endif %}
+			</article>
+		</div>
+	</div>
+{% endblock %}

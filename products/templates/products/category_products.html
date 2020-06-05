@@ -26,17 +26,14 @@
 	            <h3>{{ product.name }}</h3>
 	            {% if product.id == 1 or product.id == 2 %}
 	            	<span class="specials-text">Was</span> <del><h3 class="specials-price">£150.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
-            {% elif product.id == 3 %}
-            	<span class="specials-text">Was</span><del><h3 class="specials-price">£300.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
+	            {% elif product.id == 3 %}
+	            	<span class="specials-text">Was</span><del><h3 class="specials-price">£300.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
 	            {% else %}
 	            	<h3 class="product-price">£{{ product.price }}</h3>
 	            {% endif %}
 	        </div>
         </a>
 	</div>
-	{% empty %}
-	<p class="section-intro">No results found.</p>
-	<p class="section-intro"><a href="{% url 'products-home' %}"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back to Products</a></p>
 	{% endfor %}
 </div>
 

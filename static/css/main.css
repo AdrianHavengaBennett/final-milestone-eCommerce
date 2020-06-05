@@ -138,6 +138,7 @@ ul {
   display: inline;
   text-align: center;
   color: #333333;
+  transition: color .5s ease;
   font-size: 1.25rem;
   padding: 2px;
 }
@@ -152,6 +153,7 @@ input[type="search"]::-webkit-input-placeholder {
 
 .nav-item {
   color: #f4f4f4;
+  transition: color .5s ease;
 }
 
 .nav-item:hover {
@@ -216,6 +218,11 @@ input[type="search"]::-webkit-input-placeholder {
   border-radius: 3px;
   margin-top: .5em;
   box-shadow: 2px 2px #888888;
+  transition: box-shadow .5s ease;
+}
+
+.content-section:hover {
+  box-shadow: 4px 4px #888888;
 }
 
 .btn {
@@ -223,6 +230,13 @@ input[type="search"]::-webkit-input-placeholder {
   width: 100%;
   background-color: #E06666;
   color: #fafafa;
+}
+
+#faq-button {
+  background-color: #fafafa;
+  color: #E06666;
+  border: 1px solid #EEEEEE;
+  box-shadow: 2px 2px #888888;
 }
 
 .btn:hover {
@@ -248,16 +262,27 @@ input[type="search"]::-webkit-input-placeholder {
   padding-bottom: 8px;
 }
 
+#post-author {
+  color: #444444;
+  transition: color .5s ease;
+}
+
+#post-author:hover {
+  color: #E06666;
+}
+
 .article-title {
   color: #444444;
+  transition: color .5s ease;
   font-size: 1.25rem;
 }
 
 a.article-title:hover {
-  color: #428bca;
+  color: #E06666;
 }
 
 .article-content {
+  text-align: center;
   white-space: pre-line;
 }
 

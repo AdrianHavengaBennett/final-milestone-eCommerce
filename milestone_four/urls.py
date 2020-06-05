@@ -24,6 +24,7 @@ from products import urls as products_urls
 from search import urls as search_urls
 from click_and_collect import urls as click_and_collect_urls
 from categories import urls as categories_urls
+from faq import urls as faq_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,6 +35,7 @@ urlpatterns = [
     path('search/', include(search_urls)),
     path('click_and_collect/', include(click_and_collect_urls)),
     path('categories/', include(categories_urls)),
+    path('faq/', include(faq_urls)),
 ]
 
 if settings.DEBUG:

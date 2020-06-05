@@ -65,25 +65,32 @@
 <h2 class="account-heading text-center">All Products</h2>
 <div class="row">
 	{% for product in products %}
-	<div class="col-xs-12 col-md-6 col-lg-3">
-		<a id="product-card" href="{% url 'product-detail' product.id %}">
-			<div class="panel-body card text-center">
-	            <div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
-	            <h3>{{ product.name }}</h3>
-	            {% if product.id == 1 or product.id == 2 %}
-	            	<del><h3>£150</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
-	            {% elif product.id == 3 %}
-	            	<del><h3>£300</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
-	            {% else %}
-	            	<h3 class="product-price">£{{ product.price }}</h3>
-	            {% endif %}
-	        </div>
-        </a>
-	</div>
+		<div class="col-xs-12 col-md-6 col-lg-3">
+			<a id="product-card" href="{% url 'product-detail' product.id %}">
+				<div class="panel-body card text-center">
+		            <div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
+		            <h3>{{ product.name }}</h3>
+		            {% if product.id == 1 or product.id == 2 %}
+		            	<del><h3>£150</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
+		            {% elif product.id == 3 %}
+		            	<del><h3>£300</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
+		            {% else %}
+		            	<h3 class="product-price">£{{ product.price }}</h3>
+		            {% endif %}
+		        </div>
+	        </a>
+		</div>
+
+	<!-- if nothing is returned from search -->
 	{% empty %}
-	<p class="section-intro">No results found.</p>
-	<p class="section-intro"><a href="{% url 'products-home' %}"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back to Products</a></p>
+		<p class="section-intro text-center">No results found.</p>
 	{% endfor %}
+
+	{% if searched %}
+	<div>
+		<p class="section-intro text-center"><a href="{% url 'products-home' %}"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back to all Products</a></p>
+	</div>
+	{% endif %}
 </div>
 
 

@@ -15,7 +15,7 @@
 				<a class="mr-2" href="{% url 'profile' %}">{{ post.author }}</a>
 				<small class="text-muted">{{ post.date_created|date:'d F, Y' }}</small>
 			</div>
-			<h2>{{ post.title }}</h2>
+			<h2 class="text-center">{{ post.title }}</h2>
 			<p class="article-content">{{ post.content }}</p>
 		</div>
 	</article>
