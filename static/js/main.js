@@ -17,14 +17,14 @@ function initMap() {
 // jQuery
 $(function() {
 	// custom jQuery
-	$('#p-search-icon').click(function() {
-		$('#p-search-bar').toggle();
-		$(this).css('class', 'fa-search').toggleClass('fa-search').toggleClass('fa-times');
-	});
+	// $('#p-search-icon').click(function() {
+	// 	$('#p-search-bar').toggle();
+	// 	$(this).css('class', 'fa-search').toggleClass('fa-search').toggleClass('fa-times');
+	// });
 
 	// bootstrap initialisations
 	$('.carousel').carousel({
-		interval: 5000
+		interval: 2750
 	});
 });
 

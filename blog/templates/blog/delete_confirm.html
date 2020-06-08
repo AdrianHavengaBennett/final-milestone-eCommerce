@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+			<li class="breadcrumb-item"><a href="{% url 'blog-home' %}">Blog</a></li>
+			<li class="breadcrumb-item"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Delete Post</li>
+		</ol>
+	</nav>
+	<article class="media content-section">
+		<div class="media-body">
+			<h2>{{ post.title }}</h2>
+			<p class="article-content">{{ post.content }}</p>
+		</div>
+	</article>
+	{% if request.user == post.author %}
+		<div class="form-group">
+			<form action="{% url 'delete-post' post.id %}">
+				<button class="btn"><i class="fa fa-trash" aria-hidden="true"></i> YES, DELETE</button>
+			</form>
+			<a href="{% url 'post-detail' post.id %}">
+				<button class="btn"><i class="fa fa-trash" aria-hidden="true"></i> NO, GO BACK</button>
+			</a>
+		</div>
+	{% endif %}
+{% endblock %}

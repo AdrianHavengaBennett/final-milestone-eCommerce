@@ -15,16 +15,18 @@
 				<a class="mr-2" href="{% url 'profile' %}">{{ post.author }}</a>
 				<small class="text-muted">{{ post.date_created|date:'d F, Y' }}</small>
 			</div>
-			<h2 class="text-center">{{ post.title }}</h2>
+			<h2 >{{ post.title }}</h2>
 			<p class="article-content">{{ post.content }}</p>
 		</div>
 	</article>
-	<div class="form-group">
-		<a href="{% url 'edit-post' post.id %}">
-			<button class="btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> EDIT POST</button>
-		</a>
-		<a href="#">
-			<button class="btn"><i class="fa fa-trash" aria-hidden="true"></i> DELETE POST</button>
-		</a>
-	</div>
+	{% if request.user == post.author %}
+		<div class="form-group">
+			<a href="{% url 'edit-post' post.id %}">
+				<button class="btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> EDIT POST</button>
+			</a>
+			<a href="{% url 'delete-request' post.id %}">
+				<button class="btn"><i class="fa fa-trash" aria-hidden="true"></i> DELETE POST</button>
+			</a>
+		</div>
+	{% endif %}
 {% endblock %}

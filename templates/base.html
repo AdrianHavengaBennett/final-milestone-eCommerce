@@ -26,40 +26,33 @@
     <header class="site-header">
         <div class="container">
             <div id="top-container" class="row">
-                <!-- mobile search -->
-                <form action="{% url 'products-search' %}" id="p-search-bar" class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" name="p-search" placeholder="Search products" aria-label="Search">
-                    <button class="p-search-button" type="submit">
-                        <i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">Search</span>
-                    </button>
-                </form>
-                <div class="col col-xs-2 d-lg-none">
-                    <i id="p-search-icon" class="fa fa-search top-container-icon" aria-hidden="true"></i><span class="sr-only">Search</span>
-                </div>
-                <!-- mobile search end -->
-
-                <!-- site logo -->
-                <div class="col-xs-auto">
+                <div class="col-3 col-lg-2 order-lg-1">
                     <a class="navbar-brand" href="{% url 'products-home' %}">Site Logo</a>
                 </div>
-
-                <!-- desktop search -->
-                <div class="col col-xs-8 d-none d-lg-block">
-                    <form action="{% url 'products-search' %}" class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" name="p-search" placeholder="Search products" aria-label="Search">
-                        <button class="p-search-button" type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">Search</span>
-                        </button>
-                    </form>
-                </div>
-                <!-- desktop search end -->
-
                 <!-- rightside icons -->
-                <div class="col col-xs-2">
+                <div class="col-3 col-lg-3 order-lg-12">
+                    {% if user.is_authenticated %}
+                        <a class="top-container-icon d-none d-lg-block" href="{% url 'logout' %}">Sign Out</a>
+                    {% endif %}
                     <a class="top-container-icon" href="#">
                         <i class="fa fa-shopping-basket" aria-hidden="true"></i><span class="sr-only">Customer basket</span>
-                        <small class="d-none d-lg-block"> Basket</small>
                     </a>
+                </div>
+
+                <div class="w-100 d-lg-none"></div>
+
+                <div class="col-12 col-lg-7 order-lg-6">
+                    <form action="{% url 'products-search' %}">
+                        <div class="input-group p-search">
+                            <input type="search" name="p-search" class="form-control" placeholder="Search products" aria-label="Search">
+                            <div class="input-group-append">
+                                <button id="b-search-button" class="btn" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                    <span class="sr-only">Search</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

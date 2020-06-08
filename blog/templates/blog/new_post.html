@@ -5,10 +5,20 @@
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
-			<li class="breadcrumb-item"><a href="{% url 'blog-home' %}">Blog</a></li>
-			<li class="breadcrumb-item active" aria-current="page">New Post</li>
+			{% if product.name %}
+				<li class="breadcrumb-item"><a href="{% url 'categories' %}">Categories</a></li>
+				<li class="breadcrumb-item"><a href="{% url 'category-products' product.category_name.id %}">{{ product.category_name }}</a></li>
+				<li class="breadcrumb-item"><a href="{% url 'product-detail' product.id %}">{{ product.name }}</a></li>
+				<li class="breadcrumb-item active" aria-current="page">New Product Post</li>
+			{% else %}
+				<li class="breadcrumb-item"><a href="{% url 'blog-home' %}">Blog</a></li>
+				<li class="breadcrumb-item active" aria-current="page">New Post</li>
+			{% endif %}
 		</ol>
 	</nav>
+	{% if product.name %}
+		<p class="section-intro">New Blog Post about the product "{{ product.name }}"</p>
+	{% endif %}
 	<form method="POST">
 		{% csrf_token %}
 		{{ form|crispy }}
