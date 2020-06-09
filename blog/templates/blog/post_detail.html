@@ -12,7 +12,7 @@
 		<img class="rounded-circle article-img" src="{{ post.author.profile.profile_image.url }}">
 		<div class="media-body">
 			<div class="article-metadata">
-				<a class="mr-2" href="{% url 'profile' %}">{{ post.author }}</a>
+				<span id="post-author" class="mr-2">{{ post.author }}</span>
 				<small class="text-muted">{{ post.date_created|date:'d F, Y' }}</small>
 			</div>
 			<h2 >{{ post.title }}</h2>

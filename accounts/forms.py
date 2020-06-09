@@ -6,7 +6,7 @@ from .models import Profile
 
 
 class UserRegisterForm(UserCreationForm):
-	email = forms.EmailField()
+	email = forms.EmailField(required=True)
 
 	class Meta:
 		model = User
@@ -30,4 +30,4 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
-		fields = ['profile_image']
+		fields = ['profile_image', 'color_scheme']
