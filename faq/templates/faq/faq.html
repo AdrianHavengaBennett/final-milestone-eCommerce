@@ -55,10 +55,10 @@
 
 				<!-- if nothing is returned from search -->
 				{% empty %}
-					<p class="section-intro">No results found.</p>
+					<p class="section-intro">No results found for "{{ searched_str }}".</p>
 				{% endfor %}
 
-				{% if searched %}
+				{% if searched_str %}
 					<div>
 						<p class="section-intro"><a href="{% url 'faqs-home' %}"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back to all FAQ</a></p>
 					</div>

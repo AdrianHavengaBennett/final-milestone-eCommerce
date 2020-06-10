@@ -53,6 +53,15 @@ ul {
   margin: 0;
 }
 
+#site-logo {
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+  width: -webkit-fill-available;
+  height: 2rem;
+  margin: 2px 0px 8px 0;
+}
+
 .alert {
   margin-top: 1rem;
 }
@@ -147,19 +156,19 @@ input[type="search"]::-webkit-input-placeholder {
 }
 
 .nav-item {
-  color: #f4f4f4;
-  transition: color .5s ease;
-}
-
-.nav-item:hover {
-  color: #333333;
+  color: #E1F4F3;
 }
 
 .nav-link {
   display: inline;
   padding: 0;
-  border-radius: 50%;
-  transition: background-color .35s ease-in-out;
+  border-radius: 3px;
+  transition: background-color .35s ease-out;
+}
+
+.nav-link:hover {
+  background-color: #706C61;
+  color: #FFF;
 }
 
 .navbar {
@@ -175,6 +184,7 @@ input[type="search"]::-webkit-input-placeholder {
 }
 
 .navbar-toggler-icon i {
+  color: #fafafa;
   font-size: 1.75rem;
 }
 
@@ -364,6 +374,7 @@ footer p {
 
 /***************************************colour schemes (SASS)*/
 
+.default-scheme,
 .red-scheme,
 .blue-scheme,
 .green-scheme,
@@ -374,8 +385,51 @@ footer p {
   background-size: 250px;
 }
 
+.default-scheme {
+  background-image: url("/media/bg_images/doodle.jpg");
+  & main.container {
+      background:
+        linear-gradient(
+          to top,
+          #E1F4F3,
+          #fafafa
+        );
+    }
+  & .btn {
+      background-color: #706C61;
+      color: #E1F4F3;
+    }
+  & .btn:hover {
+      background-color: #E1F4F3;
+      color: #706C61;
+    }
+  & #faq-button {
+      color: #706C61;
+    }
+  & hr {
+      border: 0.155rem solid #706C61;
+  }
+  & .navbar-toggler-icon i {
+      color: #E1F4F3;
+    }
+  & .top-container-icon:hover {
+      color: #706C61;
+    }
+  & a.article-title:hover {
+      color: #706C61;
+    }
+}
+
 .red-scheme {
   background-image: url("/media/bg_images/doodle_red.jpg");
+  & main.container {
+      background:
+        linear-gradient(
+          to top,
+          #ffd9d9,
+          #fafafa
+        );
+    }
   & .btn {
       background-color: #E06666;
     }
@@ -395,12 +449,6 @@ footer p {
   & .top-container-icon:hover {
       color: #E06666;
     }
-  & .nav-link:hover {
-      background-color: #E06666;
-    }
-  & #post-author:hover {
-      color: #E06666;
-    }
   & a.article-title:hover {
       color: #E06666;
     }
@@ -408,6 +456,14 @@ footer p {
 
 .blue-scheme {
   background-image: url("/media/bg_images/doodle_blue.jpg");
+  & main.container {
+      background:
+        linear-gradient(
+          to top,
+          #def0ff,
+          #fafafa
+        );
+    }
   & .btn {
       background-color: #4682B4;
     }
@@ -427,12 +483,6 @@ footer p {
   & .top-container-icon:hover {
       color: #4682B4;
     }
-  & .nav-link:hover {
-      background-color: #4682B4;
-    }
-  & #post-author:hover {
-      color: #4682B4;
-    }
   & a.article-title:hover {
       color: #4682B4;
     }
@@ -440,6 +490,14 @@ footer p {
 
 .green-scheme {
   background-image: url("/media/bg_images/doodle_green.jpg");
+  & main.container {
+      background:
+        linear-gradient(
+          to top,
+          #d6ffe4,
+          #fafafa
+        );
+    }
   & .btn {
       background-color: #50C878;
     }
@@ -459,12 +517,6 @@ footer p {
   & .top-container-icon:hover {
       color: #50C878;
     }
-  & .nav-link:hover {
-      background-color: #50C878;
-    }
-  & #post-author:hover {
-      color: #50C878;
-    }
   & a.article-title:hover {
       color: #50C878;
     }
@@ -472,6 +524,14 @@ footer p {
 
 .pink-scheme {
   background-image: url("/media/bg_images/doodle_pink.jpg");
+  & main.container {
+      background:
+        linear-gradient(
+          to top,
+          #ffdbed,
+          #fafafa
+        );
+    }
   & .btn {
       background-color: #FE5BAC;
     }
@@ -491,12 +551,6 @@ footer p {
   & .top-container-icon:hover {
       color: #FE5BAC;
     }
-  & .nav-link:hover {
-      background-color: #FE5BAC;
-    }
-  & #post-author:hover {
-      color: #FE5BAC;
-    }
   & a.article-title:hover {
       color: #FE5BAC;
     }
@@ -504,6 +558,14 @@ footer p {
 
 .purple-scheme {
   background-image: url("/media/bg_images/doodle_purple.jpg");
+  & main.container {
+      background:
+        linear-gradient(
+          to top,
+          #f2e3ff,
+          #fafafa
+        );
+    }
   & .btn {
       background-color: #6F2DA8;
     }
@@ -523,12 +585,6 @@ footer p {
   & .top-container-icon:hover {
       color: #6F2DA8;
     }
-  & .nav-link:hover {
-      background-color: #6F2DA8;
-    }
-  & #post-author:hover {
-      color: #6F2DA8;
-    }
   & a.article-title:hover {
       color: #6F2DA8;
     }
@@ -536,6 +592,14 @@ footer p {
 
 .yellow-scheme {
   background-image: url("/media/bg_images/doodle_yellow.jpg");
+  & main.container {
+      background:
+        linear-gradient(
+          to top,
+          #fcffde,
+          #fafafa
+        );
+    }
   & .btn {
       background-color: #EFFD5F;
       color: #333333;
@@ -556,12 +620,6 @@ footer p {
   & .top-container-icon:hover {
       color: #EFFD5F;
     }
-  & .nav-link:hover {
-      background-color: #EFFD5F;
-    }
-  & #post-author:hover {
-      color: #EFFD5F;
-    }
   & a.article-title:hover {
       color: #EFFD5F;
     }
@@ -579,7 +637,6 @@ footer p {
   .section-intro {
     margin-bottom: 1rem;
   }
-
   .content-section {
     margin-top: .5em;
   }
@@ -600,8 +657,22 @@ footer p {
   }
 }
 
+@media (min-width: 992px) and (max-width: 1024px) {
+  #site-logo {
+    background-size: 210px;
+  }
+}
+
+@media (min-width: 1025px) {
+  #site-logo {
+    background-size: 250px;
+  }
+}
+
 @media (min-width: 1200px) {
   .nav-link {
     padding: 1.5rem;
   }
 }
+
+

@@ -12,11 +12,11 @@ def blog_search(request):
 	"""
 
 	blog_posts = BlogPost.objects.filter(title__icontains=request.GET['b-search'])
-	searched = True
+	searched_str = request.GET['b-search']
 
 	context = {
 		'posts': blog_posts,
-		'searched': searched
+		'searched_str': searched_str
 	}
 
 	return render(request, 'blog/blog_home.html', context)
@@ -30,11 +30,11 @@ def products_search(request):
 	"""
 
 	products = Product.objects.filter(name__icontains=request.GET['p-search'])
-	searched = True
+	searched_str = request.GET['p-search']
 
 	context = {
 		'products': products,
-		'searched': searched
+		'searched_str': searched_str
 	}
 
 	return render(request, 'products/index.html', context)
@@ -48,11 +48,11 @@ def faqs_search(request):
 	"""
 
 	faqs = FAQ.objects.filter(question__icontains=request.GET['f-search'])
-	searched = True
+	searched_str = request.GET['f-search']
 
 	context = {
 		'faqs': faqs,
-		'searched': searched
+		'searched_str': searched_str
 	}
 
 	return render(request, 'faq/faq.html', context)

@@ -7,6 +7,7 @@ class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	profile_image = models.ImageField(default='default.jpg', upload_to='profile_images')
 
+	DEFAULT = 'default-scheme'
 	RED = 'red-scheme'
 	BLUE = 'blue-scheme'
 	GREEN = 'green-scheme'
@@ -14,6 +15,7 @@ class Profile(models.Model):
 	PURPLE = 'purple-scheme'
 	YELLOW = 'yellow-scheme'
 	COLOR_SCHEME_CHOICES = [
+		(DEFAULT, 'Default'),
 		(RED, 'Red'),
 		(BLUE, 'Blue'),
 		(GREEN, 'Green'),
@@ -22,9 +24,9 @@ class Profile(models.Model):
 		(YELLOW, 'Yellow'),
 	]
 	color_scheme = models.CharField(
-		max_length=13,
+		max_length=14,
 		choices=COLOR_SCHEME_CHOICES,
-		default=RED,
+		default=DEFAULT,
 	)
 
 	def __str__(self):
