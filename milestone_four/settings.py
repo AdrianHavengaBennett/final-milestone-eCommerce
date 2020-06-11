@@ -34,6 +34,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'help.apps.HelpConfig',
+    'contact.apps.ContactConfig',
     'faq.apps.FaqConfig',
     'categories.apps.CategoriesConfig',
     'click_and_collect.apps.ClickAndCollectConfig',

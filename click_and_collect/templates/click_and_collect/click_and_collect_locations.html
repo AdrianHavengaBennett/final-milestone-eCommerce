@@ -18,6 +18,10 @@
 			{% elif location.postcode == '67544' %}
 				<div id="map1"></div>
 			{% endif %}
+
+			<!-- hide the following map (maps api initMap function will look for them on the page and throw an error if not found) -->
+			<div class="d-none" id="map3"></div>
+
 			<p id="cc-location" class="cc-info">{{ location.location_name }}</p>
 			<p class="cc-info">{{ location.street_address1 }}</p>
 			<p class="cc-info">{{ location.town_or_city }}</p>

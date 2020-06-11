@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import BlogPost
-from .forms import BlogPostForm
+from .forms import BlogPostForm, ProductBlogPostForm
 from products.models import Product
 
 
@@ -32,11 +32,7 @@ def new_post(request):
 	else:
 		form = BlogPostForm()
 
-	context = {
-		'form': form,
-	}
-
-	return render(request, 'blog/new_post.html', context)
+	return render(request, 'blog/new_post.html', {'form': form})
 
 
 @login_required
@@ -46,7 +42,7 @@ def new_product_post(request, id):
 	product = Product.objects.get(pk=id)
 
 	if request.method == 'POST':
-		form = BlogPostForm(request.POST)
+		form = ProductBlogPostForm(request.POST, initial={'product': product})
 
 		if form.is_valid():
 			temp_form = form.save(commit=False)
@@ -55,7 +51,7 @@ def new_product_post(request, id):
 
 			return redirect('blog-home')
 	else:
-		form = BlogPostForm()
+		form = ProductBlogPostForm(initial={'product': product})
 
 	context = {
 		'form': form,

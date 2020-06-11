@@ -6,9 +6,9 @@ from faq.models import FAQ
 
 def blog_search(request):
 	"""
-	Does a search on the blog posts and sends a Boolean value
+	Does a search on all blog posts and sends a searched value
 	to the template in order to ascertain whether or not the query set
-	has been filtered
+	has been filtered and also leaves a reminder of what was searched
 	"""
 
 	blog_posts = BlogPost.objects.filter(title__icontains=request.GET['b-search'])
@@ -24,9 +24,9 @@ def blog_search(request):
 
 def products_search(request):
 	"""
-	Does a search on all products and sends a Boolean value
+	Does a search on all products and sends a searched value
 	to the template in order to ascertain whether or not the query set
-	has been filtered
+	has been filtered and also leaves a reminder of what was searched
 	"""
 
 	products = Product.objects.filter(name__icontains=request.GET['p-search'])
@@ -42,9 +42,9 @@ def products_search(request):
 
 def faqs_search(request):
 	"""
-	Does a search on all faqs and sends a Boolean value
+	Does a search on all faqs and sends a searched value
 	to the template in order to ascertain whether or not the query set
-	has been filtered
+	has been filtered and also leaves a reminder of what was searched
 	"""
 
 	faqs = FAQ.objects.filter(question__icontains=request.GET['f-search'])

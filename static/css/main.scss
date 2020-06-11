@@ -354,7 +354,8 @@ a#product-card {
 }
 
 #map1,
-#map2 {
+#map2,
+#map3 {
   height: 14rem;
   display: inline-block;
 }
@@ -601,12 +602,12 @@ footer p {
         );
     }
   & .btn {
-      background-color: #EFFD5F;
+      background-color: #f3ff6e;
       color: #333333;
     }
   & .btn:hover {
       background-color: #333333;
-      color: #EFFD5F;
+      color: #f3ff6e;
     }
   & #faq-button {
       color: #333333;
@@ -615,13 +616,13 @@ footer p {
       border: 0.155rem solid #333333;
     }
   & .navbar-toggler-icon i {
-      color: #EFFD5F;
+      color: #f3ff6e;
     }
   & .top-container-icon:hover {
-      color: #EFFD5F;
+      color: #f3ff6e;
     }
   & a.article-title:hover {
-      color: #EFFD5F;
+      color: #f3ff6e;
     }
 }
 
@@ -660,12 +661,14 @@ footer p {
 @media (min-width: 992px) and (max-width: 1024px) {
   #site-logo {
     background-size: 210px;
+    margin: 2px 0px 24px 0;
   }
 }
 
 @media (min-width: 1025px) {
   #site-logo {
     background-size: 250px;
+    margin: 2px 0px 2rem 0;
   }
 }
 

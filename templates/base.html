@@ -74,8 +74,8 @@
                         <a class="nav-item nav-link" href="{% url 'categories' %}"><i class="fa fa-files-o" aria-hidden="true"></i><span class="sr-only">All categories</span> Categories</a>
                         <a class="nav-item nav-link" href="{% url 'click_and_collect' %}"><i class="fa fa-mouse-pointer" aria-hidden="true"></i><span class="sr-only">Click and collect</span> Click&Collect</a>
                         <a class="nav-item nav-link" href="{% url 'faqs-home' %}"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">Frequently asked questions</span> FAQ</a>
-                        <a class="nav-item nav-link" href="/"><i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Help chat</span> Help</a>
-                        <a class="nav-item nav-link" href="/"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> Contact</a>
+                        <a class="nav-item nav-link" href="{% url 'help' %}"><i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Help chat</span> Chat</a>
+                        <a class="nav-item nav-link" href="{% url 'contact-us' %}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> Contact</a>
                         {% if user.is_authenticated %}
                             <a class="nav-item nav-link" href="/"><i class="fa fa-music" aria-hidden="true"></i><span class="sr-only">View upcoming shows</span> Shows</a>
                             <a class="nav-item nav-link" href="{% url 'blog-home' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="sr-only">Customer blog</span> Blog</a>
@@ -104,10 +104,10 @@
                     <a class="nav-item nav-link" href="{% url 'faqs-home' %}"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">Frequently asked questions</span> FAQ</a>
                 </div>
                 <div class="nav-item-box">
-                    <a class="nav-item nav-link" href="/"><i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Help chat</span> Help</a>
+                    <a class="nav-item nav-link" href="{% url 'help' %}"><i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Help chat</span> Chat</a>
                 </div>
                 <div class="nav-item-box">
-                    <a class="nav-item nav-link" href="/"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> Contact</a>
+                    <a class="nav-item nav-link" href="{% url 'contact-us' %}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> Contact</a>
                 </div>
                 {% if user.is_authenticated %}
                     <div class="nav-item-box">

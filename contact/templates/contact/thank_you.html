@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+			<li class="breadcrumb-item"><a href="{% url 'contact-us' %}">Contact Us</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Thank you!</li>
+		</ol>
+	</nav>
+
+	<h2 class="section-intro">Thanks for reaching out! We'll be in contact ASAP!</h2>
+	<hr>
+
+	<article class="panel-body card">
+		<div id="map3"></div>
+		
+		<!-- hide the following maps (maps api initMap function will look for them on the page and throw an error if not found) -->
+		<div class="d-none" id="map2"></div>
+		<div class="d-none" id="map1"></div>
+
+		<p id="cc-location" class="cc-info">{{ our_office.location_name }}</p>
+		<p class="cc-info">{{ our_office.street_address1 }}</p>
+		<p class="cc-info">{{ our_office.town_or_city }}</p>
+		<p class="cc-info">{{ our_office.postcode }}</p>
+		<br>
+		<p class="cc-info">{{ our_office.location_email }}</p>
+		<p id="cc-phone">{{ our_office.location_phone }}</p>
+	</article>
+
+{% endblock %}
+
+{% block g_maps_script %}
+
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ g_maps_api_key }}&callback=initMap"></script>
+
+{% endblock g_maps_script %}

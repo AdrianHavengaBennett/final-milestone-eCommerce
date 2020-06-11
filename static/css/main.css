@@ -348,7 +348,8 @@ a#product-card {
 }
 
 #map1,
-#map2 {
+#map2,
+#map3 {
   height: 14rem;
   display: inline-block;
 }
@@ -560,12 +561,12 @@ footer p {
   background: linear-gradient(to top, #fcffde, #fafafa);
 }
 .yellow-scheme .btn {
-  background-color: #EFFD5F;
+  background-color: #f3ff6e;
   color: #333333;
 }
 .yellow-scheme .btn:hover {
   background-color: #333333;
-  color: #EFFD5F;
+  color: #f3ff6e;
 }
 .yellow-scheme #faq-button {
   color: #333333;
@@ -574,13 +575,13 @@ footer p {
   border: 0.155rem solid #333333;
 }
 .yellow-scheme .navbar-toggler-icon i {
-  color: #EFFD5F;
+  color: #f3ff6e;
 }
 .yellow-scheme .top-container-icon:hover {
-  color: #EFFD5F;
+  color: #f3ff6e;
 }
 .yellow-scheme a.article-title:hover {
-  color: #EFFD5F;
+  color: #f3ff6e;
 }
 
 /***************************************media queries*/
@@ -618,11 +619,13 @@ footer p {
 @media (min-width: 992px) and (max-width: 1024px) {
   #site-logo {
     background-size: 210px;
+    margin: 2px 0px 24px 0;
   }
 }
 @media (min-width: 1025px) {
   #site-logo {
     background-size: 250px;
+    margin: 2px 0px 2rem 0;
   }
 }
 @media (min-width: 1200px) {
