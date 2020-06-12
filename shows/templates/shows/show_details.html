@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+			<li class="breadcrumb-item"><a href="{% url 'get-shows' %}">Upcoming Shows</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ show.artist_name }} @ {{ show.venue }}</li>
+		</ol>
+	</nav>
+
+	<h2 class="account-heading text-center">Show Details</h2>
+	<div class="row">
+
+		<div id="shows-detail-content" class="col-xs-12 col-md-8">
+			<div class="panel-body card text-center">
+	            <h3>{{ show.artist_name }}, {{ show.date }} @ {{ show.venue }}</h3>
+	            <p class="article-content">{{ show.description }}</p>
+	        </div>
+		</div>
+
+		<!-- side section -->
+		<aside class="col-xs-12 col-md-4">
+			<div class="content-section">
+				Ticket info goes here
+			</div>
+		</aside>
+	</div>
+
+	<div class="form-group">
+		<a href="#">
+			<button class="btn"><i class="fa fa-shopping-basket" aria-hidden="true"></i> ADD TO BASKET</button>
+		</a>
+		<a href="{% url 'new-show-post' show.id %}">
+			<button class="btn"><i class="fa fa-commenting-o" aria-hidden="true"></i> BLOG ABOUT IT</button>
+		</a>
+	</div>
+
+	<h2 class="account-heading text-center">Venue Details</h2>
+	<article class="panel-body card">
+		<!-- hide the following map (maps api initMap function will look for them on the page and throw an error if not found) -->
+		<div class="d-none" id="map1"></div>
+		<div class="d-none" id="map2"></div>
+		<div class="d-none" id="map3"></div>
+
+		<!-- show venue locations -->
+		{% if show.venue.location_name == 'Fusion Club' %}
+			<div id="map4"></div>
+			<div class="d-none" id="map5"></div>
+			<p id="cc-location" class="cc-info">{{ fusion_club.location_name }}</p>
+			<p class="cc-info">{{ fusion_club.street_address1 }}</p>
+			<p class="cc-info">{{ fusion_club.town_or_city }}</p>
+			<p class="cc-info">{{ fusion_club.postcode }}</p>
+			<br>
+			<p class="cc-info">{{ fusion_club.location_email }}</p>
+			<p id="cc-phone">{{ fusion_club.location_phone }}</p>
+		{% elif show.venue.location_name == 'The Bar' %}
+			<div id="map5"></div>
+			<div class="d-none" id="map4"></div>
+			<p id="cc-location" class="cc-info">{{ the_bar.location_name }}</p>
+			<p class="cc-info">{{ the_bar.street_address1 }}</p>
+			<p class="cc-info">{{ the_bar.town_or_city }}</p>
+			<p class="cc-info">{{ the_bar.postcode }}</p>
+			<br>
+			<p class="cc-info">{{ the_bar.location_email }}</p>
+			<p id="cc-phone">{{ the_bar.location_phone }}</p>
+		{% endif %}
+	</article>
+
+{% endblock %}
+
+{% block g_maps_script %}
+
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ g_maps_api_key }}&callback=initMap"></script>
+
+{% endblock g_maps_script %}

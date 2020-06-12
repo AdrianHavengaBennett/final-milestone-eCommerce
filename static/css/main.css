@@ -72,7 +72,8 @@ ul {
 
 #p-search-button,
 #b-search-button,
-#f-search-button {
+#f-search-button,
+#s-search-button {
   margin-top: 0;
 }
 
@@ -80,8 +81,14 @@ ul {
   margin-top: 0.5em;
 }
 
+.carousel-inner {
+  margin-top: 16px;
+  border-radius: 3px;
+}
+
 .carousel-img {
   margin-bottom: 1em;
+  max-height: 50vh;
 }
 
 .carousel-info-header {
@@ -240,6 +247,12 @@ input[type=search]::-webkit-input-placeholder {
   box-shadow: 2px 2px #888888;
 }
 
+#faq-content,
+#shows-content,
+#shows-detail-content {
+  margin-top: 0.5rem;
+}
+
 #cc-location {
   padding-top: 8px;
   font-weight: 500;
@@ -349,7 +362,9 @@ a#product-card {
 
 #map1,
 #map2,
-#map3 {
+#map3,
+#map4,
+#map5 {
   height: 14rem;
   display: inline-block;
 }
@@ -596,7 +611,7 @@ footer p {
   }
 
   .content-section {
-    margin-top: 0.5em;
+    margin-top: 1em;
   }
 }
 @media (min-width: 992px) {

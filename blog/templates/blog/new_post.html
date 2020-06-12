@@ -18,6 +18,8 @@
 	</nav>
 	{% if product.name %}
 		<p class="section-intro">New Blog Post about the product "{{ product.name }}"</p>
+	{% elif show.artist_name %}
+		<p class="section-intro">New Blog Post about the show "{{ show.artist_name }} @ {{ show.venue.location_name }}"</p>
 	{% endif %}
 	<form method="POST">
 		{% csrf_token %}

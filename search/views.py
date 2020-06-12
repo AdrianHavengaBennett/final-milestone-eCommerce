@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.db.models import Q
 from blog.models import BlogPost
 from products.models import Product
 from faq.models import FAQ
+from shows.models import UpcomingShows
 
 
 def blog_search(request):
@@ -56,3 +58,25 @@ def faqs_search(request):
 	}
 
 	return render(request, 'faq/faq.html', context)
+
+
+def shows_search(request):
+	"""
+	Does a search on all shows and sends a searched value
+	to the template in order to ascertain whether or not the query set
+	has been filtered and also leaves a reminder of what was searched
+	"""
+
+	searched_str = request.GET['s-search']
+
+	shows = UpcomingShows.objects.filter(
+		Q(artist_name__icontains=searched_str)|
+		Q(venue__location_name__icontains=searched_str)
+	)
+
+	context = {
+		'shows': shows,
+		'searched_str': searched_str
+	}
+
+	return render(request, 'shows/shows.html', context)

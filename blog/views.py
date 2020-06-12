@@ -3,8 +3,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import BlogPost
-from .forms import BlogPostForm, ProductBlogPostForm
+from .forms import BlogPostForm, ProductBlogPostForm, ShowBlogPostForm
 from products.models import Product
+from shows.models import UpcomingShows
 
 
 @login_required
@@ -56,6 +57,32 @@ def new_product_post(request, id):
 	context = {
 		'form': form,
 		'product': product
+	}
+
+	return render(request, 'blog/new_post.html', context)
+
+
+@login_required
+def new_show_post(request, id):
+	"""Renders new product post form and saves post to our database"""
+
+	show = UpcomingShows.objects.get(pk=id)
+
+	if request.method == 'POST':
+		form = ShowBlogPostForm(request.POST, initial={'show': show})
+
+		if form.is_valid():
+			temp_form = form.save(commit=False)
+			temp_form.author = request.user
+			temp_form.save()
+
+			return redirect('blog-home')
+	else:
+		form = ShowBlogPostForm(initial={'show': show})
+
+	context = {
+		'form': form,
+		'show': show
 	}
 
 	return render(request, 'blog/new_post.html', context)

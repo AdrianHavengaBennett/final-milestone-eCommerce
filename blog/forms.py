@@ -14,7 +14,7 @@ class ProductBlogPostForm(forms.ModelForm):
 		fields = ['product', 'title', 'content']
 
 
-# class ShowBlogPostForm(forms.ModelForm):
-# 	class Meta:
-# 		model = BlogPost
-# 		fields = ['show', 'title', 'content']
+class ShowBlogPostForm(forms.ModelForm):
+	class Meta:
+		model = BlogPost
+		fields = ['show', 'title', 'content']

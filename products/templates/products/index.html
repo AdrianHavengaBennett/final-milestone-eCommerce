@@ -2,7 +2,11 @@
 
 {% block content %}
 <div class="media row">
+	{% if user.is_authenticated %}
+	<div class="col-xs-12 col-md-12">
+	{% else %}
 	<div class="col-xs-12 col-md-8">
+	{% endif %}
 		<div id="products-special-carousel" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-target="#products-special-carousel" data-slide-to="0" class="active"></li>
@@ -104,19 +108,19 @@
 			<div class="row justify-content-md-center">
 				<div class="col col-xs-2"></div>
 				<div class="col-xs-auto">
-					<a href="#">
+					<a href="https://www.facebook.com/" target="_blank">
 						<i class="fa fa-facebook-square social-icon" aria-hidden="true"></i>
 					</a>
 
-					<a href="#">
+					<a href="https://twitter.com/" target="_blank">
 						<i class="fa fa-twitter-square social-icon" aria-hidden="true"></i>
 					</a>
 
-					<a href="#">
+					<a href="https://www.youtube.com/" target="_blank">
 						<i class="fa fa-youtube-square social-icon" aria-hidden="true"></i>
 					</a>
 
-					<a href="#">
+					<a href="https://www.instagram.com/" target="_blank">
 						<i class="fa fa-instagram social-icon" aria-hidden="true"></i>
 					</a>
 				</div>

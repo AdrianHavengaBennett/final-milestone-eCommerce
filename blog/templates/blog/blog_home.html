@@ -41,6 +41,10 @@
 						</div>
 						{% if post.product %}
 							<h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }} ({{ post.product.name }})</a></h2>
+						{% elif post.show %}
+							<h2><a class="article-title" href="{% url 'post-detail' post.id %}">
+								{{ post.title }} ({{ post.show.artist_name }} @ {{ post.show.venue.location_name }})
+							</a></h2>
 						{% else %}
 							<h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
 						{% endif %}

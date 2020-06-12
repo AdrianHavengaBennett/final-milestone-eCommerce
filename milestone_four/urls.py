@@ -27,6 +27,7 @@ from categories import urls as categories_urls
 from faq import urls as faq_urls
 from contact import urls as contact_urls
 from help import urls as help_urls
+from shows import urls as shows_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,6 +41,7 @@ urlpatterns = [
     path('faq/', include(faq_urls)),
     path('contact_us/', include(contact_urls)),
     path('help/', include(help_urls)),
+    path('shows/', include(shows_urls)),
 ]
 
 if settings.DEBUG:

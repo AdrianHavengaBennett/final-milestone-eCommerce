@@ -77,7 +77,7 @@
                         <a class="nav-item nav-link" href="{% url 'help' %}"><i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Help chat</span> Chat</a>
                         <a class="nav-item nav-link" href="{% url 'contact-us' %}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> Contact</a>
                         {% if user.is_authenticated %}
-                            <a class="nav-item nav-link" href="/"><i class="fa fa-music" aria-hidden="true"></i><span class="sr-only">View upcoming shows</span> Shows</a>
+                            <a class="nav-item nav-link" href="{% url 'get-shows' %}"><i class="fa fa-music" aria-hidden="true"></i><span class="sr-only">View upcoming shows</span> Shows</a>
                             <a class="nav-item nav-link" href="{% url 'blog-home' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="sr-only">Customer blog</span> Blog</a>
                             <a class="nav-item nav-link" href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i><span class="sr-only">Customer profile</span> Profile</a>
                             <a class="nav-item nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only">Sign out</span> Sign Out</a>
@@ -111,7 +111,7 @@
                 </div>
                 {% if user.is_authenticated %}
                     <div class="nav-item-box">
-                        <a class="nav-item nav-link" href="/"><i class="fa fa-music" aria-hidden="true"></i><span class="sr-only">View upcoming shows</span> Shows</a>
+                        <a class="nav-item nav-link" href="{% url 'get-shows' %}"><i class="fa fa-music" aria-hidden="true"></i><span class="sr-only">View upcoming shows</span> Shows</a>
                     </div>
                     <div class="nav-item-box">
                         <a class="nav-item nav-link" href="{% url 'blog-home' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="sr-only">Customer blog</span> Blog</a>
