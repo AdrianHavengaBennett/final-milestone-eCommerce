@@ -8,7 +8,7 @@ from .views import (
 
 urlpatterns = [
     path('', blog_search, name='blog-search'),
-    path('products_search/', products_search, name='products-search'),
-    path('faqs_search/', faqs_search, name='faqs-search'),
-    path('shows_search/', shows_search, name='shows-search'),
+    path('products-search/', products_search, name='products-search'),
+    path('faqs-search/', faqs_search, name='faqs-search'),
+    path('shows-search/', shows_search, name='shows-search'),
 ]
