@@ -10,6 +10,10 @@
 				<li class="breadcrumb-item"><a href="{% url 'category-products' product.category_name.id %}">{{ product.category_name }}</a></li>
 				<li class="breadcrumb-item"><a href="{% url 'product-detail' product.id %}">{{ product.name }}</a></li>
 				<li class="breadcrumb-item active" aria-current="page">New Product Post</li>
+			{% elif show.artist_name %}
+				<li class="breadcrumb-item"><a href="{% url 'get-shows' %}">Shows</a></li>
+				<li class="breadcrumb-item"><a href="{% url 'show-details' show.id %}">{{ show.artist_name }} @ {{ show.venue.location_name }}</a></li>
+				<li class="breadcrumb-item active" aria-current="page">New Show Post</li>
 			{% else %}
 				<li class="breadcrumb-item"><a href="{% url 'blog-home' %}">Blog</a></li>
 				<li class="breadcrumb-item active" aria-current="page">New Post</li>

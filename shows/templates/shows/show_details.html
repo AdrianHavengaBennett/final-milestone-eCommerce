@@ -11,35 +11,70 @@
 	</nav>
 
 	<h2 class="account-heading text-center">Show Details</h2>
+
 	<div class="row">
-
 		<div id="shows-detail-content" class="col-xs-12 col-md-8">
-			<div class="panel-body card text-center">
-	            <h3>{{ show.artist_name }}, {{ show.date }} @ {{ show.venue }}</h3>
-	            <p class="article-content">{{ show.description }}</p>
-	        </div>
+			<article class="panel-body card text-center">
+				<div class="row">
+					<div class="col-7">
+						<div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ show.artist_image.url }}')"></div>
+					</div>
+					<div class="col-5 show-info">
+						<h5><i class="fa fa-user" aria-hidden="true"></i> {{ show.artist_name }}</h5>
+						<h6><i class="fa fa-calendar" aria-hidden="true"></i> {{ show.date }}</h6>
+						<h5><i class="fa fa-map-marker" aria-hidden="true"></i> {{ show.venue }}</h5>
+					</div>
+				</div>
+				<p class="article-content">{{ show.description }}</p>
+	        </article>
 		</div>
-
 		<!-- side section -->
 		<aside class="col-xs-12 col-md-4">
 			<div class="content-section">
-				Ticket info goes here
+				<div class="row">
+					<table class="ticket-info">
+						<tr>
+							<th>Tickets:</th>
+							<th>Price:</th>
+							<th>Qty:</th>
+							<th>Total:</th>
+						</tr>
+						<tr>
+							<td><small>Ground (standing)</small></td>
+							<td>
+								<form>
+									<input type="number" id="qty" name="qty" min="1" max="5">
+								</form>
+							</td>
+							<td><small>£16.00</small></td>
+						</tr>
+						<tr>
+							<td><small>Balcony (seated)</small></td>
+							<td>
+								<form>
+									<input type="number" id="qty" name="qty" min="1" max="5">
+								</form>
+							</td>
+							<td><small>£12.50</small></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="form-group">
+				<a href="#">
+					<button class="btn"><i class="fa fa-shopping-basket" aria-hidden="true"></i> ADD TO BASKET</button>
+				</a>
+				<a href="{% url 'new-show-post' show.id %}">
+					<button class="btn"><i class="fa fa-commenting-o" aria-hidden="true"></i> BLOG ABOUT IT</button>
+				</a>
 			</div>
 		</aside>
-	</div>
-
-	<div class="form-group">
-		<a href="#">
-			<button class="btn"><i class="fa fa-shopping-basket" aria-hidden="true"></i> ADD TO BASKET</button>
-		</a>
-		<a href="{% url 'new-show-post' show.id %}">
-			<button class="btn"><i class="fa fa-commenting-o" aria-hidden="true"></i> BLOG ABOUT IT</button>
-		</a>
 	</div>
 
 	<hr>
 
 	<h2 class="account-heading text-center">Venue Details</h2>
+
 	<article class="panel-body card">
 		<!-- hide the following map (maps api initMap function will look for them on the page and throw an error if not found) -->
 		<div class="d-none" id="map1"></div>
