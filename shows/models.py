@@ -11,3 +11,12 @@ class UpcomingShows(models.Model):
 
 	def __str__(self):
 		return f'{self.artist_name} @ {self.venue}'
+
+
+class Tickets(models.Model):
+	artist = models.ForeignKey(UpcomingShows, on_delete=models.CASCADE)
+	ticket_type = models.CharField(max_length=40, default='')
+	price = models.DecimalField(max_digits=6, decimal_places=2)
+
+	def __str__(self):
+		return f'{self.artist} | {self.ticket_type}'

@@ -15,5 +15,10 @@ class BlogPost(models.Model):
 	show = models.ForeignKey(UpcomingShows, on_delete=models.PROTECT,
 		default='', null=True)
 
+	class Meta:
+		ordering = [
+			'-date_created'
+		]
+
 	def __str__(self):
 		return self.title

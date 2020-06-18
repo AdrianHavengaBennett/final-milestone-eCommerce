@@ -26,7 +26,7 @@ from click_and_collect import urls as click_and_collect_urls
 from categories import urls as categories_urls
 from faq import urls as faq_urls
 from contact import urls as contact_urls
-from help import urls as help_urls
+from chat import urls as chat_urls
 from shows import urls as shows_urls
 
 urlpatterns = [
@@ -54,7 +54,7 @@ urlpatterns = [
     path('categories/', include(categories_urls)),
     path('faq/', include(faq_urls)),
     path('contact-us/', include(contact_urls)),
-    path('help/', include(help_urls)),
+    path('chat/', include(chat_urls)),
     path('shows/', include(shows_urls)),
 ]
 

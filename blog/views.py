@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.paginator import Paginator
 from .models import BlogPost
 from .forms import BlogPostForm, ProductBlogPostForm, ShowBlogPostForm
 from products.models import Product
@@ -10,11 +11,33 @@ from shows.models import UpcomingShows
 
 @login_required
 def show_all_posts(request):
-	"""Renders all of the blog posts to the blog_home.html page"""
+	"""
+	Renders all of the blog posts to the blog_home.html page
+	with pagination
+	"""
 
 	blog_posts = BlogPost.objects.all()
+	paginator = Paginator(blog_posts, per_page=2)
+	page_number = request.GET.get('page', 1)
+	page = paginator.get_page(page_number)
 
-	return render(request, 'blog/blog_home.html', {'posts': blog_posts})
+	if page.has_next():
+		next_url = f'?page={page.next_page_number()}'
+	else:
+		next_url = ''
+
+	if page.has_previous():
+		previous_url = f'?page={page.previous_page_number()}'
+	else:
+		previous_url = ''
+
+	context = {
+		'page': page,
+		'next_url': next_url,
+		'previous_url': previous_url
+	}
+
+	return render(request, 'blog/blog_home.html', context)
 
 
 @login_required

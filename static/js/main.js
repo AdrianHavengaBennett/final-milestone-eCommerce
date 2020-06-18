@@ -68,5 +68,6 @@ $(function() {
 	$('.carousel').carousel({
 		interval: 2750
 	});
+	$('.dropdown-toggle').dropdown();
 });
 

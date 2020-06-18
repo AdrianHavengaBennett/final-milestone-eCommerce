@@ -39,24 +39,19 @@
 							<th>Qty:</th>
 							<th>Total:</th>
 						</tr>
-						<tr>
-							<td><small>Ground (standing)</small></td>
-							<td>
-								<form>
-									<input type="number" id="qty" name="qty" min="1" max="5">
-								</form>
-							</td>
-							<td><small>£16.00</small></td>
-						</tr>
-						<tr>
-							<td><small>Balcony (seated)</small></td>
-							<td>
-								<form>
-									<input type="number" id="qty" name="qty" min="1" max="5">
-								</form>
-							</td>
-							<td><small>£12.50</small></td>
-						</tr>
+						{% for ticket in tickets %}
+							<tr>
+								{% if show.artist_name == ticket.artist.artist_name %}
+									<td><small>{{ ticket.ticket_type }}</small></td>
+									<td>
+										<form>
+											<input type="number" id="qty" name="qty" min="1" max="5">
+										</form>
+									</td>
+									<td><small>£{{ ticket.price }}</small></td>
+								{% endif %}
+							</tr>
+						{% endfor %}
 					</table>
 				</div>
 			</div>

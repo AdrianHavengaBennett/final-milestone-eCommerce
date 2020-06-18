@@ -35,7 +35,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'shows.apps.ShowsConfig',
-    'help.apps.HelpConfig',
+    'chat.apps.ChatConfig',
     'contact.apps.ContactConfig',
     'faq.apps.FaqConfig',
     'categories.apps.CategoriesConfig',
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
     'crispy_forms',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -64,6 +65,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'milestone_four.urls'
+ASGI_APPLICATION = "milestone_four.routing.application"
 
 TEMPLATES = [
     {
@@ -82,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'milestone_four.wsgi.application'
+# WSGI_APPLICATION = 'milestone_four.wsgi.application'
 
 
 # Database
