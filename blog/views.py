@@ -17,7 +17,7 @@ def show_all_posts(request):
 	"""
 
 	blog_posts = BlogPost.objects.all()
-	paginator = Paginator(blog_posts, per_page=2)
+	paginator = Paginator(blog_posts, per_page=6)
 	page_number = request.GET.get('page', 1)
 	page = paginator.get_page(page_number)
 

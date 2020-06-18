@@ -11,13 +11,8 @@ def show_products(request):
 	"""
 
 	products = Product.objects.all()
-	
-	# products = Product.objects.all().order_by('price')
-	# products = Product.objects.all().order_by('-price')
-	# products = Product.objects.all().order_by('name')
-	# products = Product.objects.all().order_by('-name')
 
-	paginator = Paginator(products, per_page=2)
+	paginator = Paginator(products, per_page=10)
 	page_number = request.GET.get('page', 1)
 	page = paginator.get_page(page_number)
 
@@ -43,7 +38,7 @@ def show_products(request):
 def sort_low_high(request):
 	products = Product.objects.all().order_by('price')
 
-	paginator = Paginator(products, per_page=2)
+	paginator = Paginator(products, per_page=10)
 	page_number = request.GET.get('page', 1)
 	page = paginator.get_page(page_number)
 
@@ -69,7 +64,7 @@ def sort_low_high(request):
 def sort_high_low(request):
 	products = Product.objects.all().order_by('-price')
 	
-	paginator = Paginator(products, per_page=2)
+	paginator = Paginator(products, per_page=10)
 	page_number = request.GET.get('page', 1)
 	page = paginator.get_page(page_number)
 
@@ -95,7 +90,7 @@ def sort_high_low(request):
 def sort_a_z(request):
 	products = Product.objects.all().order_by('name')
 	
-	paginator = Paginator(products, per_page=2)
+	paginator = Paginator(products, per_page=10)
 	page_number = request.GET.get('page', 1)
 	page = paginator.get_page(page_number)
 
@@ -121,7 +116,7 @@ def sort_a_z(request):
 def sort_z_a(request):
 	products = Product.objects.all().order_by('-name')
 	
-	paginator = Paginator(products, per_page=2)
+	paginator = Paginator(products, per_page=10)
 	page_number = request.GET.get('page', 1)
 	page = paginator.get_page(page_number)
 
