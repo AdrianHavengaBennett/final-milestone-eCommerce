@@ -18,11 +18,13 @@
 <hr>
 
 <div class="row">
-	{% for product in products %}
+	{% for product in page.object_list %}
 	<div class="col-xs-12 col-md-6 col-lg-3">
 		<a id="product-card" href="{% url 'product-detail' product.id %}">
 			<div class="panel-body card text-center">
-	            <div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
+				<div class="img-container">
+					<div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
+				</div>
 	            <h3>{{ product.name }}</h3>
 	            {% if product.id == 1 or product.id == 2 %}
 	            	<span class="specials-text">Was</span> <del><h3 class="specials-price">£150.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
@@ -37,5 +39,32 @@
 	{% endfor %}
 </div>
 
-{% endblock %}
+{% block products_pagination %}
+<nav aria-label="...">
+	<ul class="pagination justify-content-center">
+		<li class="page-item {% if not previous_url %} disabled {% endif %}">
+			<a class="page-link" href="{{ previous_url }}" tabindex="-1" aria-disabled="true">Previous</a>
+		</li>
 
+		{% for num in page.paginator.page_range %}
+			{% if page.number == num %}
+				<li class="page-item active" aria-current="page">
+					<a class="page-link" href="?page={{ num }}">
+						{{ num }} <span class="sr-only">(current)</span>
+					</a>
+				</li>
+			{% elif num > page.number|add:-3 and num < page.number|add:3 %}
+				<li class="page-item">
+					<a class="page-link" href="?page={{ num }}">{{ num }}</a>
+				</li>
+			{% endif %}
+		{% endfor %}
+
+		<li class="page-item {% if not next_url %} disabled {% endif %}">
+			<a class="page-link" href="{{ next_url }}">Next</a>
+		</li>
+	</ul>
+</nav>
+{% endblock products_pagination %}
+
+{% endblock %}

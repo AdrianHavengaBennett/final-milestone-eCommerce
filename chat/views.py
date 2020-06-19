@@ -1,10 +1,10 @@
 from django.shortcuts import render
 
 
-def get_help(request):
+def chat(request):
 	"""
 	Renders a page with a message containing a link 
-	to the help chatbot API
+	to the chat feature
 	"""
 
-	return render(request, 'help/help.html')
+	return render(request, 'chat/chat.html')

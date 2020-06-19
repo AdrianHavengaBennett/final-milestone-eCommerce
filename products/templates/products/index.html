@@ -54,11 +54,33 @@
 	</div>
 	{% if not user.is_authenticated %}
 	<div class="col-xs-12 col-md-4">
-		<div class="content-section">
-			<p class="section-intro">Join our growing community blog, and unlock ticket deals for selected upcoming shows.</p>
-			<a href="{% url 'register' %}">
-				<button class="btn"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP NOW</button>
-			</a>
+		<div class="row">
+			<div class="col-12">
+				<div class="content-section">
+					<p class="section-intro">Join our growing community 
+						<a href="{% url 'register' %}">
+							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>Blog
+						</a>
+						, and unlock ticket deals for selected upcoming shows.
+					</p>
+					<a href="{% url 'register' %}">
+						<button class="btn"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP NOW</button>
+					</a>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="content-section">
+					<p class="section-intro">New 
+						<a href="{% url 'register' %}">
+							<i class="fa fa-comments-o" aria-hidden="true"></i>Chat 
+						</a>
+						feature just added! Chat away with your online friends with this new, easy-to-use feature!
+					</p>
+					<a href="{% url 'register' %}">
+						<button class="btn"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP NOW</button>
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	{% endif %}
@@ -66,17 +88,19 @@
 
 <hr>
 
-<div class="dropdown">
-	<a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Sort By
-	</a>
-	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		<a class="dropdown-item" href="{% url 'sort-low-high' %}">Price: Lowest to highest</a>
-		<a class="dropdown-item" href="{% url 'sort-high-low' %}">Price: Highest to lowest</a>
-		<a class="dropdown-item" href="{% url 'sort-a-z' %}">Alphabetically: A - Z</a>
-		<a class="dropdown-item" href="{% url 'sort-z-a' %}">Alphabetically: Z - A</a>
+{% if page.object_list %}
+	<div class="dropdown">
+		<a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Sort By
+		</a>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a id="sort-low-high" class="dropdown-item" href="{% url 'sort-low-high' %}">Price: Lowest to highest</a>
+			<a id="sort-high-low" class="dropdown-item" href="{% url 'sort-high-low' %}">Price: Highest to lowest</a>
+			<a id="sort-a-z" class="dropdown-item" href="{% url 'sort-a-z' %}">Alphabetically: A - Z</a>
+			<a id="sort-z-a" class="dropdown-item" href="{% url 'sort-z-a' %}">Alphabetically: Z - A</a>
+		</div>
 	</div>
-</div>
+{% endif %}
 
 <h2 class="account-heading text-center">All Products</h2>
 <div class="row">
@@ -84,7 +108,9 @@
 		<div class="col-xs-12 col-md-6 col-lg-3">
 			<a id="product-card" href="{% url 'product-detail' product.id %}">
 				<div class="panel-body card text-center">
-		            <div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
+					<div class="img-container">
+		            	<div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
+		            </div>
 		            <h3>{{ product.name }}</h3>
 		            {% if product.id == 1 or product.id == 2 %}
 		            	<del><h3>£150</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
@@ -110,31 +136,33 @@
 </div>
 
 {% block products_pagination %}
-<nav aria-label="...">
-	<ul class="pagination justify-content-center">
-		<li class="page-item {% if not previous_url %} disabled {% endif %}">
-			<a class="page-link" href="{{ previous_url }}" tabindex="-1" aria-disabled="true">Previous</a>
-		</li>
+{% if page.object_list %}
+	<nav aria-label="...">
+		<ul class="pagination justify-content-center">
+			<li class="page-item {% if not previous_url %} disabled {% endif %}">
+				<a class="page-link" href="{{ previous_url }}" tabindex="-1" aria-disabled="true">Previous</a>
+			</li>
 
-		{% for num in page.paginator.page_range %}
-			{% if page.number == num %}
-				<li class="page-item active" aria-current="page">
-					<a class="page-link" href="?page={{ num }}">
-						{{ num }} <span class="sr-only">(current)</span>
-					</a>
-				</li>
-			{% elif num > page.number|add:-3 and num < page.number|add:3 %}
-				<li class="page-item">
-					<a class="page-link" href="?page={{ num }}">{{ num }}</a>
-				</li>
-			{% endif %}
-		{% endfor %}
+			{% for num in page.paginator.page_range %}
+				{% if page.number == num %}
+					<li class="page-item active" aria-current="page">
+						<a class="page-link" href="?page={{ num }}">
+							{{ num }} <span class="sr-only">(current)</span>
+						</a>
+					</li>
+				{% elif num > page.number|add:-3 and num < page.number|add:3 %}
+					<li class="page-item">
+						<a class="page-link" href="?page={{ num }}">{{ num }}</a>
+					</li>
+				{% endif %}
+			{% endfor %}
 
-		<li class="page-item {% if not next_url %} disabled {% endif %}">
-			<a class="page-link" href="{{ next_url }}">Next</a>
-		</li>
-	</ul>
-</nav>
+			<li class="page-item {% if not next_url %} disabled {% endif %}">
+				<a class="page-link" href="{{ next_url }}">Next</a>
+			</li>
+		</ul>
+	</nav>
+{% endif %}
 {% endblock products_pagination %}
 
 <hr>

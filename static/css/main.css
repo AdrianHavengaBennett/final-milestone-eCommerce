@@ -233,6 +233,11 @@ input[type=search]::-webkit-input-placeholder {
   background: transparent;
 }
 
+.dropdown {
+  position: absolute;
+  padding-top: 0.5rem;
+}
+
 .section-intro {
   font-size: 1rem;
   text-align: center;
@@ -335,21 +340,36 @@ a#product-card {
   box-shadow: 2px 2px #888888;
   transition: box-shadow 0.5s ease;
   margin: 0.5em 0;
+  overflow: hidden;
 }
 
 .card:hover {
   box-shadow: 4px 4px #888888;
 }
 
-.product-img {
+.img-container {
+  margin: 0.75rem 0.75rem;
+  overflow: hidden;
+}
+
+.product-img,
+.category-img {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  transition: transform 0.35s ease;
   width: -webkit-fill-available;
   height: 14rem;
-  margin: 0.75rem 0.75rem;
   border: 1px solid #dddddd;
   border-radius: 3px;
+}
+
+.category-img {
+  margin: 0.75rem 0.75rem;
+}
+
+.card:hover .img-container .product-img {
+  transform: scale(1.2);
 }
 
 .product-price {

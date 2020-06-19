@@ -4,140 +4,44 @@ from .models import Product
 from categories.models import Category
 
 
+def do_pagination(request, products):
+	"""
+	Helper function creates pagination data and returns
+	data as a dict to be used as context dict in views
+	"""
+
+	paginator = Paginator(products, per_page=12)
+	page_number = request.GET.get('page', 1)
+	page = paginator.get_page(page_number)
+
+	if page.has_next():
+		next_url = f'?page={page.next_page_number()}'
+	else:
+		next_url = ''
+
+	if page.has_previous():
+		previous_url = f'?page={page.previous_page_number()}'
+	else:
+		previous_url = ''
+
+	pagination_data = {
+		'page': page,
+		'next_url': next_url,
+		'previous_url': previous_url
+	}
+
+	return pagination_data
+
+
 def show_products(request):
 	"""
 	Renders all of the products to the index.html page
 	with pagination
 	"""
 
-	products = Product.objects.all()
-
-	paginator = Paginator(products, per_page=10)
-	page_number = request.GET.get('page', 1)
-	page = paginator.get_page(page_number)
-
-	if page.has_next():
-		next_url = f'?page={page.next_page_number()}'
-	else:
-		next_url = ''
-
-	if page.has_previous():
-		previous_url = f'?page={page.previous_page_number()}'
-	else:
-		previous_url = ''
-
-	context = {
-		'page': page,
-		'next_url': next_url,
-		'previous_url': previous_url
-	}
+	context = do_pagination(request, products = Product.objects.all())
 
 	return render(request, 'products/index.html', context)
-
-
-def sort_low_high(request):
-	products = Product.objects.all().order_by('price')
-
-	paginator = Paginator(products, per_page=10)
-	page_number = request.GET.get('page', 1)
-	page = paginator.get_page(page_number)
-
-	if page.has_next():
-		next_url = f'?page={page.next_page_number()}'
-	else:
-		next_url = ''
-
-	if page.has_previous():
-		previous_url = f'?page={page.previous_page_number()}'
-	else:
-		previous_url = ''
-
-	context = {
-		'page': page,
-		'next_url': next_url,
-		'previous_url': previous_url
-	}
-
-	return render(request, 'products/index.html', context)
-
-
-def sort_high_low(request):
-	products = Product.objects.all().order_by('-price')
-	
-	paginator = Paginator(products, per_page=10)
-	page_number = request.GET.get('page', 1)
-	page = paginator.get_page(page_number)
-
-	if page.has_next():
-		next_url = f'?page={page.next_page_number()}'
-	else:
-		next_url = ''
-
-	if page.has_previous():
-		previous_url = f'?page={page.previous_page_number()}'
-	else:
-		previous_url = ''
-
-	context = {
-		'page': page,
-		'next_url': next_url,
-		'previous_url': previous_url
-	}
-
-	return render(request, 'products/index.html', context)
-
-
-def sort_a_z(request):
-	products = Product.objects.all().order_by('name')
-	
-	paginator = Paginator(products, per_page=10)
-	page_number = request.GET.get('page', 1)
-	page = paginator.get_page(page_number)
-
-	if page.has_next():
-		next_url = f'?page={page.next_page_number()}'
-	else:
-		next_url = ''
-
-	if page.has_previous():
-		previous_url = f'?page={page.previous_page_number()}'
-	else:
-		previous_url = ''
-
-	context = {
-		'page': page,
-		'next_url': next_url,
-		'previous_url': previous_url
-	}
-
-	return render(request, 'products/index.html', context)
-
-
-def sort_z_a(request):
-	products = Product.objects.all().order_by('-name')
-	
-	paginator = Paginator(products, per_page=10)
-	page_number = request.GET.get('page', 1)
-	page = paginator.get_page(page_number)
-
-	if page.has_next():
-		next_url = f'?page={page.next_page_number()}'
-	else:
-		next_url = ''
-
-	if page.has_previous():
-		previous_url = f'?page={page.previous_page_number()}'
-	else:
-		previous_url = ''
-
-	context = {
-		'page': page,
-		'next_url': next_url,
-		'previous_url': previous_url
-	}
-
-	return render(request, 'products/index.html', context)
-
 
 
 def show_product_detail(request, id):
@@ -154,16 +58,13 @@ def show_category_products(request, id):
 	name to the category_products.html page
 	"""
 
-	products = Product.objects.filter(category_name=id)
+	context = do_pagination(request, products = Product.objects.filter(category_name=id))
 
-	for product in products:
+	for product in context['page'].object_list:
 		category_name = product.category_name
 		category_image = product.category_name.image.url
 
-	context = {
-		'products': products,
-		'category_name': category_name,
-		'category_image': category_image
-	}
+	context['category_name'] = category_name
+	context['category_image'] = category_image
 
 	return render(request, 'products/category_products.html', context)

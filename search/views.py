@@ -4,6 +4,7 @@ from blog.models import BlogPost
 from products.models import Product
 from faq.models import FAQ
 from shows.models import UpcomingShows
+from products.views import do_pagination
 
 
 def blog_search(request):
@@ -13,13 +14,9 @@ def blog_search(request):
 	has been filtered and also leaves a reminder of what was searched
 	"""
 
-	blog_posts = BlogPost.objects.filter(title__icontains=request.GET['b-search'])
-	searched_str = request.GET['b-search']
+	context = do_pagination(request, products=BlogPost.objects.filter(title__icontains=request.GET['b-search']))
 
-	context = {
-		'posts': blog_posts,
-		'searched_str': searched_str
-	}
+	context['searched_str'] = request.GET['b-search']
 
 	return render(request, 'blog/blog_home.html', context)
 
@@ -31,13 +28,9 @@ def products_search(request):
 	has been filtered and also leaves a reminder of what was searched
 	"""
 
-	products = Product.objects.filter(name__icontains=request.GET['p-search'])
-	searched_str = request.GET['p-search']
+	context = do_pagination(request, products=Product.objects.filter(name__icontains=request.GET['p-search']))
 
-	context = {
-		'products': products,
-		'searched_str': searched_str
-	}
+	context['searched_str'] = request.GET['p-search']
 
 	return render(request, 'products/index.html', context)
 

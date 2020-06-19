@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'sort.apps.SortConfig',
     'shows.apps.ShowsConfig',
     'chat.apps.ChatConfig',
     'contact.apps.ContactConfig',
