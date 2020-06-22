@@ -35,7 +35,7 @@
 			{% for show in shows %}
 				<a id="product-card" href="{% url 'show-details' show.id %}">
 					<div class="panel-body card text-center">
-			            <h3>{{ show.artist_name }}, {{ show.date }} @ {{ show.venue }}</h3>
+			            <h3 class="show-highlight">{{ show.artist_name }}, {{ show.date }} @ {{ show.venue }}</h3>
 			            <p class="article-content">{{ show.description }}</p>
 			        </div>
 		        </a>

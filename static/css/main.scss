@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap:100,200,300,400,500,600,700,800,900');
+
 body,
 html {
   height: 100%;
@@ -6,6 +8,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  font-family: 'Raleway', sans-serif;
 }
 
 header,
@@ -34,6 +37,10 @@ section {
   background-color: #f4f4f4;
   margin: .25em 0 .25em 0;
   padding-bottom: .75em;
+}
+
+a {
+  overflow-wrap: break-word;
 }
 
 a:hover {
@@ -72,6 +79,13 @@ ul {
 
 .container {
   width: 97%;
+}
+
+.topnav-separator {
+  font-size: 2rem;
+  font-weight: 100;
+  vertical-align: middle;
+  margin: 0 .5rem;
 }
 
 #search-bar {
@@ -142,6 +156,10 @@ ul {
 
 .form-inline .form-control {
   width: 100%;
+}
+
+.form-group {
+  font-size: 12px;
 }
 
 #top-container {
@@ -272,9 +290,9 @@ input[type="search"]::-webkit-input-placeholder {
   background-color: #fafafa;
   border: 1px solid #EEEEEE;
   box-shadow: 2px 2px #888888;
+  margin-top: 0;
 }
 
-#faq-content,
 #shows-content,
 #shows-detail-content {
   margin-top: .5rem;
@@ -282,6 +300,15 @@ input[type="search"]::-webkit-input-placeholder {
 
 #shows-detail-content .product-img {
   height: 8rem;
+  margin: .75rem;
+}
+
+#product-detail-content .product-img {
+  margin: .75rem;
+}
+
+.show-highlight {
+  padding: .5rem;
 }
 
 .show-info {
@@ -321,6 +348,7 @@ input[type="search"]::-webkit-input-placeholder {
   color: #444444;
   transition: color .5s ease;
   font-size: 1.25rem;
+  padding-left: 0.75rem;
 }
 
 .article-content {
@@ -378,8 +406,9 @@ a#product-card {
   transform: scale(1.2);
 }
 
+.product-name,
 .product-price {
-  padding: .5rem 0;
+  font-size: 1.25rem
 }
 
 .specials-price {
@@ -406,17 +435,27 @@ a#product-card {
 .account-img {
   height: 125px;
   width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
+  margin: .5rem auto;
+}
+
+.top-container-icon .account-img {
+  vertical-align: initial;
+  height: 35px;
+  width: 35px;
 }
 
 .account-heading {
   padding-top: .5rem;
   font-size: 1.25rem;
+  padding-left: .75rem;
 }
 
 .text-secondary {
   font-size: .7rem;
+}
+
+.map-container {
+  margin: 1.5rem 0 1.5rem 0;
 }
 
 #map1,
@@ -468,6 +507,9 @@ footer p {
           #fafafa
         );
     }
+  & .topnav-separator {
+      color: #706C61;
+    }
   & .nav-link:hover {
       border: 3px solid #E1F4F3;
       border-right: transparent;
@@ -515,6 +557,9 @@ footer p {
           #fafafa
         );
     }
+  & .topnav-separator {
+      color: #E06666;
+    }
   & .nav-link:hover {
       border: 3px solid #E06666;
       border-right: transparent;
@@ -560,6 +605,9 @@ footer p {
           #def0ff,
           #fafafa
         );
+    }
+  & .topnav-separator {
+      color: #4682B4;
     }
   & .nav-link:hover {
       border: 3px solid #4682B4;
@@ -607,6 +655,9 @@ footer p {
           #fafafa
         );
     }
+  & .topnav-separator {
+      color: #50C878;
+    }
   & .nav-link:hover {
       border: 3px solid #50C878;
       border-right: transparent;
@@ -652,6 +703,9 @@ footer p {
           #ffdbed,
           #fafafa
         );
+    }
+  & .topnav-separator {
+      color: #FE5BAC;
     }
   & .nav-link:hover {
       border: 3px solid #FE5BAC;
@@ -699,6 +753,9 @@ footer p {
           #fafafa
         );
     }
+  & .topnav-separator {
+      color: #6F2DA8;
+    }
   & .nav-link:hover {
       border: 3px solid #6F2DA8;
       border-right: transparent;
@@ -745,6 +802,9 @@ footer p {
           #fafafa
         );
     }
+  & .topnav-separator {
+      color: #333333;
+    }
   & .nav-link:hover {
       border: 3px solid #f3ff6e;
       border-right: transparent;
@@ -768,10 +828,10 @@ footer p {
       color: #f3ff6e;
     }
   & .top-container-icon:hover {
-      color: #f3ff6e;
+      color: #ffc800;
     }
   & a.article-title:hover {
-      color: #f3ff6e;
+      color: #ffc800;
     }
   & .page-link {
       color: #333333;
@@ -799,13 +859,16 @@ footer p {
 
 @media (min-width: 768px) {
   .top-container-icon {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .section-intro {
     margin-bottom: 1rem;
   }
   .content-section {
     margin-top: 1em;
+  }
+  .form-group {
+    font-size: 16px;
   }
 }
 

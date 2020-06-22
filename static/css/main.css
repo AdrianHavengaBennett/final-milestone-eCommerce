@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap:100,200,300,400,500,600,700,800,900");
 body,
 html {
   height: 100%;
@@ -6,6 +7,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  font-family: "Raleway", sans-serif;
 }
 
 header,
@@ -34,6 +36,10 @@ section {
   background-color: #f4f4f4;
   margin: 0.25em 0 0.25em 0;
   padding-bottom: 0.75em;
+}
+
+a {
+  overflow-wrap: break-word;
 }
 
 a:hover {
@@ -72,6 +78,13 @@ ul {
 
 .container {
   width: 97%;
+}
+
+.topnav-separator {
+  font-size: 2rem;
+  font-weight: 100;
+  vertical-align: middle;
+  margin: 0 0.5rem;
 }
 
 #search-bar {
@@ -142,6 +155,10 @@ ul {
 
 .form-inline .form-control {
   width: 100%;
+}
+
+.form-group {
+  font-size: 12px;
 }
 
 #top-container {
@@ -269,9 +286,9 @@ input[type=search]::-webkit-input-placeholder {
   background-color: #fafafa;
   border: 1px solid #EEEEEE;
   box-shadow: 2px 2px #888888;
+  margin-top: 0;
 }
 
-#faq-content,
 #shows-content,
 #shows-detail-content {
   margin-top: 0.5rem;
@@ -279,6 +296,15 @@ input[type=search]::-webkit-input-placeholder {
 
 #shows-detail-content .product-img {
   height: 8rem;
+  margin: 0.75rem;
+}
+
+#product-detail-content .product-img {
+  margin: 0.75rem;
+}
+
+.show-highlight {
+  padding: 0.5rem;
 }
 
 .show-info {
@@ -318,6 +344,7 @@ input[type=search]::-webkit-input-placeholder {
   color: #444444;
   transition: color 0.5s ease;
   font-size: 1.25rem;
+  padding-left: 0.75rem;
 }
 
 .article-content {
@@ -372,8 +399,9 @@ a#product-card {
   transform: scale(1.2);
 }
 
+.product-name,
 .product-price {
-  padding: 0.5rem 0;
+  font-size: 1.25rem;
 }
 
 .specials-price {
@@ -400,17 +428,27 @@ a#product-card {
 .account-img {
   height: 125px;
   width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
+  margin: 0.5rem auto;
+}
+
+.top-container-icon .account-img {
+  vertical-align: initial;
+  height: 35px;
+  width: 35px;
 }
 
 .account-heading {
   padding-top: 0.5rem;
   font-size: 1.25rem;
+  padding-left: 0.75rem;
 }
 
 .text-secondary {
   font-size: 0.7rem;
+}
+
+.map-container {
+  margin: 1.5rem 0 1.5rem 0;
 }
 
 #map1,
@@ -457,6 +495,9 @@ footer p {
 .default-scheme main.container {
   background: linear-gradient(to top, #E1F4F3, #fafafa);
 }
+.default-scheme .topnav-separator {
+  color: #706C61;
+}
 .default-scheme .nav-link:hover {
   border: 3px solid #E1F4F3;
   border-right: transparent;
@@ -499,6 +540,9 @@ footer p {
 .red-scheme main.container {
   background: linear-gradient(to top, #ffd9d9, #fafafa);
 }
+.red-scheme .topnav-separator {
+  color: #E06666;
+}
 .red-scheme .nav-link:hover {
   border: 3px solid #E06666;
   border-right: transparent;
@@ -539,6 +583,9 @@ footer p {
 }
 .blue-scheme main.container {
   background: linear-gradient(to top, #def0ff, #fafafa);
+}
+.blue-scheme .topnav-separator {
+  color: #4682B4;
 }
 .blue-scheme .nav-link:hover {
   border: 3px solid #4682B4;
@@ -581,6 +628,9 @@ footer p {
 .green-scheme main.container {
   background: linear-gradient(to top, #d6ffe4, #fafafa);
 }
+.green-scheme .topnav-separator {
+  color: #50C878;
+}
 .green-scheme .nav-link:hover {
   border: 3px solid #50C878;
   border-right: transparent;
@@ -621,6 +671,9 @@ footer p {
 }
 .pink-scheme main.container {
   background: linear-gradient(to top, #ffdbed, #fafafa);
+}
+.pink-scheme .topnav-separator {
+  color: #FE5BAC;
 }
 .pink-scheme .nav-link:hover {
   border: 3px solid #FE5BAC;
@@ -663,6 +716,9 @@ footer p {
 .purple-scheme main.container {
   background: linear-gradient(to top, #f2e3ff, #fafafa);
 }
+.purple-scheme .topnav-separator {
+  color: #6F2DA8;
+}
 .purple-scheme .nav-link:hover {
   border: 3px solid #6F2DA8;
   border-right: transparent;
@@ -704,6 +760,9 @@ footer p {
 .yellow-scheme main.container {
   background: linear-gradient(to top, #fcffde, #fafafa);
 }
+.yellow-scheme .topnav-separator {
+  color: #333333;
+}
 .yellow-scheme .nav-link:hover {
   border: 3px solid #f3ff6e;
   border-right: transparent;
@@ -727,10 +786,10 @@ footer p {
   color: #f3ff6e;
 }
 .yellow-scheme .top-container-icon:hover {
-  color: #f3ff6e;
+  color: #ffc800;
 }
 .yellow-scheme a.article-title:hover {
-  color: #f3ff6e;
+  color: #ffc800;
 }
 .yellow-scheme .page-link {
   color: #333333;
@@ -754,7 +813,7 @@ footer p {
 }
 @media (min-width: 768px) {
   .top-container-icon {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   .section-intro {
@@ -763,6 +822,10 @@ footer p {
 
   .content-section {
     margin-top: 1em;
+  }
+
+  .form-group {
+    font-size: 16px;
   }
 }
 @media (min-width: 992px) {

@@ -39,7 +39,7 @@ def show_products(request):
 	with pagination
 	"""
 
-	context = do_pagination(request, products = Product.objects.all())
+	context = do_pagination(request, products=Product.objects.all())
 
 	return render(request, 'products/index.html', context)
 
@@ -58,7 +58,7 @@ def show_category_products(request, id):
 	name to the category_products.html page
 	"""
 
-	context = do_pagination(request, products = Product.objects.filter(category_name=id))
+	context = do_pagination(request, products=Product.objects.filter(category_name=id))
 
 	for product in context['page'].object_list:
 		category_name = product.category_name

@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 from PIL import Image
 
 
+#override User model email field
+User._meta.get_field('email')._unique = True
+User._meta.get_field('email').blank = False
+User._meta.get_field('email').null = False
+
+
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	profile_image = models.ImageField(default='default.jpg', upload_to='profile_images')

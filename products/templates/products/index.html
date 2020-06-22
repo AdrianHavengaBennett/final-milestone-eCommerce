@@ -111,11 +111,11 @@
 					<div class="img-container">
 		            	<div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
 		            </div>
-		            <h3>{{ product.name }}</h3>
+		            <h3 class="product-name">{{ product.name }}</h3>
 		            {% if product.id == 1 or product.id == 2 %}
-		            	<del><h3>£150</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
+		            	<del><h3 class="product-price">£150</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
 		            {% elif product.id == 3 %}
-		            	<del><h3>£300</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
+		            	<del><h3 class="product-price">£300</h3></del> <ins><h3 class="product-price">£{{ product.price }}</h3></ins>
 		            {% else %}
 		            	<h3 class="product-price">£{{ product.price }}</h3>
 		            {% endif %}

@@ -69,4 +69,5 @@ $(function() {
 		interval: 2750
 	});
 	$('.dropdown-toggle').dropdown();
+	$('[data-toggle="tooltip"]').tooltip();
 });

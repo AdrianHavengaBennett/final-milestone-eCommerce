@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import ContactForm
 from click_and_collect.models import ClickCollectLocations
 
-OUR_OFFICE = ClickCollectLocations.objects.get(location_name__exact='Our Office')
+OUR_OFFICE = ClickCollectLocations.objects.filter(location_name__contains='Our Office').first()
 
 
 def contact_us(request):

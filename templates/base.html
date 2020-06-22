@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <!-- gets rid of favicon 404 error -->
-    <link rel="shortcut icon" href="#" />
+    <!-- custom tab icon -->
+    <link rel="shortcut icon" href="/media/logo/my_favicon.ico" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -19,7 +19,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
-    <title>Final Project</title>
+    <title>Music'n'More</title>
 
 </head>
 {% if user.is_authenticated %}
@@ -38,15 +38,25 @@
                 <!-- rightside icons -->
                 <div id="top-right-icons" class="col-4 col-lg-3 order-lg-12 text-right">
                     {% if user.is_authenticated %}
-                        <a class="top-container-icon" href="{% url 'logout' %}">
+
+                        <a class="top-container-icon order-1" href="{% url 'logout' %}">
                             <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only">Sign out</span> Sign Out
                         </a>
+                        <span class="topnav-separator d-none d-lg-inline">|</span>
+
+                        <a class="top-container-icon d-none d-lg-inline order-3" href="{% url 'profile' %}" data-toggle="tooltip" title="Your Profile">
+                            <img class="rounded-circle justify-content-center account-img" src="{{ user.profile.profile_image.url }}"><span class="sr-only">Profile image</span>
+                        </a>
+                        <span class="topnav-separator d-none d-lg-inline">|</span>
+
                     {% else %}
-                        <a class="top-container-icon" href="{% url 'login' %}">
+                        <a class="top-container-icon order-1" href="{% url 'login' %}">
                             <i class="fa fa-sign-in" aria-hidden="true"></i><span class="sr-only">Sign in</span> Sign In
                         </a>
+                        <span class="topnav-separator d-none d-lg-inline">|</span>
+
                     {% endif %}
-                    <a class="top-container-icon" href="#">
+                    <a class="top-container-icon order-2" href="#">
                         <i class="fa fa-shopping-basket" aria-hidden="true"></i><span class="sr-only">Customer basket</span>
                     </a>
                 </div>
@@ -99,32 +109,59 @@
         <nav class="navbar navbar-expand-lg d-none d-lg-block">
             <div class="container">
                 <div class="nav-item-box">
-                    <a class="nav-item nav-link active" href="{% url 'products-home' %}"><i class="fa fa-home" aria-hidden="true" aria-current="page"></i><span class="sr-only">All products</span> Products</a>
+                    <a class="nav-item nav-link {% if request.path == '/' %} active {% endif %}" href="{% url 'products-home' %}">
+                        <i class="fa fa-home" aria-hidden="true" aria-current="page"></i><span class="sr-only">All products</span> 
+                        Products
+                    </a>
                 </div>
                 <div class="nav-item-box">
-                    <a class="nav-item nav-link" href="{% url 'categories' %}"><i class="fa fa-files-o" aria-hidden="true"></i><span class="sr-only">All categories</span> Categories</a>
+                    <a class="nav-item nav-link {% if '/categories/' in request.path %} active {% endif %}" href="{% url 'categories' %}">
+                        <i class="fa fa-files-o" aria-hidden="true"></i><span class="sr-only">All categories</span> 
+                        Categories
+                    </a>
                 </div>
                 <div class="nav-item-box">
-                    <a class="nav-item nav-link" href="{% url 'click_and_collect' %}"><i class="fa fa-mouse-pointer" aria-hidden="true"></i><span class="sr-only">Click and collect</span> Click&Collect</a>
+                    <a class="nav-item nav-link {% if '/click-and-collect/' in request.path %} active {% endif %}" href="{% url 'click_and_collect' %}">
+                        <i class="fa fa-mouse-pointer" aria-hidden="true"></i><span class="sr-only">Click and collect</span> 
+                        Click&Collect
+                    </a>
                 </div>
                 <div class="nav-item-box">
-                    <a class="nav-item nav-link" href="{% url 'faqs-home' %}"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">Frequently asked questions</span> FAQ</a>
+                    <a class="nav-item nav-link {% if '/faq/' in request.path %} active {% endif %}" href="{% url 'faqs-home' %}">
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">Frequently asked questions</span> 
+                        FAQ
+                    </a>
                 </div>
                 <div class="nav-item-box">
-                    <a class="nav-item nav-link" href="{% url 'contact-us' %}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> Contact</a>
+                    <a class="nav-item nav-link {% if '/contact-us/' in request.path %} active {% endif %}" href="{% url 'contact-us' %}">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> 
+                        Contact
+                    </a>
                 </div>
                 {% if user.is_authenticated %}
                     <div class="nav-item-box">
-                        <a class="nav-item nav-link" href="{% url 'chat' %}"><i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Chat</span> Chat</a>
+                        <a class="nav-item nav-link {% if '/chat/' in request.path %} active {% endif %}" href="{% url 'chat' %}">
+                            <i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Chat</span> 
+                            Chat
+                        </a>
                     </div>
                     <div class="nav-item-box">
-                        <a class="nav-item nav-link" href="{% url 'get-shows' %}"><i class="fa fa-music" aria-hidden="true"></i><span class="sr-only">View upcoming shows</span> Shows</a>
+                        <a class="nav-item nav-link {% if '/shows/' in request.path %} active {% endif %}" href="{% url 'get-shows' %}">
+                            <i class="fa fa-music" aria-hidden="true"></i><span class="sr-only">View upcoming shows</span> 
+                            Shows
+                        </a>
                     </div>
                     <div class="nav-item-box">
-                        <a class="nav-item nav-link" href="{% url 'blog-home' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="sr-only">Customer blog</span> Blog</a>
+                        <a class="nav-item nav-link {% if '/blog/' in request.path %} active {% endif %}" href="{% url 'blog-home' %}">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="sr-only">Customer blog</span> 
+                            Blog
+                        </a>
                     </div>
                     <div class="nav-item-box">
-                        <a class="nav-item nav-link" href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i><span class="sr-only">Customer profile</span> Profile</a>
+                        <a class="nav-item nav-link {% if '/profile/' in request.path %} active {% endif %}" href="{% url 'profile' %}">
+                            <i class="fa fa-user" aria-hidden="true"></i><span class="sr-only">Customer profile</span> 
+                            Profile
+                        </a>
                     </div>
                 {% endif %}
             </div>

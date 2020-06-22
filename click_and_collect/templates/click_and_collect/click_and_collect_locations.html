@@ -12,7 +12,7 @@
 	<p class="section-intro">We offer a free click and collect service from the following locations:</p>
 
 	{% for location in locations %}
-		<article class="panel-body card">
+		<article class="panel-body card map-container">
 			{% if location.postcode == '67771' %}
 				<div id="map2"></div>
 			{% elif location.postcode == '67544' %}
