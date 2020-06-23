@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Basket</li>
+		</ol>
+	</nav>
+
+{% if basket_items %}
+	<h2 class="account-heading text-center">Basket Total: </h2>
+	<div class="form-group">
+		<a href="#">
+			<button class="btn"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>
+		</a>
+	</div>
+
+	<div class="content-section">
+		<div class="row">
+				<div class="table-responsive basket-info">
+					<tr>
+						<th>Details:</th>
+						<th>Price:</th>
+						<th>Qty:</th>
+						<th>Total:</th>
+					</tr>
+					<!-- {% for item in basket %} -->
+						<tr>
+							
+								<td><small></small></td>
+								<td>
+									<form>
+										<input type="number" id="qty" name="qty" min="1" max="5">
+									</form>
+								</td>
+								<td><small></small></td>
+							
+						</tr>
+					<!-- {% endfor %} -->
+				</div>
+			
+		</div>
+	</div>
+
+	<h2 class="account-heading text-center">Total (incl. VAT & Delivery): </h2>
+	<div class="form-group">
+		<a href="#">
+			<button class="btn"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>
+		</a>
+	</div>
+{% else %}
+	<div class="text-center">
+		<h2 class="account-heading">Basket is empty.</h2>
+		<p><a href="{% url 'products-home' %}"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back to all Products</a></p>
+	</div>
+{% endif %}
+
+{% endblock %}

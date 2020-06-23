@@ -12,11 +12,23 @@
 
 <div class="panel-body card text-center">
 	<div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ category_image }}')"></div>
-	<h2 class="account-heading text-center">All {{ category_name }} Products</h2>
 </div>
 
 <hr>
 
+{% if page.object_list %}
+	<div class="dropdown">
+		<a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Sort By
+		</a>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a id="sort-low-high" class="dropdown-item" href="{% url 'category-products' category_id %}?sort=price&direction=asc">Price: Lowest to highest</a>
+			<a id="sort-high-low" class="dropdown-item" href="{% url 'category-products' category_id %}?sort=price&direction=desc">Price: Highest to lowest</a>
+		</div>
+	</div>
+{% endif %}
+
+<h2 class="account-heading text-center">All {{ category_name }} Products</h2>
 <div class="row">
 	{% for product in page.object_list %}
 	<div class="col-xs-12 col-md-6 col-lg-3">

@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'sort.apps.SortConfig',
+    'basket.apps.BasketConfig',
     'shows.apps.ShowsConfig',
     'chat.apps.ChatConfig',
     'contact.apps.ContactConfig',
@@ -80,6 +80,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'click_and_collect.contexts.get_maps_api_key',
+                'basket.contexts.basket_contents',
             ],
         },
     },
@@ -154,3 +155,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
+
+STANDARD_DELIVERY_CHARGE = 20

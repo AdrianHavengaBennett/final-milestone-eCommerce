@@ -287,8 +287,7 @@ input[type="search"]::-webkit-input-placeholder {
 }
 
 #faq-button {
-  background-color: #fafafa;
-  border: 1px solid #EEEEEE;
+  background: rgba(255,255,255,0);
   box-shadow: 2px 2px #888888;
   margin-top: 0;
 }
@@ -882,6 +881,9 @@ footer p {
   }
   #top-container {
     margin-bottom: 0;
+  }
+  #shows-detail-content .card {
+    min-height: 19rem;
   }
   #shows-detail-content .product-img {
     height: 9.75rem;

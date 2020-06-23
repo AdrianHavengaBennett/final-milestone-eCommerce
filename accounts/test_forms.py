@@ -62,16 +62,9 @@ class TestUserRegisterForm(TestCase):
 
 	def test_profile_created_for_new_user(self):
 		user = User.objects.create_user('Jimmy', 'jimmy@test.com', 'testing321')
-		username = user.username
+		profile = Profile.objects.get(pk=user.id)
 
-		profiles = Profile.objects.all()
-
-		profile_list = []
-		for profile in profiles:
-			profile_list.append(profile)
-			return profile_list
-
-		self.assertIn(username, profile_list)
+		self.assertEqual(user.email, profile.user.email)
 
 
 class TestUserUpdateForm(TestCase):

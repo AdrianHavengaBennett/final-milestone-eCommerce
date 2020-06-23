@@ -6,9 +6,28 @@ from categories.models import Category
 
 def do_pagination(request, products):
 	"""
-	Helper function creates pagination data and returns
+	Helper function creates pagination and sort data and returns
 	data as a dict to be used as context dict in views
 	"""
+
+	sort = None
+	direction = None
+
+	if request.GET:
+		if 'sort' in request.GET:
+			sortkey = request.GET['sort']
+			sort = sortkey
+			if sortkey == 'name':
+				sortkey = 'lower_name'
+				products = products.annotate(lower_name=Lower('name'))
+
+			if 'direction' in request.GET:
+				direction = request.GET['direction']
+				if direction == 'desc':
+					sortkey = f'-{sortkey}'
+			products = products.order_by(sortkey)
+
+	current_sorting = f'{sort}_{direction}'
 
 	paginator = Paginator(products, per_page=12)
 	page_number = request.GET.get('page', 1)
@@ -24,13 +43,14 @@ def do_pagination(request, products):
 	else:
 		previous_url = ''
 
-	pagination_data = {
+	page_data = {
 		'page': page,
 		'next_url': next_url,
-		'previous_url': previous_url
+		'previous_url': previous_url,
+		'current_sorting': current_sorting
 	}
 
-	return pagination_data
+	return page_data
 
 
 def show_products(request):
@@ -63,8 +83,10 @@ def show_category_products(request, id):
 	for product in context['page'].object_list:
 		category_name = product.category_name
 		category_image = product.category_name.image.url
+		category_id = product.category_name.id
 
 	context['category_name'] = category_name
 	context['category_image'] = category_image
+	context['category_id'] = category_id
 
 	return render(request, 'products/category_products.html', context)

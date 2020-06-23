@@ -94,10 +94,8 @@
 			Sort By
 		</a>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a id="sort-low-high" class="dropdown-item" href="{% url 'sort-low-high' %}">Price: Lowest to highest</a>
-			<a id="sort-high-low" class="dropdown-item" href="{% url 'sort-high-low' %}">Price: Highest to lowest</a>
-			<a id="sort-a-z" class="dropdown-item" href="{% url 'sort-a-z' %}">Alphabetically: A - Z</a>
-			<a id="sort-z-a" class="dropdown-item" href="{% url 'sort-z-a' %}">Alphabetically: Z - A</a>
+			<a id="sort-low-high" class="dropdown-item" href="{% url 'products-home' %}?sort=price&direction=asc">Price: Lowest to highest</a>
+			<a id="sort-high-low" class="dropdown-item" href="{% url 'products-home' %}?sort=price&direction=desc">Price: Highest to lowest</a>
 		</div>
 	</div>
 {% endif %}
