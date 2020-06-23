@@ -10,41 +10,83 @@
 	</nav>
 
 {% if basket_items %}
-	<h2 class="account-heading text-center">Basket Total: </h2>
+	<h2 class="account-heading text-center">Basket Total: {{ total }}</h2>
 	<div class="form-group">
 		<a href="#">
 			<button class="btn"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>
+		</a>
+		<a href="{% url 'products-home' %}">
+			<button class="btn"><i class="fa fa-hand-o-left" aria-hidden="true"></i> KEEP SHOPPING</button>
 		</a>
 	</div>
 
 	<div class="content-section">
 		<div class="row">
-				<div class="table-responsive basket-info">
-					<tr>
-						<th>Details:</th>
-						<th>Price:</th>
-						<th>Qty:</th>
-						<th>Total:</th>
-					</tr>
-					<!-- {% for item in basket %} -->
+			<div class="table-responsive basket-info">
+				<table class="table table-sm table-borderless">
+					<thead class=text-black>
 						<tr>
-							
-								<td><small></small></td>
-								<td>
-									<form>
-										<input type="number" id="qty" name="qty" min="1" max="5">
-									</form>
-								</td>
-								<td><small></small></td>
-							
+							<th scope="col">Details:</th>
+							<th scope="col"></th>
+							<th scope="col">Price:</th>
+							<th scope="col">Qty:</th>
+							<th scope="col">Total:</th>
 						</tr>
-					<!-- {% endfor %} -->
-				</div>
-			
+					</thead>
+
+					{% for item in basket_items %}
+						<tr>
+							<td class="p-2 w-25">
+								<img class="img-fluid" src="{{ item.product.image.url }}">
+							</td>
+							<td class="py-3">
+								<p class="my-0">{{ item.product.name }}</p>
+							</td>
+							<td class="py-3">
+								<p class="my-0">£{{ item.product.price }}</p>
+							</td>
+							<td class="py-3">
+								<p class="my-0">{{ item.quantity }}</p>
+							</td>
+							<td class="py-3">
+								<p class="my-0">£{{ item.product.price }}</p>
+							</td>
+						</tr>
+					{% endfor %}
+				</table>
+				<hr>
+				<table class="table table-sm table-borderless">
+					<thead class=text-black>
+						<tr>
+							<th scope="col">Delivery Option:</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tr>
+						<td class="">
+							<form>
+								<label for="delivery">Delivery*</label>
+								<input type="radio" name="delivery" id="delivery" checked>
+								<label for="delivery">Click&Collect**</label>
+								<input type="radio" name="click-and-collect" id="click-and-collect">
+							</form>
+						</td>
+					</tr>
+				</table>
+				<hr>
+				<p>*Please note that we offer a fixed delivery fee of £20 to all mainland postcodes only. 
+					Unfortunately, we cannot deliver to any other postcodes at this time. If you're unsure, please contact us 
+					<a href="{% url 'contact-us' %}">here.</a>
+				</p>
+				<p>
+					**If you decide to use our free Click&Collect service, please check out the current locations available 
+					<a href="{% url 'click_and_collect' %}">here.</a>
+				</p>
+			</div>
 		</div>
 	</div>
 
-	<h2 class="account-heading text-center">Total (incl. VAT & Delivery): </h2>
+	<h2 class="account-heading text-center">Total (incl. VAT & Delivery): {{ grand_total }}</h2>
 	<div class="form-group">
 		<a href="#">
 			<button class="btn"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>

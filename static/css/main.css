@@ -59,6 +59,12 @@ ul {
   margin: 0;
 }
 
+table p,
+table ~ p {
+  padding: 0;
+  font-size: 0.75rem;
+}
+
 #site-logo {
   background-size: contain;
   background-position: left center;
@@ -70,6 +76,18 @@ ul {
 
 #top-right-icons {
   padding-right: 0;
+}
+
+#basket-count {
+  vertical-align: text-bottom;
+}
+
+#topnav-basket-icon {
+  padding-bottom: 0.5rem;
+}
+
+.basket-alert {
+  color: red;
 }
 
 .alert {
@@ -841,12 +859,24 @@ footer p {
     margin-bottom: 0;
   }
 
+  #topnav-basket-icon {
+    padding-bottom: 0.75rem;
+  }
+
   #shows-detail-content .card {
     min-height: 19rem;
   }
 
+  #product-detail-content .card {
+    min-height: 30rem;
+  }
+
   #shows-detail-content .product-img {
     height: 9.75rem;
+  }
+
+  #product-detail-content .product-img {
+    min-height: 26rem;
   }
 
   .nav-link {
