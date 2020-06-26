@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap:100,200,300,400,500,600,700,800,900');
 
+/***************************************general rules*/
+
 body,
 html {
   height: 100%;
@@ -66,6 +68,21 @@ table~p {
   font-size: .75rem;
 }
 
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  background-color: #333333;
+  width: -webkit-fill-available;
+  box-shadow: 2px 2px 16px 20px #333333;
+}
+
+footer p {
+  color: #EEEEEE;
+  padding-top: .75rem;
+}
+
+/***************************************ids and classes*/
+
 #site-logo {
   background-size: contain;
   background-position: left center;
@@ -77,6 +94,11 @@ table~p {
 
 #top-right-icons {
   padding-right: 0;
+}
+
+#sign-in,
+#sign-out {
+  vertical-align: -webkit-baseline-middle;
 }
 
 #basket-count {
@@ -147,29 +169,6 @@ table~p {
 .specials-text {
   color: red;
   padding-top: .5rem;
-}
-
-.social-icon {
-  color: #444444;
-  font-size: 1.5rem;
-  padding: 0 1rem 0 1rem;
-  transition: color 0.5s ease;
-}
-
-.fa-facebook-square:hover {
-  color: #3B5998;
-}
-
-.fa-twitter-square:hover {
-  color: #1DA1F2;
-}
-
-.fa-youtube-square:hover {
-  color: #E62117;
-}
-
-.fa-instagram:hover {
-  color: #DD2A7B;
 }
 
 .form-inline .form-control {
@@ -274,6 +273,13 @@ input[type="search"]::-webkit-input-placeholder {
   padding-top: .5rem;
 }
 
+form .dropdown {
+  position: relative;
+  display: none;
+  text-align: right;
+  padding-right: 1rem;
+}
+
 .section-intro {
   font-size: 1rem;
   text-align: center;
@@ -322,6 +328,11 @@ input[type="search"]::-webkit-input-placeholder {
 
 #product-detail-content .product-img {
   margin: .75rem;
+}
+
+.decrement-qty.btn,
+.increment-qty.btn {
+  margin-top: 0;
 }
 
 .show-highlight {
@@ -475,6 +486,20 @@ a#product-card {
   margin: 1.5rem 0 1.5rem 0;
 }
 
+#delivery-heading {
+  font-weight: 600;
+  padding-left: .5rem;
+}
+
+.delivery-option {
+  text-align: right;
+  padding-right: 1rem;
+}
+
+#basket-total {
+  padding-top: 1.5rem;
+}
+
 #map1,
 #map2,
 #map3,
@@ -484,21 +509,31 @@ a#product-card {
   display: inline-block;
 }
 
+.social-icon {
+  color: #444444;
+  font-size: 1.5rem;
+  padding: 0 1rem 0 1rem;
+  transition: color 0.5s ease;
+}
+
+.fa-facebook-square:hover {
+  color: #3B5998;
+}
+
+.fa-twitter-square:hover {
+  color: #1DA1F2;
+}
+
+.fa-youtube-square:hover {
+  color: #E62117;
+}
+
+.fa-instagram:hover {
+  color: #DD2A7B;
+}
+
 .pagination {
   margin-top: .75rem;
-}
-
-footer {
-  flex-shrink: 0;
-  text-align: center;
-  background-color: #333333;
-  width: -webkit-fill-available;
-  box-shadow: 2px 2px 16px 20px #333333;
-}
-
-footer p {
-  color: #EEEEEE;
-  padding-top: .75rem;
 }
 
 /***************************************colour schemes (SASS)*/
@@ -899,6 +934,10 @@ footer p {
   }
   #top-container {
     margin-bottom: 0;
+  }
+  #sign-in,
+  #sign-out {
+    vertical-align: text-top;
   }
   #topnav-basket-icon {
     padding-bottom: .75rem;

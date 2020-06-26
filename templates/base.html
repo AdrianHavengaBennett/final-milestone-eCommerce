@@ -38,7 +38,7 @@
                 <!-- rightside icons -->
                 <div id="top-right-icons" class="col-4 col-lg-3 order-lg-12 text-right">
                     {% if user.is_authenticated %}
-                        <a class="top-container-icon order-1" href="{% url 'logout' %}">
+                        <a id="sign-out" class="top-container-icon order-1" href="{% url 'logout' %}">
                             <span class="sr-only">Sign out</span> Sign Out
                         </a>
                         <span class="topnav-separator d-none d-lg-inline">|</span>
@@ -48,7 +48,7 @@
                         </a>
                         <span class="topnav-separator d-none d-lg-inline">|</span>
                     {% else %}
-                        <a class="top-container-icon order-1" href="{% url 'login' %}">
+                        <a id="sign-in" class="top-container-icon order-1" href="{% url 'login' %}">
                             <span class="sr-only">Sign in</span> Sign In
                         </a>
                         <span class="topnav-separator d-none d-lg-inline">|</span>
@@ -185,6 +185,7 @@
             {% block products_pagination %}{% endblock products_pagination %}
 
         {% endblock %}
+
         {% block blog_pagination %}{% endblock blog_pagination %}
     </main>
 

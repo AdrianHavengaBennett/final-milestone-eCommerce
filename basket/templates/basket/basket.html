@@ -10,13 +10,10 @@
 	</nav>
 
 {% if basket_items %}
-	<h2 class="account-heading text-center">Basket Total: {{ total }}</h2>
+	<h2 class="account-heading text-center">Basket Subtotal: £{{ sub_total }}</h2>
 	<div class="form-group">
 		<a href="#">
 			<button class="btn"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>
-		</a>
-		<a href="{% url 'products-home' %}">
-			<button class="btn"><i class="fa fa-hand-o-left" aria-hidden="true"></i> KEEP SHOPPING</button>
 		</a>
 	</div>
 
@@ -37,10 +34,14 @@
 					{% for item in basket_items %}
 						<tr>
 							<td class="p-2 w-25">
-								<img class="img-fluid" src="{{ item.product.image.url }}">
+								<a href="{% url 'product-detail' item.product.id %}">
+									<img class="img-fluid" src="{{ item.product.image.url }}">
+								</a>
 							</td>
 							<td class="py-3">
-								<p class="my-0">{{ item.product.name }}</p>
+								<a href="{% url 'product-detail' item.product.id %}">
+									<p class="my-0">{{ item.product.name }}</p>
+								</a>
 							</td>
 							<td class="py-3">
 								<p class="my-0">£{{ item.product.price }}</p>
@@ -49,30 +50,35 @@
 								<p class="my-0">{{ item.quantity }}</p>
 							</td>
 							<td class="py-3">
-								<p class="my-0">£{{ item.product.price }}</p>
+								<p class="my-0">£{{ item.product_total }}</p>
 							</td>
 						</tr>
 					{% endfor %}
 				</table>
+
 				<hr>
-				<table class="table table-sm table-borderless">
-					<thead class=text-black>
-						<tr>
-							<th scope="col">Delivery Option:</th>
-							<th scope="col"></th>
-						</tr>
-					</thead>
-					<tr>
-						<td class="">
-							<form>
-								<label for="delivery">Delivery*</label>
-								<input type="radio" name="delivery" id="delivery" checked>
-								<label for="delivery">Click&Collect**</label>
-								<input type="radio" name="click-and-collect" id="click-and-collect">
-							</form>
-						</td>
-					</tr>
-				</table>
+
+				<h6 id="delivery-heading">Delivery Option: </h6>
+				<form action="" method="POST">
+					<div class="delivery-option">
+						<input type="radio" name="delivery-option" id="delivery" checked>
+						<label for="delivery">Delivery*</label>
+					</div>
+					<div class="delivery-option">
+						<input type="radio" name="delivery-option" id="click-and-collect">
+						<label for="click-and-collect">Click&Collect**</label>
+					</div>
+					<div class="dropdown">
+						<a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Choose Location
+						</a>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a type="submit" id="ben-hardware" class="dropdown-item" href="#">Ben's Hardware</a>
+							<a type="submit" id="post-office" class="dropdown-item" href="#">Pembroke Park Post Office</a>
+						</div>
+					</div>
+				</form>
+				
 				<hr>
 				<p>*Please note that we offer a fixed delivery fee of £20 to all mainland postcodes only. 
 					Unfortunately, we cannot deliver to any other postcodes at this time. If you're unsure, please contact us 
@@ -86,10 +92,13 @@
 		</div>
 	</div>
 
-	<h2 class="account-heading text-center">Total (incl. VAT & Delivery): {{ grand_total }}</h2>
+	<h2 id="basket-total" class="account-heading text-center">Total (incl. VAT & Delivery): £{{ grand_total }}</h2>
 	<div class="form-group">
 		<a href="#">
 			<button class="btn"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>
+		</a>
+		<a href="{% url 'products-home' %}">
+			<button class="btn"><i class="fa fa-hand-o-left" aria-hidden="true"></i> KEEP SHOPPING</button>
 		</a>
 	</div>
 {% else %}
