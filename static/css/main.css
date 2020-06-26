@@ -103,6 +103,7 @@ footer p {
 }
 
 #topnav-basket-icon {
+  padding-right: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
@@ -489,6 +490,11 @@ a#product-card {
 
 #basket-total {
   padding-top: 1.5rem;
+}
+
+.update-link,
+.remove-item {
+  cursor: pointer;
 }
 
 #map1,
@@ -886,6 +892,10 @@ a#product-card {
   #site-logo {
     background-size: 210px;
     margin: 2px 0px 2rem 0;
+  }
+
+  #topnav-basket-icon {
+    padding-right: 0;
   }
 
   #top-container {

@@ -104,6 +104,24 @@ $(function() {
 	   handleEnableDisable(itemId);
     });
 
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    });
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var url = `/basket/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken};
+
+        $.ajax({url: url, data: data, success: function() {
+        	location.reload();
+        }});
+    });
+
 	// Shows click and collect options
 	$( '#click-and-collect' ).on('click', function() {
 		$('form .dropdown').show();
