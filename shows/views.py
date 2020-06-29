@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import UpcomingShows, Tickets
+from .models import UpcomingShows, ShowsTickets
 from click_and_collect.models import ClickCollectLocations
 
 
@@ -21,7 +21,7 @@ def show_details(request, id):
 	the_bar = ClickCollectLocations.objects.get(location_name__exact='The Bar')
 	fusion_club = ClickCollectLocations.objects.get(location_name__exact='Fusion Club')
 
-	tickets = Tickets.objects.all()
+	tickets = ShowsTickets.objects.get(artist_id=show.id)
 
 	context = {
 		'show': show,

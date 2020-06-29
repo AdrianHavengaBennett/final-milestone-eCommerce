@@ -60,7 +60,6 @@ function initMap() {
 	});
 }
 
-// jQuery
 $(function() {
 	// Disable +/- buttons outside 1-99 range
 	function handleEnableDisable(itemId) {
@@ -123,12 +122,12 @@ $(function() {
     });
 
 	// Shows click and collect options
-	$( '#click-and-collect' ).on('click', function() {
+	$('#click-and-collect').on('click', function() {
 		$('form .dropdown').show();
 	});
 
 	// Hides click and collect options
-	$( '#delivery' ).on('click', function() {
+	$('#delivery').on('click', function() {
 		$('form .dropdown').hide();
 	});
 

@@ -33,19 +33,37 @@
 
 					{% for item in basket_items %}
 						<tr>
-							<td class="p-2 w-25">
-								<a href="{% url 'product-detail' item.product.id %}">
-									<img class="img-fluid" src="{{ item.product.image.url }}">
-								</a>
-							</td>
+							{% if item.basket_obj.artist %}
+								<td class="p-2 w-25">
+									<a href="{% url 'show-details' item.basket_obj.artist.id %}">
+										<img class="img-fluid" src="{{ item.basket_obj.artist.artist_image.url }}">
+									</a>
+								</td>
+								<td>
+									<p class="py-3">Show Ticket for: 
+										<a href="{% url 'show-details' item.basket_obj.artist.id %}">
+											{{ item.basket_obj.artist }}
+										</a>
+									</p>
+								</td>
+							{% else %}
+								<td class="p-2 w-25">
+									<a href="{% url 'product-detail' item.basket_obj.id %}">
+										<img class="img-fluid" src="{{ item.basket_obj.image.url }}">
+									</a>
+								</td>
+								<td class="py-3">
+									<a href="#">
+										<p class="my-0">{{ item.basket_obj.name }}</p>
+									</a>
+								</td>
+							{% endif %}
+
+
 							<td class="py-3">
-								<a href="{% url 'product-detail' item.product.id %}">
-									<p class="my-0">{{ item.product.name }}</p>
-								</a>
+								<p class="my-0">£{{ item.basket_obj.price }}</p>
 							</td>
-							<td class="py-3">
-								<p class="my-0">£{{ item.product.price }}</p>
-							</td>
+							
 							<td class="py-3">
 								<form class="form update-form" action="{% url 'update-basket' item.item_id %}" method="POST">
 									{% csrf_token %}

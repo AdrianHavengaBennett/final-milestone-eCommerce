@@ -2,6 +2,21 @@ from django.shortcuts import get_object_or_404
 from django.conf import settings
 from decimal import Decimal
 from products.models import Product
+from shows.models import ShowsTickets
+
+
+def do_db_query(request, item_id):
+	"""
+	Helper function avoids variable scope UnboundLocalError issues while 
+	using if else and assignment when determining which model to query
+	"""
+
+	if len(item_id) > 3:
+		query = get_object_or_404(ShowsTickets, pk=item_id)
+	else:
+		query = get_object_or_404(Product, pk=item_id)
+
+	return query
 
 
 def basket_contents(request):
@@ -17,14 +32,16 @@ def basket_contents(request):
 	basket = request.session.get('basket', {})
 
 	for item_id, quantity in basket.items():
-		product = get_object_or_404(Product, pk=item_id)
-		product_total = quantity * product.price
-		grand_total += quantity * product.price
+
+		basket_obj = do_db_query(request, item_id=item_id)
+
+		product_total = quantity * basket_obj.price
+		grand_total += quantity * basket_obj.price
 		product_count += quantity
 		basket_items.append({
 			'item_id': item_id,
 			'quantity': quantity,
-			'product': product,
+			'basket_obj': basket_obj,
 			'product_total': product_total
 		})
 

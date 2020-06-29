@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from click_and_collect.models import ClickCollectLocations
 
@@ -13,7 +14,8 @@ class UpcomingShows(models.Model):
 		return f'{self.artist_name} @ {self.venue}'
 
 
-class Tickets(models.Model):
+class ShowsTickets(models.Model):
+	custom_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	artist = models.ForeignKey(UpcomingShows, on_delete=models.CASCADE)
 	ticket_type = models.CharField(max_length=40, default='')
 	price = models.DecimalField(max_digits=6, decimal_places=2)
