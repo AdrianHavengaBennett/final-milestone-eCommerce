@@ -33,8 +33,7 @@ def logout_user(request):
 
 @login_required
 def profile(request):
-	"""
-	Displays the current user's profile page with the current information
+	"""Displays the current user's profile page with the current information
 	rendered, with the ability to edit and save profile changes
 	"""
 

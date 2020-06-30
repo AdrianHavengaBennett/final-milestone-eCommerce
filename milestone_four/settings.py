@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'checkout.apps.CheckoutConfig',
     'basket.apps.BasketConfig',
     'shows.apps.ShowsConfig',
     'chat.apps.ChatConfig',
@@ -85,6 +86,8 @@ TEMPLATES = [
         },
     },
 ]
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 # WSGI_APPLICATION = 'milestone_four.wsgi.application'
 

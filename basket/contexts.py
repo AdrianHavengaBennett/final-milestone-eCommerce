@@ -6,12 +6,11 @@ from shows.models import ShowsTickets
 
 
 def do_db_query(request, item_id):
-	"""
-	Helper function avoids variable scope UnboundLocalError issues while 
+	"""Helper function avoids variable scope UnboundLocalError issues while 
 	using if else and assignment when determining which model to query
 	"""
 
-	if len(item_id) > 3:
+	if '-' in item_id:
 		query = get_object_or_404(ShowsTickets, pk=item_id)
 	else:
 		query = get_object_or_404(Product, pk=item_id)

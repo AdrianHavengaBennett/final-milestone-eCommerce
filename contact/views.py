@@ -7,8 +7,7 @@ OUR_OFFICE = ClickCollectLocations.objects.filter(location_name__contains='Our O
 
 
 def contact_us(request):
-	"""
-	Renders a contact form to the contact.html page and
+	"""Renders a contact form to the contact.html page and
 	also the contact info of the business for the Google Map
 	"""
 
@@ -28,8 +27,7 @@ def contact_us(request):
 
 
 def thank_you(request):
-	"""
-	Renders a thank you message and the business info to
+	"""Renders a thank you message and the business info to
 	the thank_you.html page
 	"""
 

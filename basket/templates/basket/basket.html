@@ -39,8 +39,8 @@
 										<img class="img-fluid" src="{{ item.basket_obj.artist.artist_image.url }}">
 									</a>
 								</td>
-								<td>
-									<p class="py-3">Show Ticket for: 
+								<td class="py-3 w-25">
+									<p class="my-0">Show Ticket for: 
 										<a href="{% url 'show-details' item.basket_obj.artist.id %}">
 											{{ item.basket_obj.artist }}
 										</a>
@@ -52,8 +52,8 @@
 										<img class="img-fluid" src="{{ item.basket_obj.image.url }}">
 									</a>
 								</td>
-								<td class="py-3">
-									<a href="#">
+								<td class="py-3 w-25">
+									<a href="{% url 'product-detail' item.basket_obj.id %}">
 										<p class="my-0">{{ item.basket_obj.name }}</p>
 									</a>
 								</td>
@@ -69,7 +69,7 @@
 									{% csrf_token %}
 									<div class="form-group">
 										<div class="input-group">
-											<div class="input-group-prepend">
+											<div class="input-group-prepend d-none d-md-block">
 												<button class="decrement-qty btn btn-sm" 
 												data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id  }}">
 													<span>
@@ -81,7 +81,7 @@
 											name="quantity" value="{{ item.quantity }}" min="1" max="99"
 											data-item_id="{{ item.item_id }}"
 											id="id_qty_{{ item.item_id }}">
-											<div class="input-group-append">
+											<div class="input-group-append d-none d-md-block">
 												<button class="increment-qty btn btn-sm"
 												data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
 													<span>
@@ -92,8 +92,14 @@
 										</div>
 									</div>
 								</form>
-								<a class="update-link text-info"><small>Update</small></a>
-                                <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
+								<a class="update-link text-info">
+									<small class="d-none d-md-inline">Update</small>
+									<i class="fa fa-refresh d-md-none" aria-hidden="true"></i>
+								</a>
+                                <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}">
+                                	<small class="d-none d-md-inline">Remove</small>
+                                	<i class="fa fa-trash d-md-none" aria-hidden="true"></i>
+                                </a>
 							</td>
 							<td class="py-3">
 								<p class="my-0">£{{ item.product_total }}</p>

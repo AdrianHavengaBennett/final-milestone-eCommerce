@@ -5,8 +5,7 @@ from categories.models import Category
 
 
 def do_pagination(request, products):
-	"""
-	Helper function creates pagination and sort data and returns
+	"""Helper function creates pagination and sort data and returns
 	data as a dict to be used as context dict in views
 	"""
 
@@ -54,8 +53,7 @@ def do_pagination(request, products):
 
 
 def show_products(request):
-	"""
-	Renders all of the products to the index.html page
+	"""Renders all of the products to the index.html page
 	with pagination
 	"""
 
@@ -73,8 +71,7 @@ def show_product_detail(request, id):
 
 
 def show_category_products(request, id):
-	"""
-	Renders all the products with the clicked category 
+	"""Renders all the products with the clicked category 
 	name to the category_products.html page
 	"""
 

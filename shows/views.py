@@ -12,8 +12,7 @@ def get_shows(request):
 
 
 def show_details(request, id):
-	"""
-	Retrieves the show by id and renders the details
+	"""Retrieves the show by id and renders the details
 	to the show_detail.html page
 	"""
 

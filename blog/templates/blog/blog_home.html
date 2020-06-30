@@ -7,7 +7,7 @@
 			<li class="breadcrumb-item active" aria-current="page">Blog</li>
 		</ol>
 	</nav>
-	<p class="section-intro">Welcome back, {{ user }}. Catch up on everything music-related from our community, or start a new conversation.</p>
+	<p class="section-intro">Welcome, {{ user }}. Catch up on everything music-related from our community, or start a new conversation.</p>
 	<div class="row">
 
 		<!-- side section -->
@@ -32,6 +32,7 @@
 
 		<div class="col-xs-12 col-md-8 order-md-1">
 			{% for post in page.object_list %}
+			<a href="{% url 'post-detail' post.id %}">
 				<article class="media content-section">
 					<img class="rounded-circle article-img" src="{{ post.author.profile.profile_image.url }}">
 					<div class="media-body">
@@ -39,18 +40,20 @@
 							<span id="post-author" class="mr-2">{{ post.author }}</span>
 							<small class="text-muted">{{ post.date_created|date:'d F, Y' }}</small>
 						</div>
+						<hr>
 						{% if post.product %}
-							<h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }} ({{ post.product.name }})</a></h2>
+							<h2 class="article-title">{{ post.title }} ({{ post.product.name }})</h2>
 						{% elif post.show %}
-							<h2><a class="article-title" href="{% url 'post-detail' post.id %}">
+							<h2 class="article-title">
 								{{ post.title }} ({{ post.show.artist_name }} @ {{ post.show.venue.location_name }})
-							</a></h2>
+							</h2>
 						{% else %}
-							<h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+							<h2 class="article-title">{{ post.title }}</h2>
 						{% endif %}
 						<p class="article-content">{{ post.content }}</p>
 					</div>
 				</article>
+			</a>
 
 			<!-- if nothing is returned from search -->
 			{% empty %}

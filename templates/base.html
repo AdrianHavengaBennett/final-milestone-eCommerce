@@ -60,8 +60,6 @@
                         <i id="topnav-basket-icon" class="fa fa-shopping-basket {% if product_count %} basket-alert {% endif %}" aria-hidden="true"></i>
                         <span class="sr-only">Customer basket</span>
                     </a>
-
-
                 </div>
 
                 <div class="w-100 d-lg-none"></div>
@@ -89,16 +87,43 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="{% url 'products-home' %}"><i class="fa fa-home" aria-hidden="true"></i><span class="sr-only">All products</span> Products</a>
-                        <a class="nav-item nav-link" href="{% url 'categories' %}"><i class="fa fa-files-o" aria-hidden="true"></i><span class="sr-only">All categories</span> Categories</a>
-                        <a class="nav-item nav-link" href="{% url 'click_and_collect' %}"><i class="fa fa-mouse-pointer" aria-hidden="true"></i><span class="sr-only">Click and collect</span> Click&Collect</a>
-                        <a class="nav-item nav-link" href="{% url 'faqs-home' %}"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">Frequently asked questions</span> FAQ</a>
-                        <a class="nav-item nav-link" href="{% url 'contact-us' %}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> Contact</a>
+                        <a class="nav-item nav-link {% if request.path == '/' %} active {% endif %}" href="{% url 'products-home' %}">
+                            <i class="fa fa-home" aria-hidden="true"></i><span class="sr-only">All products</span> 
+                            Products
+                        </a>
+                        <a class="nav-item nav-link {% if '/categories/' in request.path %} active {% endif %}" href="{% url 'categories' %}">
+                            <i class="fa fa-files-o" aria-hidden="true"></i><span class="sr-only">All categories</span> 
+                            Categories
+                        </a>
+                        <a class="nav-item nav-link {% if '/click-and-collect/' in request.path %} active {% endif %}" href="{% url 'click_and_collect' %}">
+                            <i class="fa fa-mouse-pointer" aria-hidden="true"></i><span class="sr-only">Click and collect</span> 
+                            Click&Collect
+                        </a>
+                        <a class="nav-item nav-link {% if '/faq/' in request.path %} active {% endif %}" href="{% url 'faqs-home' %}">
+                            <i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">Frequently asked questions</span> 
+                            FAQ
+                        </a>
+                        <a class="nav-item nav-link {% if '/contact-us/' in request.path %} active {% endif %}" href="{% url 'contact-us' %}">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> 
+                            Contact
+                        </a>
                         {% if user.is_authenticated %}
-                            <a class="nav-item nav-link" href="{% url 'chat' %}"><i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Chat</span> Chat</a>
-                            <a class="nav-item nav-link" href="{% url 'get-shows' %}"><i class="fa fa-music" aria-hidden="true"></i><span class="sr-only">View upcoming shows</span> Shows</a>
-                            <a class="nav-item nav-link" href="{% url 'blog-home' %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="sr-only">Customer blog</span> Blog</a>
-                            <a class="nav-item nav-link" href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i><span class="sr-only">Customer profile</span> Profile</a>
+                            <a class="nav-item nav-link {% if '/chat/' in request.path %} active {% endif %}" href="{% url 'chat' %}">
+                                <i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Chat</span> 
+                                Chat
+                            </a>
+                            <a class="nav-item nav-link {% if '/shows/' in request.path %} active {% endif %}" href="{% url 'get-shows' %}">
+                                <i class="fa fa-music" aria-hidden="true"></i><span class="sr-only">View upcoming shows</span> 
+                                Shows
+                            </a>
+                            <a class="nav-item nav-link {% if '/blog/' in request.path %} active {% endif %}" href="{% url 'blog-home' %}">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="sr-only">Customer blog</span> 
+                                Blog
+                            </a>
+                            <a class="nav-item nav-link {% if '/profile/' in request.path %} active {% endif %}" href="{% url 'profile' %}">
+                                <i class="fa fa-user" aria-hidden="true"></i><span class="sr-only">Customer profile</span> 
+                                Profile
+                            </a>
                             <a class="nav-item nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only">Sign out</span> Sign Out</a>
                         {% else %}
                             <a class="nav-item nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i><span class="sr-only">Sign in</span> Sign In</a>
@@ -172,21 +197,33 @@
     </header>
     
     <main class="container">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
+        <div class="message-container">
+            {% if messages %}
+                {% for message in messages %}
+                    {% with message.level as level %}
+                        {% if level == 40 %}
+                            {% include 'includes/toasts/toasts_error.html' %}
+                        {% elif level == 30 %}
+                            {% include 'includes/toasts/toasts_warning.html' %}
+                        {% elif level == 25 %}
+                            {% include 'includes/toasts/toasts_success.html' %}
+                        {% else %}
+                            {% include 'includes/toasts/toasts_info.html' %}
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            {% endif %}
+        </div>
 
         {% block content %}
 
-            {% block products_pagination %}{% endblock products_pagination %}
+            {% block products_pagination %}
+            {% endblock products_pagination %}
 
         {% endblock %}
 
-        {% block blog_pagination %}{% endblock blog_pagination %}
+        {% block blog_pagination %}
+        {% endblock blog_pagination %}
     </main>
 
     <footer>

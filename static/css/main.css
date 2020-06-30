@@ -220,6 +220,7 @@ input[type=search]::-webkit-input-placeholder {
 }
 
 .nav-link.active {
+  text-align: right;
   border-top: transparent;
   border-bottom: 2px solid #fafafa;
   border-left: transparent;
@@ -291,12 +292,7 @@ form .dropdown {
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-top: 0.5em;
-  box-shadow: 2px 2px #888888;
   transition: box-shadow 0.5s ease;
-}
-
-.content-section:hover {
-  box-shadow: 4px 4px #888888;
 }
 
 .btn {
@@ -363,6 +359,7 @@ form .dropdown {
 }
 
 #post-author {
+  font-size: 0.75rem;
   color: #444444;
   transition: color 0.5s ease;
 }
@@ -371,11 +368,13 @@ form .dropdown {
   color: #444444;
   transition: color 0.5s ease;
   font-size: 1.25rem;
+  font-weight: 600;
   padding-left: 0.75rem;
 }
 
 .article-content {
   white-space: pre-line;
+  color: #444444;
 }
 
 .article-img {
@@ -391,14 +390,19 @@ a#product-card {
 .card {
   background: linear-gradient(rgba(51, 51, 51, 0.1), #fff);
   border-radius: 3px;
-  box-shadow: 2px 2px #888888;
   transition: box-shadow 0.5s ease;
   margin: 0.5em 0;
   overflow: hidden;
 }
 
-.card:hover {
-  box-shadow: 4px 4px #888888;
+.img-fluid {
+  transition: box-shadow 0.5s ease;
+}
+
+.card:hover,
+.content-section:hover,
+.img-fluid:hover {
+  box-shadow: 1px 4px 12px 0px #b8b8b8;
 }
 
 .img-container {
@@ -497,6 +501,11 @@ a#product-card {
   cursor: pointer;
 }
 
+.update-link > i,
+.remove-item > i {
+  font-size: 0.75rem;
+}
+
 #map1,
 #map2,
 #map3,
@@ -531,6 +540,72 @@ a#product-card {
 
 .pagination {
   margin-top: 0.75rem;
+}
+
+/***************************************Bootstrap toasts*/
+.message-container {
+  position: fixed;
+  top: 52px;
+  right: 12px;
+  z-index: 999999;
+}
+
+.custom-toast {
+  overflow: visible;
+}
+
+.toast-capper {
+  height: 2px;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 10px solid black;
+  position: absolute;
+  top: -10px;
+  right: 16px;
+}
+
+/* Convenience classes - colors copied from Bootstrap */
+.arrow-primary {
+  border-bottom-color: #007bff !important;
+}
+
+.arrow-secondary {
+  border-bottom-color: #6c757d !important;
+}
+
+.arrow-success {
+  border-bottom-color: #28a745 !important;
+}
+
+.arrow-danger {
+  border-bottom-color: #dc3545 !important;
+}
+
+.arrow-warning {
+  border-bottom-color: #ffc107 !important;
+}
+
+.arrow-info {
+  border-bottom-color: #17a2b8 !important;
+}
+
+.arrow-light {
+  border-bottom-color: #f8f9fa !important;
+}
+
+.arrow-dark {
+  border-bottom-color: #343a40 !important;
+}
+
+.basket-notification-wrapper {
+  height: 100px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /***************************************colour schemes (SASS)*/
@@ -868,6 +943,14 @@ a#product-card {
   }
 }
 @media (min-width: 768px) {
+  .message-container {
+    right: 28px;
+  }
+
+  .arrow-up {
+    right: 36px;
+  }
+
   .top-container-icon {
     font-size: 1rem;
   }
@@ -883,10 +966,18 @@ a#product-card {
   .form-group {
     font-size: 16px;
   }
+
+  #post-author {
+    font-size: 0.75rem;
+  }
 }
 @media (min-width: 992px) {
   main {
     margin: 0.75em 0 0.75em 0;
+  }
+
+  .message-container {
+    top: 70px;
   }
 
   #site-logo {
@@ -953,6 +1044,10 @@ a#product-card {
   }
 }
 @media (min-width: 1024px) {
+  .message-container {
+    right: 74px;
+  }
+
   .nav-link {
     padding: 0.2rem;
   }

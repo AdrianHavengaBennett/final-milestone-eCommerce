@@ -11,8 +11,7 @@ from shows.models import UpcomingShows
 
 @login_required
 def show_all_posts(request):
-	"""
-	Renders all of the blog posts to the blog_home.html page
+	"""Renders all of the blog posts to the blog_home.html page
 	with pagination
 	"""
 
@@ -51,7 +50,7 @@ def new_post(request):
 			temp_form = form.save(commit=False)
 			temp_form.author = request.user
 			temp_form.save()
-
+			messages.success(request, f'New Blog Post created!')
 			return redirect('blog-home')
 	else:
 		form = BlogPostForm()
@@ -72,7 +71,7 @@ def new_product_post(request, id):
 			temp_form = form.save(commit=False)
 			temp_form.author = request.user
 			temp_form.save()
-
+			messages.success(request, f'New Blog Post RE: {product} created!')
 			return redirect('blog-home')
 	else:
 		form = ProductBlogPostForm(initial={'product': product})
@@ -98,7 +97,7 @@ def new_show_post(request, id):
 			temp_form = form.save(commit=False)
 			temp_form.author = request.user
 			temp_form.save()
-
+			messages.success(request, f'New Blog Post RE: {show} created!')
 			return redirect('blog-home')
 	else:
 		form = ShowBlogPostForm(initial={'show': show})
@@ -122,8 +121,7 @@ def show_post_detail(request, id):
 
 @login_required
 def edit_post(request, id):
-	"""
-	Loads form with contents for editing if user == author, and saves data
+	"""Loads form with contents for editing if user == author, and saves data
 	to database when complete.
 	"""
 
@@ -154,9 +152,8 @@ def edit_post(request, id):
 
 @login_required
 def delete_post_request(request, id):
-	"""
-	Retrieves post if it exists and renders
-	delete_confirm.html for delete confirmation
+	"""Retrieves post if it exists and renders delete_confirm.html 
+	for delete confirmation
 	"""
 
 	post = get_object_or_404(BlogPost, pk=id)
@@ -176,5 +173,11 @@ def delete_post(request, id):
 
 	post = get_object_or_404(BlogPost, pk=id)
 
-	post.delete()
+	if request.user == post.author:
+		post.delete()
+		messages.success(request, f'{post} deleted.')
+	else:
+		messages.warning(request, f'Sorry, you do not own this post.')
+		return render(request, 'blog/post_detail.html', {'post': post})
+
 	return redirect('blog-home')

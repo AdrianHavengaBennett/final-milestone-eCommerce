@@ -3,9 +3,8 @@ from .models import ClickCollectLocations
 
 
 def click_and_collect(request):
-	"""
-	Renders the click&collect dropoff locations
-	and makes use of the Google Maps API
+	"""Renders the click&collect dropoff locations and makes
+	use of the Google Maps API
 	"""
 
 	locations = ClickCollectLocations.objects.all().exclude(
