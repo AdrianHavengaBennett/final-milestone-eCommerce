@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg d-none d-lg-block">
+    <div class="container">
+        <div class="nav-item-box">
+            <a class="nav-item nav-link {% if request.path == '/' %} active {% endif %}" href="{% url 'products-home' %}">
+                <i class="fa fa-home" aria-hidden="true" aria-current="page"></i><span class="sr-only">All products</span> 
+                Products
+            </a>
+        </div>
+        <div class="nav-item-box">
+            <a class="nav-item nav-link {% if '/categories/' in request.path %} active {% endif %}" href="{% url 'categories' %}">
+                <i class="fa fa-files-o" aria-hidden="true"></i><span class="sr-only">All categories</span> 
+                Categories
+            </a>
+        </div>
+        <div class="nav-item-box">
+            <a class="nav-item nav-link {% if '/click-and-collect/' in request.path %} active {% endif %}" href="{% url 'click_and_collect' %}">
+                <i class="fa fa-mouse-pointer" aria-hidden="true"></i><span class="sr-only">Click and collect</span> 
+                Click&Collect
+            </a>
+        </div>
+        <div class="nav-item-box">
+            <a class="nav-item nav-link {% if '/faq/' in request.path %} active {% endif %}" href="{% url 'faqs-home' %}">
+                <i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">Frequently asked questions</span> 
+                FAQ
+            </a>
+        </div>
+        <div class="nav-item-box">
+            <a class="nav-item nav-link {% if '/contact-us/' in request.path %} active {% endif %}" href="{% url 'contact-us' %}">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">Contact us</span> 
+                Contact
+            </a>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="nav-item-box">
+            <a class="nav-item nav-link {% if '/chat/' in request.path %} active {% endif %}" href="{% url 'chat' %}">
+                <i class="fa fa-comments-o" aria-hidden="true"></i><span class="sr-only">Chat</span> 
+                Chat
+            </a>
+        </div>
+        <div class="nav-item-box">
+            <a class="nav-item nav-link {% if '/shows/' in request.path %} active {% endif %}" href="{% url 'get-shows' %}">
+                <i class="fa fa-music" aria-hidden="true"></i><span class="sr-only">View upcoming shows</span> 
+                Shows
+            </a>
+        </div>
+        <div class="nav-item-box">
+            <a class="nav-item nav-link {% if '/blog/' in request.path %} active {% endif %}" href="{% url 'blog-home' %}">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="sr-only">Customer blog</span> 
+                Blog
+            </a>
+        </div>
+        <div class="nav-item-box">
+            <a class="nav-item nav-link {% if '/profile/' in request.path %} active {% endif %}" href="{% url 'profile' %}">
+                <i class="fa fa-user" aria-hidden="true"></i><span class="sr-only">Customer profile</span> 
+                Profile
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</nav>

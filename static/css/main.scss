@@ -30,6 +30,7 @@ hr {
 
 main {
 	flex: 1 0 auto;
+	box-shadow: 0px 0px 30px 8px #333333;
 	background-color: #f4f4f4;
 	margin: .25em 0 .25em 0;
 	padding-bottom: .75em;
@@ -311,6 +312,10 @@ form .dropdown {
 	background: rgba(255,255,255,0);
 	box-shadow: 2px 2px #888888;
 	margin-top: 0;
+}
+
+.accordion {
+	margin-top: 1rem;
 }
 
 #shows-content,
@@ -992,6 +997,9 @@ a#product-card {
 }
 
 @media (min-width: 768px) {
+	#search-bar {
+		left: 1rem;
+	}
 	.message-container {
 		right: 28px;
 	}
@@ -1016,6 +1024,12 @@ a#product-card {
 }
 
 @media (min-width: 992px) {
+	#top-right-icons {
+		padding-right: 1.75rem;
+	}
+	#search-bar {
+		left: 0;
+	}
 	main {
 		margin: .75em 0 .75em 0;
 	}
@@ -1024,7 +1038,7 @@ a#product-card {
 	}
 	#site-logo {
 		background-size: 210px;
-		margin: 2px 0px 2rem 0;
+		margin: 2px 0px 2rem 1rem;
 	}
 	#topnav-basket-icon {
 		padding-right: 0;
@@ -1058,6 +1072,10 @@ a#product-card {
 	}
 	.container {
 		width: 100%;
+	}
+	form>.form-group {
+	    width: 50%;
+	    margin: 12px auto;
 	}
 	.social-icon {
 		font-size: 2rem;

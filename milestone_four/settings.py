@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'crispy_forms',
     'channels',
+    'django.db.models.signals',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,7 +68,16 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'milestone_four.urls'
+
 ASGI_APPLICATION = "milestone_four.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(os.getenv('MY_IP'), 6379)],
+        },
+    },
+}
 
 TEMPLATES = [
     {

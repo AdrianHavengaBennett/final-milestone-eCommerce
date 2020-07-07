@@ -1,14 +1,20 @@
 from django.contrib import admin
-from .models import Order, OrderLineItem
+from .models import Order, OrderLineProductItem, OrderLineTicketItem
 
 
-class OrderLineItemAdminInline(admin.TabularInline):
-	model = OrderLineItem
-	readonly_fields = ('lineitem_total',)
+class OrderLineProductItemAdminInline(admin.TabularInline):
+	model = OrderLineProductItem
+	readonly_fields = ('productlineitems_total',)
+
+
+class OrderLineTicketItemAdminInline(admin.TabularInline):
+	model = OrderLineTicketItem
+	readonly_fields = ('ticketlineitems_total',)
 
 
 class OrderAdmin(admin.ModelAdmin):
-	inlines = (OrderLineItemAdminInline,)
+	inlines = (OrderLineProductItemAdminInline,
+			   OrderLineTicketItemAdminInline,)
 
 	readonly_fields = ('order_number', 'date', 'delivery_cost',
 					   'order_total', 'grand_total',)

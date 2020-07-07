@@ -19,6 +19,8 @@ class Order(models.Model):
 	county = models.CharField(max_length=40, null=True, blank=True)
 	date = models.DateTimeField(auto_now_add=True)
 	delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
+	products_total = models.DecimalField(max_digits=6, decimal_places=2, null=True, default=0)
+	tickets_total = models.DecimalField(max_digits=6, decimal_places=2, null=True, default=0)
 	order_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
 	grand_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
 
@@ -31,7 +33,12 @@ class Order(models.Model):
 		"""Update grand total each time a line item is added,
 		accounting for delivery costs.
 		"""
-		self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum']
+
+		self.products_total = (self.productlineitems.aggregate(
+			Sum('productlineitems_total'))['productlineitems_total__sum']) or 0
+		self.tickets_total = (self.ticketlineitems.aggregate(
+			Sum('ticketlineitems_total'))['ticketlineitems_total__sum']) or 0
+		self.order_total = self.products_total + self.tickets_total
 		self.delivery_cost = settings.STANDARD_DELIVERY_CHARGE
 		self.grand_total = self.order_total + self.delivery_cost
 		self.save()
@@ -40,6 +47,7 @@ class Order(models.Model):
 		"""Override the original save method to set the order number
 		if it hasn't been set already.
 		"""
+
 		if not self.order_number:
 			self.order_number = self._generate_order_number()
 		super().save(*args, **kwargs)
@@ -48,22 +56,37 @@ class Order(models.Model):
 		return self.order_number
 
 
-class OrderLineItem(models.Model):
-	order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
+class OrderLineProductItem(models.Model):
+	order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='productlineitems')
 	product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
-	ticket = models.ForeignKey(ShowsTickets, null=False, blank=False, on_delete=models.CASCADE)
 	quantity = models.IntegerField(null=False, blank=False, default=0)
-	lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+	productlineitems_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
 	def save(self, *args, **kwargs):
-		"""Override the original save method to set the lineitem total
+		"""Override the original save method to set the lineproductitem total
 		and update the order total.
 		"""
-		if product:
-			self.lineitem_total = self.product.price * self.quantity
-		elif ticket:
-			self.lineitem_total = self.ticket.price * self.quantity
+
+		self.productlineitems_total = self.product.price * self.quantity
 		super().save(*args, **kwargs)
 
-		def __str__(self):
-			return f'{self.product}{self.ticket} on order {self.order.order_number}'
+	def __str__(self):
+		return f'{self.product} on order {self.order.order_number}'
+
+
+class OrderLineTicketItem(models.Model):
+	order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='ticketlineitems')
+	ticket = models.ForeignKey(ShowsTickets, null=False, blank=False, on_delete=models.CASCADE)
+	quantity = models.IntegerField(null=False, blank=False, default=0)
+	ticketlineitems_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+
+	def save(self, *args, **kwargs):
+		"""Override the original save method to set the lineticketitem total
+		and update the order total.
+		"""
+
+		self.ticketlineitems_total = self.ticket.price * self.quantity
+		super().save(*args, **kwargs)
+
+	def __str__(self):
+		return f'{self.ticket} on order {self.order.order_number}'

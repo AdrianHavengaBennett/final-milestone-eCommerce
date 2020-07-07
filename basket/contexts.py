@@ -10,7 +10,10 @@ def do_db_query(request, item_id):
 	using if else and assignment when determining which model to query
 	"""
 
-	if '-' in item_id:
+	# ShowsTickets objects each have a uuid custom pk,
+	# which contains numerous dashes, whereas Django's
+	# default pks are whole integers
+	if '-' in item_id:  
 		query = get_object_or_404(ShowsTickets, pk=item_id)
 	else:
 		query = get_object_or_404(Product, pk=item_id)
