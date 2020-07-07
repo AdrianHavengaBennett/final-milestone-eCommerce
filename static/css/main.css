@@ -435,6 +435,16 @@ a#product-card {
   transform: scale(1.2);
 }
 
+#chat-log {
+  height: 30em;
+}
+
+#chat-log,
+#chat-message-input {
+  width: 100%;
+  padding: 16px;
+}
+
 .product-name,
 .product-price {
   font-size: 1.25rem;
@@ -1046,6 +1056,13 @@ a#product-card {
   }
 
   form > .form-group {
+    width: 50%;
+    margin: 12px auto;
+  }
+
+  #chat-log,
+#chat-message-input,
+#chat-message-submit {
     width: 50%;
     margin: 12px auto;
   }

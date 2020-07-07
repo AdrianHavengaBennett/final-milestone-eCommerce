@@ -11,13 +11,18 @@
 
 	<p class="section-intro">Welcome, {{ user }}. Dive right into your favourite channel:</p>
 
-	<ul class="rooms">
-        {% for room in rooms %}
-            <a href="{% url 'room' room.id %}"><li id="room-name-input" class="room-link" data-room-id="{{ room.id }}">{{ room }}</li></a>
-        {% empty %}
-            <p class="empty">No chat rooms defined. Maybe make some in the <a href="{% url 'admin:index' %}">admin</a>?</p>
-        {% endfor %}
-    </ul>
+	<div class="row">
+		{% for room in rooms %}
+		<div class="col-xs-12 col-md-6 col-lg-3">
+			<a id="product-card" href="{% url 'room' room.id %}">
+				<div class="panel-body card text-center">
+		            <div class="category-img" style="background-image: url('{{ MEDIA_URL }}{{ room.image.url }}')"></div>
+		            <h3>{{ room.title }}</h3>
+		        </div>
+	        </a>
+		</div>
+		{% endfor %}
+	</div>
 
     <script>
         document.querySelector('#room-name-input').focus();

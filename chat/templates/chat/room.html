@@ -10,9 +10,22 @@
 		</ol>
 	</nav>
 
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
+    <div class="panel-body card text-center">
+        <div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ room.image.url }}')"></div>
+    </div>
+
+    <div class="chat-container text-center">
+        <div class="form-group">
+            <textarea id="chat-log" class="form-group"></textarea>
+        </div>
+        <div class="form-group">
+            <input id="chat-message-input" class="form-group" type="text" placeholder="What's on your mind?">
+        </div>
+        <div class="form-group">
+            <button id="chat-message-submit" class="btn">Send</button>
+        </div>
+    </div>
+    
     {{ room.title|json_script:"room-name" }}
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
@@ -50,6 +63,5 @@
             messageInputDom.value = '';
         };
     </script>
-	
 
 {% endblock %}
