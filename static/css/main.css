@@ -68,6 +68,7 @@ table ~ p {
 }
 
 footer {
+  z-index: 0;
   flex-shrink: 0;
   text-align: center;
   background-color: #333333;
@@ -154,15 +155,23 @@ footer p {
 }
 
 .carousel-info-header {
-  font-size: 1.25em;
-  color: #fafafa;
+  font-size: 1em;
 }
 
 .carousel-info-description {
   font-weight: 500;
   font-size: 1.1em;
   color: #E1341E;
-  background: rgba(255, 255, 255, 0.5);
+}
+
+#carousel-previous,
+#carousel-next {
+  font-size: 2em;
+  color: grey;
+}
+
+.carousel-indicators li {
+  background-color: #333333;
 }
 
 .specials-text {
@@ -378,6 +387,8 @@ form .dropdown {
 }
 
 .article-content {
+  padding: 0;
+  font-size: 1rem;
   white-space: pre-line;
   color: #444444;
 }
@@ -427,12 +438,31 @@ a#product-card {
   border-radius: 3px;
 }
 
+.product-price {
+  padding-top: 0.5em;
+}
+
 .category-img {
   margin: 0.75rem 0.75rem;
 }
 
 .card:hover .img-container .product-img {
   transform: scale(1.2);
+}
+
+.chat-container .form-group {
+  margin-bottom: 0;
+}
+
+#chat-room-image {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#chat-room-title {
+  font-size: 1.5rem;
+  background: white;
+  margin-bottom: 0;
+  padding-bottom: 0.25rem;
 }
 
 #chat-log {
@@ -1067,6 +1097,10 @@ a#product-card {
     margin: 12px auto;
   }
 
+  #chat-room-title {
+    font-size: 2.5rem;
+  }
+
   .social-icon {
     font-size: 2rem;
   }
@@ -1080,6 +1114,14 @@ a#product-card {
     z-index: 0;
     top: 0;
     width: 0;
+  }
+
+  .article-content {
+    font-size: 1rem;
+  }
+
+  .blog-buttons {
+    width: 50%;
   }
 }
 @media (min-width: 1024px) {

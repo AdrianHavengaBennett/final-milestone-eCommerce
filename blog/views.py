@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -16,7 +16,7 @@ def show_all_posts(request):
 	"""
 
 	blog_posts = BlogPost.objects.all()
-	paginator = Paginator(blog_posts, per_page=6)
+	paginator = Paginator(blog_posts, per_page=10)
 	page_number = request.GET.get('page', 1)
 	page = paginator.get_page(page_number)
 
@@ -111,7 +111,7 @@ def new_show_post(request, id):
 
 
 @login_required
-def show_post_detail(request, id):
+def get_post_detail(request, id):
 	"""Renders the post's details"""
 
 	post = BlogPost.objects.get(pk=id)
@@ -133,7 +133,7 @@ def edit_post(request, id):
 			if form.is_valid():
 				form.save()
 				messages.success(request, f'Post changes saved!')
-				return redirect('blog-home')
+				return redirect('post-detail',id=id)
 		else:
 			form = BlogPostForm(instance=post)
 

@@ -28,7 +28,7 @@
 	</div>
 {% endif %}
 
-<h2 class="account-heading text-center">All {{ category_name }} Products</h2>
+<h2 class="account-heading text-center">All {{ category_name }}</h2>
 <div class="row">
 	{% for product in page.object_list %}
 	<div class="col-xs-12 col-md-6 col-lg-3">
@@ -37,11 +37,11 @@
 				<div class="img-container">
 					<div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
 				</div>
-	            <h3>{{ product.name }}</h3>
+	            <h4>{{ product.name }}</h4>
 	            {% if product.id == 1 or product.id == 2 %}
-	            	<span class="specials-text">Was</span> <del><h3 class="specials-price">£150.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
+	            	<span class="specials-text">Was</span> <del><h4 class="specials-price">£150.00</h4></del> <span class="specials-text">Now</span> <ins><h4 class="specials-price">£{{ product.price }}</h4></ins>
 	            {% elif product.id == 3 %}
-	            	<span class="specials-text">Was</span><del><h3 class="specials-price">£300.00</h3></del> <span class="specials-text">Now</span> <ins><h3 class="specials-price">£{{ product.price }}</h3></ins>
+	            	<span class="specials-text">Was</span><del><h4 class="specials-price">£300.00</h4></del> <span class="specials-text">Now</span> <ins><h4 class="specials-price">£{{ product.price }}</h4></ins>
 	            {% else %}
 	            	<h3 class="product-price">£{{ product.price }}</h3>
 	            {% endif %}

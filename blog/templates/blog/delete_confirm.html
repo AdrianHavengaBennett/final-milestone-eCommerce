@@ -11,17 +11,31 @@
 	</nav>
 	<article class="media content-section">
 		<div class="media-body">
-			<h2>{{ post.title }}</h2>
+			{% if post.product %}
+				<h4>{{ post.title }}: 
+					<a href="{% url 'product-detail' post.product.id %}"> 
+						({{ post.product.name }})
+					</a>
+				</h4>
+			{% elif post.show %}
+				<h4>{{ post.title }}: 
+					<a href="{% url 'show-details' post.show.id %}">
+						({{ post.show.artist_name }} @ {{ post.show.venue.location_name }})
+					</a>
+				</h4>
+			{% else %}
+				<h4>{{ post.title }}</h4>
+			{% endif %}
 			<p class="article-content">{{ post.content }}</p>
 		</div>
 	</article>
 	{% if request.user == post.author %}
-		<div class="form-group">
+		<div class="form-group text-center">
 			<form action="{% url 'delete-post' post.id %}">
-				<button class="btn"><i class="fa fa-trash" aria-hidden="true"></i> YES, DELETE</button>
+				<button class="btn blog-buttons"><i class="fa fa-trash" aria-hidden="true"></i> YES, DELETE</button>
 			</form>
 			<a href="{% url 'post-detail' post.id %}">
-				<button class="btn"><i class="fa fa-trash" aria-hidden="true"></i> NO, GO BACK</button>
+				<button class="btn blog-buttons"><i class="fa fa-trash" aria-hidden="true"></i> NO, GO BACK</button>
 			</a>
 		</div>
 	{% endif %}
