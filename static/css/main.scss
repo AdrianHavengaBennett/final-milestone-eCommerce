@@ -333,12 +333,14 @@ form .dropdown {
 }
 
 #shows-detail-content .product-img {
+	background-size: cover;
 	height: 8rem;
 	margin: .75rem;
 }
 
 #product-detail-content .product-img {
 	margin: .75rem;
+	min-height: 16rem;
 }
 
 .decrement-qty.btn,
@@ -437,7 +439,6 @@ a#product-card {
 
 .product-img,
 .category-img {
-	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
 	transition: transform .35s ease;
@@ -445,6 +446,15 @@ a#product-card {
 	height: 14rem;
 	border: 1px solid #dddddd;
 	border-radius: 3px;
+}
+
+.category-img {
+	background-size: cover;
+}
+
+.product-img {
+	background-size: 80%;
+    background-color: white;
 }
 
 .product-price {
@@ -550,6 +560,10 @@ a#product-card {
 	padding-top: 1.5rem;
 }
 
+#basket-qty {
+	width: 100%;
+}
+
 .update-link,
 .remove-item {
 	cursor: pointer;
@@ -594,6 +608,11 @@ a#product-card {
 
 .pagination {
 	margin-top: .75rem;
+}
+
+#about-us {
+	background-color: #fafafa;
+	padding: 1rem;
 }
 
 /***************************************Bootstrap toasts*/
@@ -1028,6 +1047,18 @@ a#product-card {
 	#top-right-icons {
 		padding-right: 15px;
 	}
+	.product-img {
+		background-size: 75%;
+	}
+}
+
+@media (min-width: 476px) {
+	.navbar {
+		width: 100%;
+	}
+	.product-img {
+		background-size: 60%;
+	}
 }
 
 @media (min-width: 576px) {
@@ -1060,6 +1091,12 @@ a#product-card {
 	}
 	#post-author {
 		font-size: .75rem;
+	}
+	.product-img {
+		background-size: 43%;
+	}
+	#product-detail-content .product-img {
+		min-height: 20rem;
 	}
 }
 
@@ -1100,10 +1137,10 @@ a#product-card {
 		min-height: 30rem;
 	}
 	#shows-detail-content .product-img {
-		height: 9.75rem;
+		min-height: 17rem;
 	}
 	#product-detail-content .product-img {
-		min-height: 26rem;
+		min-height: 30rem;
 	}
 	.nav-link {
 		border: 1px solid transparent;
@@ -1143,6 +1180,10 @@ a#product-card {
 	}
 	.blog-buttons {
 		width: 50%;
+	}
+	.product-img,
+	.category-img {
+		background-size: cover;
 	}
 }
 

@@ -27,20 +27,25 @@ class ChatConsumer(AsyncWebsocketConsumer):
 		await self.accept()
 
 	async def disconnect(self, close_code):
-		# Leave room group
 		user = self.scope['user']
+		# self.room_name = self.scope['url_route']['kwargs']['room_name']
+		# self.room_group_name = 'chat_%s' % self.room_name
+
+		# Leave room group
 		await self.channel_layer.group_discard(
 			self.room_group_name,
 			self.channel_name
 		)
 
-		await self.channel_layer.group_send(
-			self.room_group_name,
-			{
-				'type': 'chat_message',
-				'message': f'{user.username} has left the chat!'
-			}
-		)
+		# await self.channel_layer.group_send(
+		# 	self.room_group_name,
+		# 	{
+		# 		'type': 'chat_message',
+		# 		'message': f'{user.username} has left the chat!'
+		# 	}
+		# )
+
+		# await self.accept()
 
 	# Receive message from WebSocket
 	async def receive(self, text_data):
