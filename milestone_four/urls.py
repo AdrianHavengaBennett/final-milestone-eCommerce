@@ -29,6 +29,7 @@ from contact import urls as contact_urls
 from chat import urls as chat_urls
 from shows import urls as shows_urls
 from basket import urls as basket_urls
+from checkout import urls as checkout_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -58,6 +59,7 @@ urlpatterns = [
     path('chat/', include(chat_urls)),
     path('shows/', include(shows_urls)),
     path('basket/', include(basket_urls)),
+    path('checkout/', include(checkout_urls)),
 ]
 
 if settings.DEBUG:

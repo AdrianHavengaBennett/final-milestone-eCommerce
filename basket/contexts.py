@@ -57,7 +57,9 @@ def basket_contents(request):
 		'product_count': product_count,
 		'sub_total': sub_total,
 		'product_total': product_total,
-		'grand_total': grand_total
+		'grand_total': grand_total,
+		'standard_delivery': standard_delivery,
+		'cc_free_delivery': cc_free_delivery,
 	}
 
 	return context

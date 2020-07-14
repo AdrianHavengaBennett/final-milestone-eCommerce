@@ -93,6 +93,10 @@ TEMPLATES = [
                 'click_and_collect.contexts.get_maps_api_key',
                 'basket.contexts.basket_contents',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ],
         },
     },
 ]

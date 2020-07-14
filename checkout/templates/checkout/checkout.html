@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Checkout</li>
+		</ol>
+	</nav>
+	
+	<p class="section-intro">Please fill out the form below to complete your checkout:</p>
+
+	<div class="row">
+		<div class="col-xs-12 col-md-4 order-md-12">
+			<p class="text-muted">Order Summary ({{ product_count }})</p>
+            <div class="row">
+                <div class="col-7 offset-2">
+                    <p class="mb-1 mt-0 small text-muted">Item</p>
+                </div>
+                <div class="col-3 text-right">
+                    <p class="mb-1 mt-0 small text-muted">Subtotal</p>
+                </div>
+            </div>
+            {% for item in basket_items %}
+                <div class="row">
+                    <div class="col-2 mb-1">
+                        {% if item.basket_obj.artist %}
+							<a href="{% url 'show-details' item.basket_obj.artist.id %}">
+								<img class="img-fluid" src="{{ item.basket_obj.artist.artist_image.url }}">
+							</a>
+						{% else %}
+							<a href="{% url 'product-detail' item.basket_obj.id %}">
+								<img class="img-fluid" src="{{ item.basket_obj.image.url }}">
+							</a>
+						{% endif %}
+                    </div>
+                    <div class="col-7">
+                    	{% if item.basket_obj.artist %}
+							<p class="my-0">Show Ticket for: 
+								<a href="{% url 'show-details' item.basket_obj.artist.id %}">
+									{{ item.basket_obj.artist }}
+								</a>
+							</p>
+						{% else %}
+							<a href="{% url 'product-detail' item.basket_obj.id %}">
+								<p class="my-0">{{ item.basket_obj.name }}</p>
+							</a>
+						{% endif %}
+                        <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+                    </div>
+                    <div class="col-3 text-right">
+                        <p class="my-0 small text-muted">£{{ item.basket_obj.price }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+            <hr class="my-1">
+            <div class="row text-black text-right">
+                <div class="col-7 offset-2">
+                    <p class="my-0">Order Total:</p>
+                    <p class="my-0">Delivery:</p>
+                    <p class="my-0">Grand Total:</p>
+                </div>
+                <div class="col-3">
+                    <p class="my-0">£{{ sub_total | floatformat:2 }}</p>
+                    <p class="my-0">£{{ standard_delivery | floatformat:2 }}</p>
+                    <p class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></p>
+                </div>
+            </div>
+		</div>
+
+		<div class="col-xs-12 col-md-8 order-md-1">
+			<form id="payment-form" method="POST" action="{% url 'checkout' %}">
+				{% csrf_token %}
+				<fieldset class="rounded px-3 mb-5">
+					<legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
+					{% if user.is_authenticated %}
+						{{ order_form.full_name | as_crispy_field }}
+						{{ order_form.email | as_crispy_field }}
+					{% else %}
+						{{ order_form.full_name | as_crispy_field }}
+						{{ order_form.email | as_crispy_field }}
+					{% endif %}
+				</fieldset>
+				<fieldset class="rounded px-3 mb-5">
+					<legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
+					{{ order_form.phone_number | as_crispy_field }}
+					{{ order_form.street_address1 | as_crispy_field }}
+					{{ order_form.street_address2 | as_crispy_field }}
+					{{ order_form.town_or_city | as_crispy_field }}
+					{{ order_form.county | as_crispy_field }}
+					{{ order_form.postcode | as_crispy_field }}
+				</fieldset>
+				<fieldset class="px-3">
+					<legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
+					<div class="mb-3" id="card-element"></div>
+					<div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+				</fieldset>
+				<div class="submit-button text-right mt-5 mb-2">
+					<a href="{% url 'basket' %}" class="btn btn-outline-black rounded-0">
+						<i class="fa fa-hand-o-left" aria-hidden="true"></i>
+						<span class="font-weight-bold">Edit Basket</span>
+					</a>
+					<button id="submit-button" class="btn btn-black rounded-0">
+						<span class="font-weight-bold">Complete Oder</span>
+						<i class="fa fa-lock" aria-hidden="true"></i>
+					</button>
+					<p class="small text-danger my-0">
+						<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+						<span>Your card will be charged <strong>£{{ grand_total | floatformat:2 }}</strong></span>
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}
+

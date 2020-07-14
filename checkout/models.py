@@ -4,6 +4,7 @@ from django.db.models import Sum
 from django.conf import settings
 from products.models import Product
 from shows.models import ShowsTickets
+from click_and_collect.models import ClickCollectLocations
 
 
 class Order(models.Model):
@@ -18,6 +19,31 @@ class Order(models.Model):
 	street_address2 = models.CharField(max_length=80, null=True, blank=True)
 	county = models.CharField(max_length=40, null=True, blank=True)
 	date = models.DateTimeField(auto_now_add=True)
+	DELIVER = 'deliver'
+	CLICK_AND_COLLECT = 'click&collect'
+	DELIVERY_CHOICES = [
+		(DELIVER, 'deliver'),
+		(CLICK_AND_COLLECT, 'click&collect'),
+	]
+	delivery_option = models.CharField(
+		max_length=32,
+		choices=DELIVERY_CHOICES,
+		default=DELIVER,
+		null=False,
+		blank=False,
+	)
+	BEN = "Ben's Hardware"
+	POST_OFFICE = 'Pembroke Park Post Office'
+	CLICK_AND_COLLECT_CHOICES = [
+		(BEN, "Ben's Hardware"),
+		(POST_OFFICE, 'Pembroke Park Post Office'),
+	]
+	click_and_collect_option = models.CharField(
+		max_length=80,
+		choices=CLICK_AND_COLLECT_CHOICES,
+		null=True,
+		blank=True,
+	)
 	delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
 	products_total = models.DecimalField(max_digits=6, decimal_places=2, null=True, default=0)
 	tickets_total = models.DecimalField(max_digits=6, decimal_places=2, null=True, default=0)
@@ -39,14 +65,18 @@ class Order(models.Model):
 		self.tickets_total = (self.ticketlineitems.aggregate(
 			Sum('ticketlineitems_total'))['ticketlineitems_total__sum']) or 0
 		self.order_total = self.products_total + self.tickets_total
-		self.delivery_cost = settings.STANDARD_DELIVERY_CHARGE
+		self.delivery_cost = settings.STANDARD_DELIVERY_CHARGE if self.delivery_option == 'deliver' else 0
 		self.grand_total = self.order_total + self.delivery_cost
 		self.save()
 
 	def save(self, *args, **kwargs):
 		"""Override the original save method to set the order number
-		if it hasn't been set already.
+		if it hasn't been set already and also to update the delivery
+		charge if delivery option has been changed and no additional line
+		items added to call update_total()
 		"""
+
+		self.delivery_cost = settings.STANDARD_DELIVERY_CHARGE if self.delivery_option == 'deliver' else 0
 
 		if not self.order_number:
 			self.order_number = self._generate_order_number()

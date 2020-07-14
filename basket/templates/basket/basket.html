@@ -12,7 +12,7 @@
 {% if basket_items %}
 	<h2 class="account-heading text-center">Basket Subtotal: £{{ sub_total }}</h2>
 	<div class="form-group">
-		<a href="#">
+		<a href="{% url 'checkout' %}">
 			<button class="btn"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>
 		</a>
 	</div>
@@ -111,6 +111,7 @@
 				<hr>
 
 				<h6 id="delivery-heading">Delivery Option: </h6>
+				<p>{{ location }}</p>
 				<form action="" method="POST">
 					<div class="delivery-option">
 						<input type="radio" name="delivery-option" id="delivery" checked>
@@ -125,8 +126,10 @@
 							Choose Location
 						</a>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<a type="submit" id="ben-hardware" class="dropdown-item" href="#">Ben's Hardware</a>
-							<a type="submit" id="post-office" class="dropdown-item" href="#">Pembroke Park Post Office</a>
+							
+							<a type="submit" id="ben-hardware" class="dropdown-item" href="{% url 'basket' %}?location=ben">Ben's Hardware</a>
+							<a type="submit" id="post-office" class="dropdown-item" href="{% url 'basket' %}?location=pembroke">Pembroke Park Post Office</a>
+							
 						</div>
 					</div>
 				</form>
@@ -146,7 +149,7 @@
 
 	<h2 id="basket-total" class="account-heading text-center">Total (incl. VAT & Delivery): £{{ grand_total }}</h2>
 	<div class="form-group">
-		<a href="#">
+		<a href="{% url 'checkout' %}">
 			<button class="btn"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>
 		</a>
 		<a href="{% url 'products-home' %}">

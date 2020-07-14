@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
+from django.conf import settings
 from products.models import Product
 from basket.contexts import do_db_query
+from click_and_collect.models import ClickCollectLocations
 
 
 def show_basket(request):
@@ -9,7 +11,19 @@ def show_basket(request):
 	basket.html page
 	"""
 
-	return render(request, 'basket/basket.html')
+	location = 'Enter delivery details on next page, or choose click and collect.'
+
+	if request.GET:
+		if 'location' in request.GET:
+			locationkey = request.GET['location']
+			location = locationkey
+			if locationkey == 'ben':
+				location = ClickCollectLocations.objects.get(location_name__icontains='ben')
+			elif locationkey == 'pembroke':
+				location = ClickCollectLocations.objects.get(location_name__icontains='pembroke')
+
+
+	return render(request, 'basket/basket.html', {'location': location})
 
 
 def add_to_basket(request, item_id):
