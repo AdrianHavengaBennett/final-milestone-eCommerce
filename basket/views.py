@@ -11,19 +11,7 @@ def show_basket(request):
 	basket.html page
 	"""
 
-	location = 'Enter delivery details on next page, or choose click and collect.'
-
-	if request.GET:
-		if 'location' in request.GET:
-			locationkey = request.GET['location']
-			location = locationkey
-			if locationkey == 'ben':
-				location = ClickCollectLocations.objects.get(location_name__icontains='ben')
-			elif locationkey == 'pembroke':
-				location = ClickCollectLocations.objects.get(location_name__icontains='pembroke')
-
-
-	return render(request, 'basket/basket.html', {'location': location})
+	return render(request, 'basket/basket.html')
 
 
 def add_to_basket(request, item_id):

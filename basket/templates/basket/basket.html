@@ -111,7 +111,6 @@
 				<hr>
 
 				<h6 id="delivery-heading">Delivery Option: </h6>
-				<p>{{ location }}</p>
 				<form action="" method="POST">
 					<div class="delivery-option">
 						<input type="radio" name="delivery-option" id="delivery" checked>
@@ -127,8 +126,8 @@
 						</a>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							
-							<a type="submit" id="ben-hardware" class="dropdown-item" href="{% url 'basket' %}?location=ben">Ben's Hardware</a>
-							<a type="submit" id="post-office" class="dropdown-item" href="{% url 'basket' %}?location=pembroke">Pembroke Park Post Office</a>
+							<p id="ben-hardware" class="dropdown-item">Ben's Hardware</p>
+							<p id="post-office" class="dropdown-item">Pembroke Park Post Office</p>
 							
 						</div>
 					</div>

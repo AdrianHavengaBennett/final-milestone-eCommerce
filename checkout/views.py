@@ -10,5 +10,10 @@ def checkout(request):
 		return redirect(reverse('products-home'))
 
 	order_form = OrderForm()
+	context = {
+		'order_form': order_form,
+		'stripe_public_key': 'pk_test_H9vI3qzbKhdeuIIjaCR6LHj200ONcwKfRP',
+		'client_secret': 'test_client_secret',
+	}
 
-	return render(request, 'checkout/checkout.html', {'order_form': order_form})
+	return render(request, 'checkout/checkout.html', context)
