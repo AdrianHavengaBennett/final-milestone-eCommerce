@@ -84,7 +84,12 @@
 					{% endif %}
 				</fieldset>
 				<fieldset class="rounded px-3 mb-5">
-					<legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
+					<legend class="fieldset-label small text-black px-2 w-auto">Delivery Options</legend>
+					{{ order_form.delivery_option | as_crispy_field }}
+					{{ order_form.click_and_collect_option | as_crispy_field }}
+				</fieldset>
+				<fieldset id="delivery-details" class="rounded px-3 mb-5">
+					<legend class="fieldset-label small text-black px-2 w-auto">Delivery Details</legend>
 					{{ order_form.phone_number | as_crispy_field }}
 					{{ order_form.street_address1 | as_crispy_field }}
 					{{ order_form.street_address2 | as_crispy_field }}
@@ -98,12 +103,12 @@
 					<div class="mb-3 text-danger" id="card-errors" role="alert"></div>
 				</fieldset>
 				<div class="submit-button text-right mt-5 mb-2">
-					<a href="{% url 'basket' %}" class="btn btn-outline-black rounded-0">
+					<a href="{% url 'basket' %}" class="btn rounded-0">
 						<i class="fa fa-hand-o-left" aria-hidden="true"></i>
-						<span class="font-weight-bold">Edit Basket</span>
+						<span>Edit Basket</span>
 					</a>
-					<button id="submit-button" class="btn btn-black rounded-0">
-						<span class="font-weight-bold">Complete Oder</span>
+					<button id="submit-button" class="btn rounded-0">
+						<span>Complete Order</span>
 						<i class="fa fa-lock" aria-hidden="true"></i>
 					</button>
 					<p class="small text-danger my-0">
@@ -114,7 +119,84 @@
 			</form>
 		</div>
 	</div>
+	<div id="loading-overlay">
+		<h1 class="text-light logo-font loading-spinner"></h1>
+		<i class="fa fa-3x fa-sync-alt fa-spin"></i>
+	</div>
 
 {% endblock %}
 
+{% block stripe_script %}
+	<script type="text/javascript">
+        var stripe = Stripe('{{ stripe_public_key }}');
+        var elements = stripe.elements();
 
+        var style = {
+            base: {
+                color: '#000',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+            },
+            invalid: {
+                color: '#dc3545',
+                iconColor: '#dc3545'
+            }
+        };
+
+        // Create an instance of the card Element.
+        var card = elements.create('card', {style: style});
+
+        // Add an instance of the card Element into the `card-element` <div>.
+        card.mount('#card-element');
+
+        // Handle real-time validation errors from the card Element.
+        card.addEventListener('change', function(event) {
+            var errorDiv = document.getElementById('card-errors');
+            if (event.error) {
+                var html = `
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <span>${event.error.message}</span>
+                `
+                $(errorDiv).html(html);
+            } else {
+                errorDiv.textContent = '';
+            }
+        });
+
+        // Handle form submission.
+        var form = document.getElementById('payment-form');
+
+        form.addEventListener('submit', function(ev) {
+            ev.preventDefault();
+            card.update({'disabled': true});
+            $('#submit-button').attr('disabled', true);
+
+            stripe.confirmCardPayment('{{ client_secret }}', {
+                payment_method: {
+                    card: card,
+                }
+            }).then(function(result) {
+                if (result.error) {
+                    // Inform the user if there was an error.
+                    var errorDiv = document.getElementById('card-errors');
+                    var html = `
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        <span>${result.error.message}</span>
+                    `
+                    $(errorDiv).html(html);
+                    card.update({'disabled': false});
+                    $('#submit-button').attr('disabled', false);
+                } else {
+                    // The payment has been processed!
+                    if (result.paymentIntent.status === 'succeeded') {
+                        form.submit();
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock stripe_script %}

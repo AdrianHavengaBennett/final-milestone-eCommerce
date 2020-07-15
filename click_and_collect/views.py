@@ -2,6 +2,13 @@ from django.shortcuts import render
 from .models import ClickCollectLocations
 
 
+def get_location(request, keywords):
+
+	location = ClickCollectLocations.objects.get(location_name__icontains=keywords)
+
+	return location
+
+
 def click_and_collect(request):
 	"""Renders the click&collect dropoff locations and makes
 	use of the Google Maps API

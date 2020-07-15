@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'products-home' %}">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Checkout Successful</li>
+		</ol>
+	</nav>
+	
+	<p class="section-intro">Payment successful! Thank you! Below are the details of your order.
+        A confirmation email will be sent to {{ order.email }}.
+    </p>
+
+	<div class="row">
+		<div class="col-12 col-lg-7">
+			
+		</div>
+	</div>
+
+{% endblock %}
+

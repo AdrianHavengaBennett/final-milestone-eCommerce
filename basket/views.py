@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.conf import settings
 from products.models import Product
 from basket.contexts import do_db_query
+from checkout.forms import OrderForm
 from click_and_collect.models import ClickCollectLocations
 
 
@@ -11,7 +12,9 @@ def show_basket(request):
 	basket.html page
 	"""
 
-	return render(request, 'basket/basket.html')
+	order_form = OrderForm()
+
+	return render(request, 'basket/basket.html', {'order_form': order_form})
 
 
 def add_to_basket(request, item_id):

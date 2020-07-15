@@ -183,6 +183,7 @@ For this project, I have used Github for static version control:
 
 ### Code
 - Most of the chat app's code comes straight from the django-channels docs tutorial and I edited pieces here and there to integrate the software into my project and my own personal needs.
+- The checkout app's code was for the most part copied straight from the Code Institute modules.
 
 ### Media
 - Product images and product descriptions are courtesy of [Gear4Music](https://www.gear4music.com/)

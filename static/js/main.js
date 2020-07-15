@@ -111,7 +111,7 @@ $(function() {
 
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
-        var csrfToken = "{{ csrf_token }}";
+        var csrfToken = '{{ csrf_token }}';
         var itemId = $(this).attr('id').split('remove_')[1];
         var url = `/basket/remove/${itemId}/`;
         var data = {'csrfmiddlewaretoken': csrfToken};
@@ -121,76 +121,30 @@ $(function() {
         }});
     });
 
-    // Stripe
-    var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
-	var clientSecret = $('#id_client_secret').text().slice(1, -1);
-	var stripe = Stripe(stripePublicKey);
-	var elements = stripe.elements();
-	var style = {
-		base: {
-			color: '#000',
-			fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-			fontSmoothing: 'antialiased',
-			fontSize: '16px',
-			'::placeholder': {
-				color: '#aab7c4'
-			}
-		},
-		invalid: {
-			color: '#dc3545',
-			iconColor: '#dc3545'
-		}
-	};
-	var card = elements.create('card', {style: style});
-	card.mount('#card-element');
-
-	card.addEventListener('change', function(event) {
-		var errorDiv = document.getElementById('card-errors');
-		if (event.error) {
-			var html = `
-				<i class="fa fa-times" aria-hidden="true"></i>
-				<span>${event.error.message}</span>`;
-			$(errorDiv).html(html);
-		} else {
-			errorDiv.textContent = '';
-		}
+	$('#id_delivery_option').change(function() {
+	    if ($(this).val() === 'click&collect') {
+	        $('#id_click_and_collect_option').show();
+	    } else if ($(this).val() === 'deliver') {
+	        $('#id_click_and_collect_option').hide();
+	    }
 	});
 
-	var form = document.getElementById('payment-form');
-
-	form.addEventListener('submit', function(event) {
-		event.preventDefault();
-		card.update({'disabled': true});
-		$('#submit-button').attr('disabled', true);
-		stripe.confirmCardPayment(clientSecret, {
-			payment_method: {
-				card: card,
-			}
-		}).then(function(result) {
-			if (result.error) {
-				var errorDiv = document.getElementById('card-errors');
-				var html = `
-					<i class="fa fa-times" aria-hidden="true"></i>
-					<span>${result.error.message}</span>`;
-				$(errorDiv).html(html);
-				card.update({'disabled': false});
-				$('#submit-button').attr('disabled', false);
-			} else {
-				if (result.paymentIntent.status === 'succeeded') {
-					form.submit();
-				}
-			}
-		});
-	});
-
-	// Shows click and collect options
-	$('#click-and-collect').on('click', function() {
-		$('form .dropdown').show();
-	});
-
-	// Hides click and collect options
-	$('#delivery').on('click', function() {
-		$('form .dropdown').hide();
+	$('#id_click_and_collect_option').change(function() {
+	    if ($(this).val() === "Ben's Hardware") {
+	    	var csrfToken = '{{ csrf_token }}';
+	    	var keywords = $(this).val();
+	    	var url = `/click-and-collect/get-location/${keywords}/`;
+	    	var data = {'csrfmiddlewaretoken': csrfToken};
+	        $.ajax({
+	        	url: url,
+	        	data: data,
+	        	dataType: 'html',
+	        	success: function() {
+	        		console.log('hello')
+	        }});
+	    } else if ($(this).val() === 'Pembroke Park Post Office') {
+	        console.log('Hello, P Office')  // then do something else. AJAX call?
+	    }
 	});
 
 	// bootstrap initialisations

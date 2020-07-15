@@ -110,43 +110,22 @@
 
 				<hr>
 
-				<h6 id="delivery-heading">Delivery Option: </h6>
-				<form action="" method="POST">
-					<div class="delivery-option">
-						<input type="radio" name="delivery-option" id="delivery" checked>
-						<label for="delivery">Delivery*</label>
-					</div>
-					<div class="delivery-option">
-						<input type="radio" name="delivery-option" id="click-and-collect">
-						<label for="click-and-collect">Click&Collect**</label>
-					</div>
-					<div class="dropdown">
-						<a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Choose Location
-						</a>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							
-							<p id="ben-hardware" class="dropdown-item">Ben's Hardware</p>
-							<p id="post-office" class="dropdown-item">Pembroke Park Post Office</p>
-							
-						</div>
-					</div>
-				</form>
+				<h6 id="delivery-heading">Delivery options available at checkout.</h6>
 				
 				<hr>
-				<p>*Please note that we offer a fixed delivery fee of £10 to all mainland postcodes only. 
+				<p>Please note that we offer a fixed delivery fee of £10 to all mainland postcodes only. 
 					Unfortunately, we cannot deliver to any other postcodes at this time. If you're unsure, please contact us 
 					<a href="{% url 'contact-us' %}">here.</a>
 				</p>
 				<p>
-					**If you decide to use our free Click&Collect service, please check out the current locations available 
+					If you decide to use our free Click&Collect service, please check out the current locations available 
 					<a href="{% url 'click_and_collect' %}">here.</a>
 				</p>
 			</div>
 		</div>
 	</div>
 
-	<h2 id="basket-total" class="account-heading text-center">Total (incl. VAT & Delivery): £{{ grand_total }}</h2>
+	<h2 id="basket-total" class="account-heading text-center">Total (excl. Delivery): £{{ sub_total }}</h2>
 	<div class="form-group">
 		<a href="{% url 'checkout' %}">
 			<button class="btn"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>

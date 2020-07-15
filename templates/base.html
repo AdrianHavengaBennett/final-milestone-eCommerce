@@ -134,8 +134,8 @@
     {% block g_maps_script %}
     {% endblock g_maps_script %}
 
-    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
-    {{ client_secret|json_script:"id_client_secret" }}
+    {% block stripe_script %}
+    {% endblock stripe_script %}
 
 </body>
 </html>

@@ -14,6 +14,8 @@ class OrderForm(forms.ModelForm):
 			'town_or_city',
 			'postcode',
 			'county',
+			'delivery_option',
+			'click_and_collect_option',
 		)
 
 	def __init__(self, *args, **kwargs):
@@ -31,6 +33,8 @@ class OrderForm(forms.ModelForm):
 			'street_address1': 'Street Address 1',
 			'street_address2': 'Street Address 2',
 			'county': 'County',
+			'delivery_option': 'Deliver To',
+			'click_and_collect_option': 'Collect Options',
 		}
 
 		for field in self.fields:
