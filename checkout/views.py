@@ -1,11 +1,35 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
+from django.http import JsonResponse
 from click_and_collect.models import ClickCollectLocations
 from .forms import OrderForm
 from .models import OrderLineProductItem, OrderLineTicketItem, Order
 from basket.contexts import basket_contents, do_db_query
 import stripe
+
+
+def get_location_info(request):
+	if request.method == 'GET' and request.is_ajax():
+		location = request.GET.get('location')
+		try:
+			cc_location = ClickCollectLocations.objects.get(
+				location_name__icontains=location
+			)
+		except:
+			return JsonResponse({'success':False}, status=400)
+
+		location_info = {
+			'phone_number': cc_location.location_phone,
+			'street_address1': cc_location.street_address1,
+			'street_address2': cc_location.street_address2,
+			'town_or_city': cc_location.town_or_city,
+			'postcode': cc_location.postcode,
+		}
+
+		return JsonResponse({'location_info': location_info}, status=200)
+
+	return JsonResponse({'success': False}, status=400)
 
 
 def checkout(request):
@@ -30,19 +54,6 @@ def checkout(request):
 		
 		if order_form.is_valid():
 			order = order_form.save()
-			if request.POST['delivery_option'] == 'click&collect':
-				if request.POST['click_and_collect_option'] == "Ben's Hardware":
-					location = ClickCollectLocations.objects.get(location_name__icontains='ben')
-				elif request.POST['click_and_collect_option'] == 'Pembroke Park Post Office':
-					location = ClickCollectLocations.objects.get(location_name__icontains='pembroke')
-
-				order.phone_number = location.location_phone
-				order.postcode = location.postcode
-				order.town_or_city = location.town_or_city
-				order.street_address1 = location.street_address1
-				order.street_address2 = location.street_address2
-				order.save()
-					
 			for item_id, item_data in basket.items():
 				basket_obj = do_db_query(request, item_id=item_id)
 				if '@' in str(basket_obj):

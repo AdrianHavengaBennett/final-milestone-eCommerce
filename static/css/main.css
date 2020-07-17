@@ -677,7 +677,7 @@ a#product-card {
   overflow-y: auto;
 }
 
-/***************************************Stripe*/
+/***************************************Stripe/Checkout*/
 .StripeElement,
 .stripe-style-input {
   box-sizing: border-box;
@@ -739,8 +739,13 @@ a#product-card {
   display: block;
 }
 
+#id_delivery_option {
+  cursor: pointer;
+}
+
 #id_click_and_collect_option {
   display: none;
+  cursor: pointer;
 }
 
 /***************************************colour schemes (SASS)*/

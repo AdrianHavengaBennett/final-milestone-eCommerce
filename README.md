@@ -131,6 +131,8 @@ Choosing to sort products by price, low or high | products sorted by price low o
 Clicking previous or next on pagination links | loads previous/next page and grey out if on first/last page | PASS
 Clicking "Contact Us" in FAQs page | redirect to contact form | PASS
 Clicking any breadcrumb | navigate to page clicked | PASS
+Choosing click and collect at checkout | charges updated and new location option visible | PASS
+Clicking click and collect location at checkout | populates the form fields with correct address and contact info | PASS
 
 #### While Logged Out
 

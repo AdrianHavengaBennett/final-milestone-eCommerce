@@ -121,30 +121,80 @@ $(function() {
         }});
     });
 
+    var phoneNumber = $('#id_phone_number');
+	var streetAddress1 = $('#id_street_address1');
+	var streetAddress2 = $('#id_street_address2');
+	var townOrCity = $('#id_town_or_city');
+	var county = $('#id_county');
+	var postcode = $('#id_postcode');
+	var checkoutDelCharge = $('#checkout-delivery-charge');
+	var checkoutGrandTotal = $('#checkout-grand-total');
+	var checkoutSubTotal = $('#checkout-sub-total');
+	var cardChargedAmount = $('#card-charged-amount');
+
+	subTotal = parseInt(checkoutSubTotal.text().slice(1));
+
+	// clears form fields if delivery option is chosen and edits charges
 	$('#id_delivery_option').change(function() {
 	    if ($(this).val() === 'click&collect') {
 	        $('#id_click_and_collect_option').show();
+	        phoneNumber.val('');
+			streetAddress1.val('');
+			streetAddress2.val('');
+			townOrCity.val('');
+			county.val('');
+			postcode.val('');
+
+	        checkoutDelCharge.text('£0');
+	        
+			deliveryCharge = parseInt(checkoutDelCharge.text().slice(1));
+	        grandTotal = subTotal + deliveryCharge;
+	        checkoutGrandTotal.html(`<strong>£${grandTotal}.00</strong>`);
+	        cardChargedAmount.html(`<strong>£${grandTotal}.00</strong>`);
+
 	    } else if ($(this).val() === 'deliver') {
-	        $('#id_click_and_collect_option').hide();
+	        $('#id_click_and_collect_option').hide().val('');
+
+	        checkoutDelCharge.text('£10.00');
+
+	        deliveryCharge = parseInt(checkoutDelCharge.text().slice(1));
+	        grandTotal = subTotal + deliveryCharge;
+	        checkoutGrandTotal.html(`<strong>£${grandTotal}.00</strong>`);
+	        cardChargedAmount.html(`<strong>£${grandTotal}.00</strong>`);
+
+			phoneNumber.val('');
+			streetAddress1.val('');
+			streetAddress2.val('');
+			townOrCity.val('');
+			county.val('');
+			postcode.val('');
+
 	    }
 	});
 
-	$('#id_click_and_collect_option').change(function() {
-	    if ($(this).val() === "Ben's Hardware") {
-	    	var csrfToken = '{{ csrf_token }}';
-	    	var keywords = $(this).val();
-	    	var url = `/click-and-collect/get-location/${keywords}/`;
-	    	var data = {'csrfmiddlewaretoken': csrfToken};
-	        $.ajax({
-	        	url: url,
-	        	data: data,
-	        	dataType: 'html',
-	        	success: function() {
-	        		console.log('hello')
-	        }});
-	    } else if ($(this).val() === 'Pembroke Park Post Office') {
-	        console.log('Hello, P Office')  // then do something else. AJAX call?
-	    }
+	/* populates form fields with location info if click and collect
+	chosen and edits charges */
+	$('#id_click_and_collect_option').change(function(e) {
+		e.preventDefault();
+		var location = $(this).val();
+		var data = {location};
+		var url = 'ajax/get_location_info';
+		$.ajax({
+			type: 'GET',
+			url: url,
+			data: data,
+			success: function(response) {
+				phoneNumber.val(response.location_info.phone_number);
+				streetAddress1.val(response.location_info.street_address1);
+				streetAddress2.val(response.location_info.street_address2);
+				townOrCity.val(response.location_info.town_or_city);
+				county.val('');
+				postcode.val(response.location_info.postcode);
+			},
+			error : function(response) {
+	   			console.log(response)
+	   		}
+		});
 	});
 
 	// bootstrap initialisations
