@@ -96,6 +96,7 @@ footer p {
 
 #top-right-icons {
 	padding-right: 0;
+	padding-left: 0;
 }
 
 #sign-in,
@@ -312,6 +313,7 @@ form .dropdown {
 }
 
 .btn {
+	border: 1px solid #333333;
 	margin-top: 1rem;
 	width: 100%;
 	color: #fafafa;
@@ -734,7 +736,7 @@ a#product-card {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(23, 162, 184, .85);
+	background: rgba(51, 51, 51, .85);
 	z-index: 9999;
 }
 
@@ -744,6 +746,15 @@ a#product-card {
 	justify-content: center;
 	margin: 0;
 	height: 100%;
+}
+
+.fa-headphones {
+	font-size: 5em;
+	color: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -35px 0 0 -40px;
 }
 
 #delivery-details {
@@ -757,6 +768,20 @@ a#product-card {
 #id_click_and_collect_option {
 	display: none;
 	cursor: pointer;
+}
+
+#checkout-delivery-charge,
+#checkout-grand-total,
+#checkout-sub-total {
+	padding-left: 0;
+}
+
+.checkout-info {
+	font-size: .75rem;
+}
+
+.center-confirmation {
+	margin: 0 auto;
 }
 
 /***************************************colour schemes (SASS)*/
@@ -1120,6 +1145,13 @@ a#product-card {
 
 /***************************************media queries*/
 
+@media (min-width: 360px) {
+	.input-group-prepend,
+	.input-group-append {
+		display: inline !important;
+	}
+}
+
 @media (min-width: 376px) {
 	#top-right-icons {
 		padding-right: 15px;
@@ -1175,6 +1207,12 @@ a#product-card {
 	#product-detail-content .product-img {
 		min-height: 20rem;
 	}
+	.checkout-button {
+		width: 50%;
+	}
+	.checkout-info {
+	    font-size: 1rem;
+	}
 }
 
 @media (min-width: 992px) {
@@ -1229,7 +1267,7 @@ a#product-card {
 	}
 	form>.form-group {
 	    width: 50%;
-	    margin: 12px auto;
+	    margin: 0 auto 12px auto;
 	}
 	#chat-log,
 	#chat-message-input,

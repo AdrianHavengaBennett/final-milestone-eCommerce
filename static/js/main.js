@@ -127,17 +127,31 @@ $(function() {
 	var townOrCity = $('#id_town_or_city');
 	var county = $('#id_county');
 	var postcode = $('#id_postcode');
+	var checkoutSubTotal = $('#checkout-sub-total');
 	var checkoutDelCharge = $('#checkout-delivery-charge');
 	var checkoutGrandTotal = $('#checkout-grand-total');
-	var checkoutSubTotal = $('#checkout-sub-total');
 	var cardChargedAmount = $('#card-charged-amount');
 
-	subTotal = parseInt(checkoutSubTotal.text().slice(1));
+	subTotal = parseFloat(checkoutSubTotal.text().slice(1));
 
 	// clears form fields if delivery option is chosen and edits charges
 	$('#id_delivery_option').change(function() {
 	    if ($(this).val() === 'click&collect') {
 	        $('#id_click_and_collect_option').show();
+	        $('#delivery-details').hide();
+
+	        checkoutDelCharge.text('£0');
+	        
+			deliveryCharge = parseFloat(checkoutDelCharge.text().slice(1));
+	        grandTotal = subTotal + deliveryCharge;
+	        checkoutGrandTotal.html(
+	        	`<strong>£${parseFloat(grandTotal).toFixed(2)}</strong>`);
+	        cardChargedAmount.html(
+	        	`<span id="card-charged-amount">
+	        		Your card will be charged <strong>£${parseFloat(grandTotal).toFixed(2)}</strong>
+	        	</span>`
+	        );
+
 	        phoneNumber.val('');
 			streetAddress1.val('');
 			streetAddress2.val('');
@@ -145,22 +159,20 @@ $(function() {
 			county.val('');
 			postcode.val('');
 
-	        checkoutDelCharge.text('£0');
-	        
-			deliveryCharge = parseInt(checkoutDelCharge.text().slice(1));
-	        grandTotal = subTotal + deliveryCharge;
-	        checkoutGrandTotal.html(`<strong>£${grandTotal}.00</strong>`);
-	        cardChargedAmount.html(`<strong>£${grandTotal}.00</strong>`);
-
 	    } else if ($(this).val() === 'deliver') {
 	        $('#id_click_and_collect_option').hide().val('');
+	        $('#delivery-details').show();
 
 	        checkoutDelCharge.text('£10.00');
 
-	        deliveryCharge = parseInt(checkoutDelCharge.text().slice(1));
+	        deliveryCharge = parseFloat(checkoutDelCharge.text().slice(1));
 	        grandTotal = subTotal + deliveryCharge;
-	        checkoutGrandTotal.html(`<strong>£${grandTotal}.00</strong>`);
-	        cardChargedAmount.html(`<strong>£${grandTotal}.00</strong>`);
+	        checkoutGrandTotal.html(`<strong>£${parseFloat(grandTotal).toFixed(2)}</strong>`);
+	        cardChargedAmount.html(
+	        	`<span id="card-charged-amount">
+	        		Your card will be charged <strong>£${parseFloat(grandTotal).toFixed(2)}</strong>
+	        	</span>`
+	        );
 
 			phoneNumber.val('');
 			streetAddress1.val('');
@@ -168,7 +180,6 @@ $(function() {
 			townOrCity.val('');
 			county.val('');
 			postcode.val('');
-
 	    }
 	});
 
@@ -178,23 +189,32 @@ $(function() {
 		e.preventDefault();
 		var location = $(this).val();
 		var data = {location};
-		var url = 'ajax/get_location_info';
-		$.ajax({
-			type: 'GET',
-			url: url,
-			data: data,
-			success: function(response) {
-				phoneNumber.val(response.location_info.phone_number);
-				streetAddress1.val(response.location_info.street_address1);
-				streetAddress2.val(response.location_info.street_address2);
-				townOrCity.val(response.location_info.town_or_city);
-				county.val('');
-				postcode.val(response.location_info.postcode);
-			},
-			error : function(response) {
-	   			console.log(response)
-	   		}
-		});
+		if (data['location'] === '') {
+			phoneNumber.val('');
+			streetAddress1.val('');
+			streetAddress2.val('');
+			townOrCity.val('');
+			county.val('');
+			postcode.val('');
+		} else if (data['location'] !== '') {
+			var url = 'ajax/get_location_info';
+			$.ajax({
+				type: 'GET',
+				url: url,
+				data: data,
+				success: function(response) {
+					phoneNumber.val(response.location_info.phone_number);
+					streetAddress1.val(response.location_info.street_address1);
+					streetAddress2.val(response.location_info.street_address2);
+					townOrCity.val(response.location_info.town_or_city);
+					county.val('');
+					postcode.val(response.location_info.postcode);
+				},
+				error : function(response) {
+		   			console.log(response)
+		   		}
+			});
+		}
 	});
 
 	// bootstrap initialisations

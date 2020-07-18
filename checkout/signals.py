@@ -19,5 +19,5 @@ def update_on_delete(sender, instance, **kwargs):
 	"""Update order total on lineproductitem and
 	lineticketitem delete
 	"""
-	print(instance.order)
+
 	instance.order.update_total()

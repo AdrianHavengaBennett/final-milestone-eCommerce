@@ -11,9 +11,9 @@
 
 {% if basket_items %}
 	<h2 class="account-heading text-center">Basket Subtotal: £{{ sub_total }}</h2>
-	<div class="form-group">
+	<div class="form-group text-center">
 		<a href="{% url 'checkout' %}">
-			<button class="btn"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>
+			<button class="btn checkout-button"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>
 		</a>
 	</div>
 
@@ -24,7 +24,7 @@
 					<thead class=text-black>
 						<tr>
 							<th scope="col">Details:</th>
-							<th scope="col"></th>
+							<th class="d-none d-sm-table-cell" scope="col"></th>
 							<th scope="col">Price:</th>
 							<th scope="col">Qty:</th>
 							<th scope="col">Total:</th>
@@ -34,7 +34,7 @@
 					{% for item in basket_items %}
 						<tr>
 							{% if item.basket_obj.artist %}
-								<td class="p-2 w-25">
+								<td class="p-2 w-25 d-none d-sm-table-cell">
 									<a href="{% url 'show-details' item.basket_obj.artist.id %}">
 										<img class="img-fluid" src="{{ item.basket_obj.artist.artist_image.url }}">
 									</a>
@@ -47,7 +47,7 @@
 									</p>
 								</td>
 							{% else %}
-								<td class="p-2 w-25">
+								<td class="p-2 w-25 d-none d-sm-table-cell">
 									<a href="{% url 'product-detail' item.basket_obj.id %}">
 										<img class="img-fluid" src="{{ item.basket_obj.image.url }}">
 									</a>
@@ -126,12 +126,12 @@
 	</div>
 
 	<h2 id="basket-total" class="account-heading text-center">Total (excl. Delivery): £{{ sub_total }}</h2>
-	<div class="form-group">
+	<div class="form-group text-center">
 		<a href="{% url 'checkout' %}">
-			<button class="btn"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>
+			<button class="btn checkout-button"><i class="fa fa-credit-card" aria-hidden="true"></i> GO TO CHECKOUT</button>
 		</a>
 		<a href="{% url 'products-home' %}">
-			<button class="btn"><i class="fa fa-hand-o-left" aria-hidden="true"></i> KEEP SHOPPING</button>
+			<button class="btn checkout-button"><i class="fa fa-hand-o-left" aria-hidden="true"></i> KEEP SHOPPING</button>
 		</a>
 	</div>
 {% else %}

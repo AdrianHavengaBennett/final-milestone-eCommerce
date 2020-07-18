@@ -41,12 +41,12 @@
                         <a id="sign-out" class="top-container-icon order-1" href="{% url 'logout' %}">
                             <span class="sr-only">Sign out</span> Sign Out
                         </a>
-                        <span class="topnav-separator d-none d-lg-inline">|</span>
+                        <span class="topnav-separator d-none d-md-inline">|</span>
 
-                        <a class="top-container-icon d-none d-lg-inline order-3" href="{% url 'profile' %}" data-toggle="tooltip" title="Your Profile">
+                        <a class="top-container-icon d-none d-md-inline order-3" href="{% url 'profile' %}" data-toggle="tooltip" title="Your Profile">
                             <img class="rounded-circle justify-content-center account-img" src="{{ user.profile.profile_image.url }}"><span class="sr-only">Profile image</span>
                         </a>
-                        <span class="topnav-separator d-none d-lg-inline">|</span>
+                        <span class="topnav-separator d-none d-md-inline">|</span>
                     {% else %}
                         <a id="sign-in" class="top-container-icon order-1" href="{% url 'login' %}">
                             <span class="sr-only">Sign in</span> Sign In
@@ -107,13 +107,13 @@
 
         {% block content %}
 
-            {% block products_pagination %}
-            {% endblock products_pagination %}
+            {% block products_pagination %}{% endblock products_pagination %}
+
+            {% block chat_script %}{% endblock chat_script %}
 
         {% endblock %}
 
-        {% block blog_pagination %}
-        {% endblock blog_pagination %}
+        {% block blog_pagination %}{% endblock blog_pagination %}
     </main>
 
     <footer>
@@ -131,11 +131,9 @@
     <!-- Custom JS -->
     <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
 
-    {% block g_maps_script %}
-    {% endblock g_maps_script %}
+    {% block g_maps_script %}{% endblock g_maps_script %}
 
-    {% block stripe_script %}
-    {% endblock stripe_script %}
+    {% block stripe_script %}{% endblock stripe_script %}
 
 </body>
 </html>

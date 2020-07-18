@@ -65,7 +65,11 @@ class Order(models.Model):
 			Sum('ticketlineitems_total'))['ticketlineitems_total__sum']) or 0
 		self.order_total = self.products_total + self.tickets_total
 		self.delivery_cost = settings.STANDARD_DELIVERY_CHARGE if self.delivery_option == 'deliver' else 0
-		self.grand_total = self.order_total + self.delivery_cost
+		if self.order_total == 0:
+			self.delivery_cost = 0
+			self.grand_total = 0
+		else:
+			self.grand_total = self.order_total + self.delivery_cost
 		self.save()
 
 	def save(self, *args, **kwargs):
