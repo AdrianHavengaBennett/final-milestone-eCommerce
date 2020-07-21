@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from accounts.forms import MyAuthForm
 from blog import urls as blog_urls
 from accounts import urls as accounts_urls
 from products import urls as products_urls
@@ -36,20 +37,26 @@ urlpatterns = [
     path('', include(products_urls)),
     path('accounts/', include(accounts_urls)),
     path('login/',
-        auth_views.LoginView.as_view(template_name='accounts/login.html'),
-        name='login'),
+        auth_views.LoginView.as_view(
+            template_name='accounts/login.html',
+            authentication_form=MyAuthForm),
+            name='login'),
     path('password-reset',
-        auth_views.PasswordResetView.as_view(template_name='accounts/password_reset.html'),
-        name='password_reset'),
+        auth_views.PasswordResetView.as_view(
+            template_name='accounts/password_reset.html'),
+            name='password_reset'),
     path('password-reset/done',
-        auth_views.PasswordResetDoneView.as_view(template_name='accounts/password_reset_done.html'),
-        name='password_reset_done'),
+        auth_views.PasswordResetDoneView.as_view(
+            template_name='accounts/password_reset_done.html'),
+            name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>/',
-        auth_views.PasswordResetConfirmView.as_view(template_name='accounts/password_reset_confirm.html'),
-        name='password_reset_confirm'),
+        auth_views.PasswordResetConfirmView.as_view(
+            template_name='accounts/password_reset_confirm.html'),
+            name='password_reset_confirm'),
     path('password-reset-complete/',
-        auth_views.PasswordResetCompleteView.as_view(template_name='accounts/password_reset_complete.html'),
-        name='password_reset_complete'),
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name='accounts/password_reset_complete.html'),
+            name='password_reset_complete'),
     path('blog/', include(blog_urls)),
     path('search/', include(search_urls)),
     path('click-and-collect/', include(click_and_collect_urls)),

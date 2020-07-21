@@ -37,8 +37,8 @@ class OrderAdmin(admin.ModelAdmin):
 		'postcode',
 		'county',
 		'phone_number',
-		'delivery_cost',
 		'order_total',
+		'delivery_cost',
 		'grand_total',
 	)
 

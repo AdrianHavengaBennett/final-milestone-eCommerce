@@ -216,6 +216,9 @@ $(function() {
 
 					$('#collection-details').show().html(
 						`
+						<p class="small" style="color:red;">
+							Make sure the address below is the one you're aiming to collect from:
+						</p>
 						<p>${response.location_info.street_address1}</p>
 						<p>${response.location_info.street_address2}</p>
 						<p>${response.location_info.town_or_city}</p>

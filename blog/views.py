@@ -33,7 +33,8 @@ def show_all_posts(request):
 	context = {
 		'page': page,
 		'next_url': next_url,
-		'previous_url': previous_url
+		'previous_url': previous_url,
+		'on_blog_page': True
 	}
 
 	return render(request, 'blog/blog_home.html', context)
@@ -116,7 +117,12 @@ def get_post_detail(request, id):
 
 	post = BlogPost.objects.get(pk=id)
 
-	return render(request, 'blog/post_detail.html', {'post': post})
+	context = {
+		'post': post,
+		'on_blog_page': True
+	}
+
+	return render(request, 'blog/post_detail.html', context)
 
 
 @login_required
@@ -133,7 +139,7 @@ def edit_post(request, id):
 			if form.is_valid():
 				form.save()
 				messages.success(request, f'Post changes saved!')
-				return redirect('post-detail',id=id)
+				return redirect('post-detail', id=id)
 		else:
 			form = BlogPostForm(instance=post)
 
