@@ -138,6 +138,7 @@ $(function() {
 	$('#id_delivery_option').change(function() {
 	    if ($(this).val() === 'click&collect') {
 	        $('#id_click_and_collect_option').show();
+	        $('#collection-location').show();
 	        $('#delivery-details').hide();
 
 	        checkoutDelCharge.text('£0');
@@ -161,6 +162,8 @@ $(function() {
 
 	    } else if ($(this).val() === 'deliver') {
 	        $('#id_click_and_collect_option').hide().val('');
+	        $('#collection-location').hide();
+	        $('#collection-details').hide();
 	        $('#delivery-details').show();
 
 	        checkoutDelCharge.text('£10.00');
@@ -190,6 +193,7 @@ $(function() {
 		var location = $(this).val();
 		var data = {location};
 		if (data['location'] === '') {
+			$('#collection-details').hide();
 			phoneNumber.val('');
 			streetAddress1.val('');
 			streetAddress2.val('');
@@ -209,6 +213,16 @@ $(function() {
 					townOrCity.val(response.location_info.town_or_city);
 					county.val('');
 					postcode.val(response.location_info.postcode);
+
+					$('#collection-details').show().html(
+						`
+						<p>${response.location_info.street_address1}</p>
+						<p>${response.location_info.street_address2}</p>
+						<p>${response.location_info.town_or_city}</p>
+						<p>${response.location_info.postcode}</p>
+						<p>${response.location_info.phone_number}</p>
+						`
+					);
 				},
 				error : function(response) {
 		   			console.log(response)

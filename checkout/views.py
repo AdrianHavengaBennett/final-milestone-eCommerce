@@ -16,7 +16,7 @@ def get_location_info(request):
 			cc_location = ClickCollectLocations.objects.get(
 				location_name__icontains=location
 			)
-		except:
+		except Exception as e:
 			return JsonResponse({'success':False}, status=400)
 
 		location_info = {

@@ -390,6 +390,10 @@ form .dropdown {
   padding-left: 0.75rem;
 }
 
+.post-detail-title {
+  font-size: 1rem;
+}
+
 .article-content {
   padding: 0;
   font-size: 1rem;
@@ -757,6 +761,10 @@ a#product-card {
 #id_click_and_collect_option {
   display: none;
   cursor: pointer;
+}
+
+#collection-location {
+  display: none;
 }
 
 #checkout-delivery-charge,
@@ -1147,12 +1155,21 @@ a#product-card {
     margin-bottom: 1rem;
   }
 
+  .blog-buttons {
+    width: 50%;
+  }
+
   .content-section {
     margin-top: 1em;
   }
 
   .form-group {
     font-size: 16px;
+  }
+
+  form > .form-group {
+    width: 50%;
+    margin: 0 auto 12px auto;
   }
 
   #post-author {
@@ -1238,11 +1255,6 @@ a#product-card {
 
   .container {
     width: 100%;
-  }
-
-  form > .form-group {
-    width: 50%;
-    margin: 0 auto 12px auto;
   }
 
   #chat-log,

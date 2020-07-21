@@ -20,13 +20,13 @@
 				<small class="text-muted">{{ post.date_created|date:'d F, Y' }}</small>
 			</div>
 			{% if post.product %}
-				<h4>{{ post.title }}: 
+				<h4 class="post-detail-title">{{ post.title }}: 
 					<a href="{% url 'product-detail' post.product.id %}"> 
 						({{ post.product.name }})
 					</a>
 				</h4>
 			{% elif post.show %}
-				<h4>{{ post.title }}: 
+				<h4 class="post-detail-title">{{ post.title }}: 
 					<a href="{% url 'show-details' post.show.id %}">
 						({{ post.show.artist_name }} @ {{ post.show.venue.location_name }})
 					</a>

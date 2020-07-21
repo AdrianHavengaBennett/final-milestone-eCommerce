@@ -21,8 +21,8 @@ class Order(models.Model):
 	DELIVER = 'deliver'
 	CLICK_AND_COLLECT = 'click&collect'
 	DELIVERY_CHOICES = [
-		(DELIVER, 'deliver'),
-		(CLICK_AND_COLLECT, 'click&collect'),
+		(DELIVER, 'Deliver'),
+		(CLICK_AND_COLLECT, 'Click&Collect'),
 	]
 	delivery_option = models.CharField(
 		max_length=32,
