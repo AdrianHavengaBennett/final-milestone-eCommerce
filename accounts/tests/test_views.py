@@ -19,11 +19,3 @@ class TestViews(TestCase):
 		response = self.client.post('/login/?next=/accounts/profile/')
 		self.assertEqual(response.status_code, 200)
 		self.assertTemplateUsed(response, 'accounts/login.html')
-		
-	def test_profile_page(self):
-		user = User.objects.create_user('Jimmy', 'jimmy@test.com', 'testing321')
-		user = authenticate(username='Jimmy', password='testing321')
-
-		response = self.client.get('/accounts/profile/')
-		self.assertEqual(response.status_code, 302)
-		self.assertRedirects(response, 'accounts/profile.html')

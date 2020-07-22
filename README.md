@@ -52,6 +52,7 @@ Start or continue your musical journey with us!
 
 ### Features left to implement
 - Chat feature is pretty basic but does a simple, effective job. Adding the ability to view an existing thread upon entering a room and also being able to tell if a user has left a room (see testing bug) will further add to the experience.
+- The checkout process suggests an email will be sent as a confirmation of an order. This is not actually the case and is a feature left to implement.
 
 ## Technologies Used
 
@@ -97,14 +98,18 @@ Start or continue your musical journey with us!
 
 ### Automated Testing
 
-- A large magority of the back end code has been tested using Django's built-in testing suite. Test code can be found in each application, appropriately named for each module. To run this test suite, I simply:
+- A large magority of the back end code has been tested using Django's built-in testing suite. Test code can be found in each application's test folder, wherein they're appropriately named for each module tested. To run this test suite, I simply:
 1. open a terminal (Windows PowerShell in my case),
 1. cd (change directory) to my root project's directory (this should be the directory where your manage.py file lives), and
 1. run the following command: `.\manage.py test`
-- This will run all test cases in all modules containing tests. To run only a certain application's tests, one could add the application's name and tests module onto the above command, like so:
+- This will run all test cases in all modules' test folders. To run only a certain application's tests, one could add the application's name and tests module onto the above command, like so:
 `.\manage.py test my_app.tests`
-- Delving deeper, one could run only a particular test within the application's test module, like so:
-`.\manage.py test my_app.tests test_is_this_thing_working`
+- To run a particular test file within that folder, one would type:
+`.\manage.py test my_app.tests.test_forms`
+- Delving deeper, one could run only a particular test class within the application's test module, like so:
+`.\manage.py test my_app.tests.test_forms.TestUserRegisterForm`
+- Finally, to run only a particular test in the class above, type:
+`.\manage.py test my_app.tests.test_forms.TestUserRegisterForm.test_does_this_thing_work`
 
 ### User Testing
 
@@ -150,6 +155,7 @@ Action | Expected outcome | Pass or Fail
 ------ | ---------------- | ------------
 Successful login | redirect to home page | PASS
 Change color scheme in Profile | site-wide color-scheme change | PASS
+Change profile image in Profile | new profile image displayed at top of page | PASS
 Hardcode delete or edit blog url when you're not the author | warning that you cannot proceed | PASS
 Clicking to "Blog About It" on product or show | new blog page loads with product or show pre-selected | PASS
 Clicking "New Post" in Blog home | redirect to new blog post form | PASS

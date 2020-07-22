@@ -42,13 +42,20 @@
 						</div>
 						<hr>
 						{% if post.product %}
-							<h2 class="article-title">{{ post.title }} ({{ post.product.name }})</h2>
+							<h2 class="article-title">
+								<i class="fa fa-music" aria-hidden="true"></i> 
+								{{ post.title }} ({{ post.product.name }})
+							</h2>
 						{% elif post.show %}
 							<h2 class="article-title">
+								<i class="fa fa-ticket" aria-hidden="true"></i> 
 								{{ post.title }} ({{ post.show.artist_name }} @ {{ post.show.venue.location_name }})
 							</h2>
 						{% else %}
-							<h2 class="article-title">{{ post.title }}</h2>
+							<h2 class="article-title">
+								<i class="fa fa-newspaper-o" aria-hidden="true"></i> 
+								{{ post.title }}
+							</h2>
 						{% endif %}
 						
 					</div>

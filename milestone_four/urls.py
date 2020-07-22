@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from accounts.forms import MyAuthForm
+from accounts.forms import CustomAuthForm
 from blog import urls as blog_urls
 from accounts import urls as accounts_urls
 from products import urls as products_urls
@@ -39,7 +39,7 @@ urlpatterns = [
     path('login/',
         auth_views.LoginView.as_view(
             template_name='accounts/login.html',
-            authentication_form=MyAuthForm),
+            authentication_form=CustomAuthForm),
             name='login'),
     path('password-reset',
         auth_views.PasswordResetView.as_view(

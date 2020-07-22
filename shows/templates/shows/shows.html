@@ -11,7 +11,7 @@
 
 	<p class="section-intro">As a registered customer, you're offered tickets to the following shows at discounted prices!</p>
 
-	<h2 class="account-heading text-center">All Shows</h2>
+	<h2 class="account-heading text-center">All Upcoming Shows</h2>
 	<div class="row">
 
 		<!-- side section -->
@@ -35,8 +35,10 @@
 			{% for show in shows %}
 				<a id="product-card" href="{% url 'show-details' show.id %}">
 					<div class="panel-body card text-center">
-			            <h3 class="show-highlight">{{ show.artist_name }}, {{ show.date }} @ {{ show.venue }}</h3>
-			            <p class="article-content">{{ show.description }}</p>
+			            <h3 class="show-highlight">
+			            	<i class="fa fa-ticket" aria-hidden="true"></i> 
+			            	{{ show.artist_name }}, {{ show.date }} @ {{ show.venue }}
+			            </h3>
 			        </div>
 		        </a>
 

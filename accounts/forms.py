@@ -6,22 +6,21 @@ from django.core.exceptions import ValidationError
 from .models import Profile
 
 
-class MyAuthForm(AuthenticationForm):
+class CustomAuthForm(AuthenticationForm):
 	"""Creates placeholders for django's built-in login form"""
 
 	class Meta:
 		model = User
-		fields = ['username', 'email', 'password']
+		fields = ['username', 'password']
 
 	def __init__(self, *args, **kwargs):
 		"""Add placeholders and classes, remove auto-generated
 		labels and set autofocus on first field
 		"""
 
-		super(MyAuthForm, self).__init__(*args, **kwargs)
+		super(CustomAuthForm, self).__init__(*args, **kwargs)
 		placeholders = {
 			'username': 'Username',
-			'email': 'Email Address',
 			'password': 'Password',
 		}
 
@@ -41,7 +40,7 @@ class MyAuthForm(AuthenticationForm):
 class UserRegisterForm(UserCreationForm):
 	class Meta:
 		model = User
-		fields = ['username', 'email', 'password1', 'password2']
+		fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
 
 	def clean_email(self):
 		email = self.cleaned_data.get('email')
@@ -59,6 +58,8 @@ class UserRegisterForm(UserCreationForm):
 		super().__init__(*args, **kwargs)
 		placeholders = {
 			'username': 'Username',
+			'first_name': 'First Name',
+			'last_name': 'Last Name',
 			'email': 'Email Address',
 			'password1': 'Password',
 			'password2': 'Repeat Password',
@@ -80,7 +81,32 @@ class UserRegisterForm(UserCreationForm):
 class UserUpdateForm(forms.ModelForm):
 	class Meta:
 		model = User
-		fields = ['username', 'email']
+		fields = ['username', 'first_name', 'last_name', 'email']
+
+	def __init__(self, *args, **kwargs):
+		"""Add placeholders and classes, remove auto-generated
+		labels and set autofocus on first field
+		"""
+
+		super().__init__(*args, **kwargs)
+		placeholders = {
+			'username': 'Username',
+			'first_name': 'First Name',
+			'last_name': 'Last Name',
+			'email': 'Email Address',
+		}
+
+		for field in self.fields:
+			if field == 'username':
+				self.fields['username'].widget.attrs['autofocus'] = True
+			
+			if self.fields[field].required:
+				placeholder = f'{placeholders[field]} *'
+			else:
+				placeholder = placeholders[field]
+			self.fields[field].widget.attrs['placeholder'] = placeholder
+			self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+			self.fields[field].label = False
 
 
 class ProfileUpdateForm(forms.ModelForm):
