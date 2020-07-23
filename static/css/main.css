@@ -111,7 +111,7 @@ footer p {
 }
 
 .basket-alert {
-  color: red;
+  color: red !important;
 }
 
 .alert {
@@ -168,7 +168,7 @@ footer p {
 #carousel-previous,
 #carousel-next {
   font-size: 2em;
-  color: grey;
+  color: grey !important;
 }
 
 .carousel-indicators li {
@@ -586,26 +586,26 @@ a#product-card {
 }
 
 .social-icon {
-  color: #444444;
+  color: #444444 !important;
   font-size: 1.5rem;
   padding: 0 1rem 0 1rem;
   transition: color 0.5s ease;
 }
 
 .fa-facebook-square:hover {
-  color: #3B5998;
+  color: #3B5998 !important;
 }
 
 .fa-twitter-square:hover {
-  color: #1DA1F2;
+  color: #1DA1F2 !important;
 }
 
 .fa-youtube-square:hover {
-  color: #E62117;
+  color: #E62117 !important;
 }
 
 .fa-instagram:hover {
-  color: #DD2A7B;
+  color: #DD2A7B !important;
 }
 
 .pagination {
@@ -799,6 +799,9 @@ a#product-card {
 .default-scheme main.container {
   background: linear-gradient(to top, #E1F4F3, #fafafa);
 }
+.default-scheme .fa {
+  color: #dfa9ac;
+}
 .default-scheme .topnav-separator {
   color: #706C61;
 }
@@ -834,8 +837,8 @@ a#product-card {
   color: #706C61;
 }
 .default-scheme .page-item.active .page-link {
-  background-color: #706C61;
-  border-color: #706C61;
+  background-color: #dfa9ac;
+  border-color: #dfa9ac;
 }
 
 .red-scheme {
@@ -843,6 +846,9 @@ a#product-card {
 }
 .red-scheme main.container {
   background: linear-gradient(to top, #ffd9d9, #fafafa);
+}
+.red-scheme .fa {
+  color: #66e0e0;
 }
 .red-scheme .topnav-separator {
   color: #E06666;
@@ -878,8 +884,8 @@ a#product-card {
   color: #E06666;
 }
 .red-scheme .page-item.active .page-link {
-  background-color: #E06666;
-  border-color: #E06666;
+  background-color: #66e0e0;
+  border-color: #66e0e0;
 }
 
 .blue-scheme {
@@ -887,6 +893,9 @@ a#product-card {
 }
 .blue-scheme main.container {
   background: linear-gradient(to top, #def0ff, #fafafa);
+}
+.blue-scheme .fa {
+  color: #bd8556;
 }
 .blue-scheme .topnav-separator {
   color: #4682B4;
@@ -922,8 +931,8 @@ a#product-card {
   color: #4682B4;
 }
 .blue-scheme .page-item.active .page-link {
-  background-color: #4682B4;
-  border-color: #4682B4;
+  background-color: #bd8556;
+  border-color: #bd8556;
 }
 
 .green-scheme {
@@ -931,6 +940,9 @@ a#product-card {
 }
 .green-scheme main.container {
   background: linear-gradient(to top, #d6ffe4, #fafafa);
+}
+.green-scheme .fa {
+  color: #ae3786;
 }
 .green-scheme .topnav-separator {
   color: #50C878;
@@ -966,8 +978,8 @@ a#product-card {
   color: #50C878;
 }
 .green-scheme .page-item.active .page-link {
-  background-color: #50C878;
-  border-color: #50C878;
+  background-color: #ae3786;
+  border-color: #ae3786;
 }
 
 .pink-scheme {
@@ -975,6 +987,9 @@ a#product-card {
 }
 .pink-scheme main.container {
   background: linear-gradient(to top, #ffdbed, #fafafa);
+}
+.pink-scheme .fa {
+  color: #74feba;
 }
 .pink-scheme .topnav-separator {
   color: #FE5BAC;
@@ -1010,8 +1025,8 @@ a#product-card {
   color: #FE5BAC;
 }
 .pink-scheme .page-item.active .page-link {
-  background-color: #FE5BAC;
-  border-color: #FE5BAC;
+  background-color: #74feba;
+  border-color: #74feba;
 }
 
 .purple-scheme {
@@ -1019,6 +1034,9 @@ a#product-card {
 }
 .purple-scheme main.container {
   background: linear-gradient(to top, #f2e3ff, #fafafa);
+}
+.purple-scheme .fa {
+  color: #66a82d;
 }
 .purple-scheme .topnav-separator {
   color: #6F2DA8;
@@ -1033,7 +1051,7 @@ a#product-card {
 }
 .purple-scheme .btn:hover {
   background-color: #333333;
-  color: #6F2DA8;
+  color: #9551d0;
 }
 .purple-scheme #faq-button {
   color: #6F2DA8;
@@ -1054,8 +1072,8 @@ a#product-card {
   color: #6F2DA8;
 }
 .purple-scheme .page-item.active .page-link {
-  background-color: #6F2DA8;
-  border-color: #6F2DA8;
+  background-color: #66a82d;
+  border-color: #66a82d;
 }
 
 .yellow-scheme {
@@ -1063,6 +1081,9 @@ a#product-card {
 }
 .yellow-scheme main.container {
   background: linear-gradient(to top, #fcffde, #fafafa);
+}
+.yellow-scheme .fa {
+  color: #7a6eff;
 }
 .yellow-scheme .topnav-separator {
   color: #333333;
@@ -1100,8 +1121,8 @@ a#product-card {
 }
 .yellow-scheme .page-item.active .page-link {
   color: #333333;
-  background-color: #f3ff6e;
-  border-color: #f3ff6e;
+  background-color: #7a6eff;
+  border-color: #7a6eff;
 }
 
 /***************************************media queries*/

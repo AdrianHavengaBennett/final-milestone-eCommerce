@@ -163,7 +163,7 @@ class TestProfileUpdateForm(TestCase):
 		# Checks that the profile color scheme is default
 		self.assertEqual(user.profile.color_scheme, 'default-scheme')
 
-		# Then we change the scheme and profile image
+		# Then we change the scheme
 		update_scheme_form = ProfileUpdateForm({
 			'color_scheme': 'red-scheme'}, instance=user.profile)
 		update_scheme_form.save()

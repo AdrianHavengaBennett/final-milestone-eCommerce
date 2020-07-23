@@ -114,7 +114,7 @@ footer p {
 }
 
 .basket-alert {
-	color: red;
+	color: red !important;
 }
 
 .alert {
@@ -171,7 +171,7 @@ footer p {
 #carousel-previous,
 #carousel-next {
 	font-size: 2em;
-	color: grey;
+	color: grey !important;
 }
 
 .carousel-indicators li {
@@ -595,26 +595,26 @@ a#product-card {
 }
 
 .social-icon {
-	color: #444444;
+	color: #444444 !important;
 	font-size: 1.5rem;
 	padding: 0 1rem 0 1rem;
 	transition: color 0.5s ease;
 }
 
 .fa-facebook-square:hover {
-	color: #3B5998;
+	color: #3B5998 !important;
 }
 
 .fa-twitter-square:hover {
-	color: #1DA1F2;
+	color: #1DA1F2 !important;
 }
 
 .fa-youtube-square:hover {
-	color: #E62117;
+	color: #E62117 !important;
 }
 
 .fa-instagram:hover {
-	color: #DD2A7B;
+	color: #DD2A7B !important;
 }
 
 .pagination {
@@ -815,6 +815,9 @@ a#product-card {
 				#fafafa
 			);
 	}
+	& .fa {
+		color: #dfa9ac;
+	}
 	& .topnav-separator {
 		color: #706C61;
 	}
@@ -850,8 +853,8 @@ a#product-card {
 		color: #706C61;
 	}
 	& .page-item.active .page-link {
-		background-color: #706C61;
-		border-color: #706C61;
+		background-color: #dfa9ac;
+		border-color: #dfa9ac;
 	}
 }
 
@@ -864,6 +867,9 @@ a#product-card {
 				#ffd9d9,
 				#fafafa
 			);
+	}
+	& .fa {
+		color: #66e0e0;
 	}
 	& .topnav-separator {
 		color: #E06666;
@@ -899,8 +905,8 @@ a#product-card {
 		color: #E06666;
 	}
 	& .page-item.active .page-link {
-		background-color: #E06666;
-		border-color: #E06666;
+		background-color: #66e0e0;
+		border-color: #66e0e0;
 	}
 }
 
@@ -913,6 +919,9 @@ a#product-card {
 				#def0ff,
 				#fafafa
 			);
+	}
+	& .fa {
+		color: #bd8556;
 	}
 	& .topnav-separator {
 		color: #4682B4;
@@ -948,8 +957,8 @@ a#product-card {
 		color: #4682B4;
 	}
 	& .page-item.active .page-link {
-		background-color: #4682B4;
-		border-color: #4682B4;
+		background-color: #bd8556;
+		border-color: #bd8556;
 	}
 }
 
@@ -962,6 +971,9 @@ a#product-card {
 				#d6ffe4,
 				#fafafa
 			);
+	}
+	& .fa {
+		color: #ae3786;
 	}
 	& .topnav-separator {
 		color: #50C878;
@@ -997,8 +1009,8 @@ a#product-card {
 		color: #50C878;
 	}
 	& .page-item.active .page-link {
-		background-color: #50C878;
-		border-color: #50C878;
+		background-color: #ae3786;
+		border-color: #ae3786;
 	}
 }
 
@@ -1011,6 +1023,9 @@ a#product-card {
 				#ffdbed,
 				#fafafa
 			);
+	}
+	& .fa {
+		color: #74feba;
 	}
 	& .topnav-separator {
 		color: #FE5BAC;
@@ -1046,8 +1061,8 @@ a#product-card {
 		color: #FE5BAC;
 	}
 	& .page-item.active .page-link {
-		background-color: #FE5BAC;
-		border-color: #FE5BAC;
+		background-color: #74feba;
+		border-color: #74feba;
 	}
 }
 
@@ -1060,6 +1075,9 @@ a#product-card {
 				#f2e3ff,
 				#fafafa
 			);
+	}
+	& .fa {
+		color: #66a82d;
 	}
 	& .topnav-separator {
 		color: #6F2DA8;
@@ -1074,7 +1092,7 @@ a#product-card {
 	}
 	& .btn:hover {
 		background-color: #333333;
-		color: #6F2DA8;
+		color: #9551d0;
 	}
 	& #faq-button {
 		color: #6F2DA8;
@@ -1095,8 +1113,8 @@ a#product-card {
 		color: #6F2DA8;
 	}
 	& .page-item.active .page-link {
-		background-color: #6F2DA8;
-		border-color: #6F2DA8;
+		background-color: #66a82d;
+		border-color: #66a82d;
 	}
 }
 
@@ -1109,6 +1127,9 @@ a#product-card {
 				#fcffde,
 				#fafafa
 			);
+	}
+	& .fa {
+		color: #7a6eff;
 	}
 	& .topnav-separator {
 		color: #333333;
@@ -1146,8 +1167,8 @@ a#product-card {
 	}
 	& .page-item.active .page-link {
 		color: #333333;
-		background-color: #f3ff6e;
-		border-color: #f3ff6e;
+		background-color: #7a6eff;
+		border-color: #7a6eff;
 	}
 }
 
