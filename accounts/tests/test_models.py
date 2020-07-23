@@ -19,4 +19,4 @@ class TestModels(TestCase):
 	def test_profile_string_method_returns_name(self):
 		user = User.objects.create_user('Jimmy', 'jimmy@test.com', 'testing321')
 		profile = Profile.objects.get(pk=user.id)
-		self.assertEqual(str(profile.user.username), 'Jimmy')
+		self.assertEqual(profile.__str__(), profile.user.username)

@@ -1,6 +1,4 @@
-import base64
-import tempfile
-from django.test import TestCase, override_settings
+from django.test import TestCase
 from django.contrib.auth.models import User
 from accounts.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from accounts.models import Profile
@@ -127,31 +125,25 @@ class TestUserUpdateForm(TestCase):
 		}, instance=user)
 		update_user.save()
 
-		users = User.objects.all()
-		for user in users:
-			new_username = user.username
-			new_first_name = user.first_name
-			new_last_name = user.last_name
-			new_email = user.email
-			return [new_username, new_first_name, new_last_name, new_email]
+		user = User.objects.get(pk=user.id)
+		
+		new_username = user.username
+		new_first_name = user.first_name
+		new_last_name = user.last_name
+		new_email = user.email
 
 		self.assertNotEquals(old_username, new_username)
 		self.assertNotEquals(old_first_name, new_first_name)
 		self.assertNotEquals(old_last_name, new_last_name)
 		self.assertNotEquals(old_email, new_email)
-		self.assertEqual(new_username, 'Fred')
-		self.assertEqual(new_first_name, 'Fred')
-		self.assertEqual(old_last_name, 'Testing')
-		self.assertEqual(new_email, 'fred@test.com')
-		self.assertTrue(
-			profiles=Profile.objects.filter(username__exact='Fred')
-		)
+		self.assertEqual(new_username, user.username)
+		self.assertEqual(new_first_name, user.first_name)
+		self.assertEqual(new_last_name, user.last_name)
+		self.assertEqual(new_email, user.email)
 
 
 class TestProfileUpdateForm(TestCase):
 	"""The following tests profile update functionality"""
-
-	@override_settings(MEDIA_ROOT=tempfile.gettempdir())
 
 	def test_fields_are_explicit_in_form_metaclass(self):
 		form = ProfileUpdateForm()

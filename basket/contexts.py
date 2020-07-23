@@ -13,7 +13,7 @@ def do_db_query(request, item_id):
 	# ShowsTickets objects each have a uuid custom pk,
 	# which contains numerous dashes, whereas Django's
 	# default pks are whole integers
-	if '-' in item_id:  
+	if '-' in str(item_id):  
 		query = get_object_or_404(ShowsTickets, pk=item_id)
 	else:
 		query = get_object_or_404(Product, pk=item_id)
@@ -32,6 +32,8 @@ def basket_contents(request):
 	standard_delivery = settings.STANDARD_DELIVERY_CHARGE
 
 	basket = request.session.get('basket', {})
+
+	print(basket)
 
 	for item_id, quantity in basket.items():
 

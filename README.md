@@ -101,15 +101,15 @@ Start or continue your musical journey with us!
 - A large magority of the back end code has been tested using Django's built-in testing suite. Test code can be found in each application's test folder, wherein they're appropriately named for each module tested. To run this test suite, I simply:
 1. open a terminal (Windows PowerShell in my case),
 1. cd (change directory) to my root project's directory (this should be the directory where your manage.py file lives), and
-1. run the following command: `.\manage.py test`
+1. run the following command: `python manage.py test`
 - This will run all test cases in all modules' test folders. To run only a certain application's tests, one could add the application's name and tests module onto the above command, like so:
-`.\manage.py test my_app.tests`
+`python manage.py test my_app.tests`
 - To run a particular test file within that folder, one would type:
-`.\manage.py test my_app.tests.test_forms`
+`python manage.py test my_app.tests.test_forms`
 - Delving deeper, one could run only a particular test class within the application's test module, like so:
-`.\manage.py test my_app.tests.test_forms.TestUserRegisterForm`
+`python manage.py test my_app.tests.test_forms.TestUserRegisterForm`
 - Finally, to run only a particular test in the class above, type:
-`.\manage.py test my_app.tests.test_forms.TestUserRegisterForm.test_does_this_thing_work`
+`python manage.py test my_app.tests.test_forms.TestUserRegisterForm.test_does_this_thing_work`
 
 ### User Testing
 
