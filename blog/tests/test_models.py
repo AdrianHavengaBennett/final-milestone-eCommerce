@@ -4,8 +4,8 @@ from django.utils import timezone
 from blog.models import BlogPost
 
 
-class TestModels(TestCase):
-	"""The following tests the Profile model"""
+class TestBlogPostModel(TestCase):
+	"""The following tests the BlogPost model"""
 
 	def test_blog_string_method_returns_title(self):
 		user = User.objects.create_user('Jimmy', 'jimmy@test.com', 'testing321')

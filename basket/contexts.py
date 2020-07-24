@@ -33,8 +33,6 @@ def basket_contents(request):
 
 	basket = request.session.get('basket', {})
 
-	print(basket)
-
 	for item_id, quantity in basket.items():
 
 		basket_obj = do_db_query(request, item_id=item_id)
