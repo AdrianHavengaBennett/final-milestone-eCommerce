@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate
 
 
 class TestViews(TestCase):
+	"""The following tests the views"""
 
 	def test_register(self):
 		response = self.client.get('/accounts/register/')

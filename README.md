@@ -34,7 +34,7 @@ Start or continue your musical journey with us!
 
 ### Wireframes
 - For this project, at the design phase, I decided to use [Balsamiq](https://balsamiq.com/).
-- The wireframes can be found here: [Desktop](), [Tablet](), [Mobile](https://www.dropbox.com/s/buctbt9xxiereey/ms_4_tablet.pdf?dl=0)
+- The wireframes can be found here: [Desktop](), [Tablet](https://www.dropbox.com/s/buctbt9xxiereey/ms_4_tablet.pdf?dl=0), [Mobile]()
 
 ## Features
 
@@ -98,7 +98,7 @@ Start or continue your musical journey with us!
 
 ### Automated Testing
 
-- A large magority of the back end code has been tested using Django's built-in testing suite. Test code can be found in each application's test folder, wherein they're appropriately named for each module tested. To run this test suite, I simply:
+- A large majority of the back end code has been tested using Django's built-in testing suite. Nearly 80 unit tests have been written to test the code. Using coverage, I ran reports on my test code and concluded that the models, forms, and urls had coverage percentages of between 90 and 100. The views were quite a bit less and were subsequently tested via user testing to ensure functionality behaved as expected (see User Testing below). Test code can be found in each application's test folder, wherein they're appropriately named for each module tested. To run this test suite, I simply:
 1. open a terminal (Windows PowerShell in my case),
 1. cd (change directory) to my root project's directory (this should be the directory where your manage.py file lives), and
 1. run the following command: `python manage.py test`
@@ -112,6 +112,8 @@ Start or continue your musical journey with us!
 `python manage.py test my_app.tests.test_forms.TestUserRegisterForm.test_does_this_thing_work`
 
 ### User Testing
+
+- The following tests were undertaken to cover what the automated tests haven't, including a large percentage of the views' functionality.
 
 #### General
 
