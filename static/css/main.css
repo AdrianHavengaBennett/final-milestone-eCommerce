@@ -82,6 +82,13 @@ footer p {
 }
 
 /***************************************ids and classes*/
+#info-toast,
+#success-toast,
+#warning-toast,
+#error-toast {
+  font-size: 0.75rem;
+}
+
 #site-logo {
   background-size: contain;
   background-position: left center;
@@ -314,9 +321,14 @@ form .dropdown {
 }
 
 #faq-button {
+  border: none;
   background: rgba(255, 255, 255, 0);
   box-shadow: 2px 2px #888888;
   margin-top: 0;
+}
+
+#faq-content .article-title {
+  padding-left: 0;
 }
 
 .accordion {
@@ -592,6 +604,14 @@ a#product-card {
   transition: color 0.5s ease;
 }
 
+#basket-refresh {
+  color: #17a2b8 !important;
+}
+
+#basket-remove {
+  color: #dc3545 !important;
+}
+
 .fa-facebook-square:hover {
   color: #3B5998 !important;
 }
@@ -681,6 +701,41 @@ a#product-card {
   height: 100px;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+#order-history-container {
+  display: none;
+  position: absolute;
+  background: #fafafa;
+  top: -0.5rem;
+  left: 0;
+  width: 100%;
+  padding: 8px 16px;
+}
+
+#order-history-button {
+  text-decoration: underline;
+  border-radius: 4px;
+  color: #555555;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.35s ease;
+}
+
+#order-history-button:hover {
+  background: #dddddd;
+  color: #333333;
+}
+
+#order-history-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px 16px;
+  cursor: pointer;
 }
 
 /***************************************Stripe/Checkout*/
@@ -775,6 +830,10 @@ a#product-card {
 
 .checkout-info {
   font-size: 0.75rem;
+}
+
+#checkout-success-order-number {
+  font-size: 0.65rem;
 }
 
 .center-confirmation {
@@ -1131,6 +1190,10 @@ a#product-card {
 .input-group-append {
     display: inline !important;
   }
+
+  #checkout-success-order-number {
+    font-size: 0.75rem;
+  }
 }
 @media (min-width: 376px) {
   #top-right-icons {
@@ -1156,6 +1219,18 @@ a#product-card {
   }
 }
 @media (min-width: 768px) {
+  #order-history-button {
+    margin-right: 1rem;
+    margin-top: 3px;
+  }
+
+  #info-toast,
+#success-toast,
+#warning-toast,
+#error-toast {
+    font-size: 1rem;
+  }
+
   #search-bar {
     left: 1rem;
   }

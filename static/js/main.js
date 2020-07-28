@@ -234,6 +234,14 @@ $(function() {
 		}
 	});
 
+	$('#order-history-button').click(function() {
+		$('#order-history-container').show(100, 'swing');
+	})
+
+	$('#order-history-close-button').click(function() {
+		$('#order-history-container').hide(100, 'swing');
+	})
+
 	// bootstrap initialisations
 	$('.carousel').carousel({
 		interval: 2750

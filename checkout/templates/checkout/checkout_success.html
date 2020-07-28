@@ -30,7 +30,7 @@
 						<p class="mb-0 text-black font-weight-bold">Order Number</p>
 					</div>
 					<div class="col-12 col-md-8 text-md-right">
-						<p class="small mb-0">{{ order.order_number }}</p>
+						<p id="checkout-success-order-number" class="small mb-0">{{ order.order_number }}</p>
 					</div>
 				</div>
 
@@ -56,6 +56,16 @@
 					</div>
 					<div class="col-12 col-md-8 text-md-right">
 						<p class="mb-0">x {{ product.quantity }} @ £{{ product.product.price }} each</p>
+					</div>
+				</div>
+				{% endfor %}
+				{% for ticket in order.ticketlineitems.all %}
+				<div class="row">
+					<div class="col-12 col-md-4">
+						<p class="small mb-0 text-black font-weight-bold">{{ ticket.ticket.artist }}</p>
+					</div>
+					<div class="col-12 col-md-8 text-md-right">
+						<p class="mb-0">x {{ ticket.quantity }} @ £{{ ticket.ticket.price }} each</p>
 					</div>
 				</div>
 				{% endfor %}
@@ -174,6 +184,14 @@
 			</div>
 		</div>
 	</div>
+	{% if from_profile %}
+		<div class="submit-button text-center mt-5 mb-2">
+			<a href="{% url 'profile' %}" class="btn checkout-button">
+				<i class="fa fa-hand-o-left" aria-hidden="true"></i>
+				<span>BACK TO PROFILE</span>
+			</a>
+		</div>
+	{% endif %}
 
 {% endblock %}
 

@@ -7,11 +7,16 @@
 		<li class="breadcrumb-item active" aria-current="page">Profile</li>
 	</ol>
 </nav>
-<p class="section-intro">Your profile page. Edit at will ...</p>
+
 <div class="content-section">
 	<div class="media">
 		<img class="rounded-circle justify-content-center account-img" src="{{ user.profile.profile_image.url }}">
+		<span id="order-history-button">
+			<i class="fa fa-history" aria-hidden="true"></i> 
+			Order Histroy
+		</span>
 	</div>
+
 	<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		<fieldset class="form-group">
@@ -22,7 +27,56 @@
 			<button class="btn" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> SAVE CHANGES</button>
 		</div>
 	</form>
+	<div id="order-history-container" class="card">
+		<span>Order History</span>
+		<span id="order-history-close-button">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</span>
+		<hr>
+		<div class="order-history table-responsive">
+			<table class="table table-sm table-borderless">
+				<thead>
+					<tr>
+						<th>Order Number</th>
+						<th class="d-none d-md-table-cell">Date</th>
+						<th class="d-none d-md-table-cell">Items</th>
+						<th>Order Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for order in orders %}
+						<tr>
+							<td>
+								<a href="{% url 'order-history' order.order_number %}" 
+								title="{{ order.order_number }}">
+									{{ order.order_number|truncatechars:12 }}
+								</a>
+							</td>
+							<td class="d-none d-md-table-cell">{{ order.date }}</td>
+							<td class="d-none d-md-table-cell">
+								<ul class="list-unstyled">
+									{% for item in order.productlineitems.all %}
+										<li class="small">
+											{{ item.product.name }} x {{ item.product.quantity }}
+										</li>
+									{% endfor %}
+									{% for item in order.ticketlineitems.all %}
+										<li class="small">
+											{{ item.ticket.artist }} x {{ item.ticket.quantity }}
+										</li>
+									{% endfor %}
+								</ul>
+							</td>
+							<td>£{{ order.grand_total }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
+
+
 {% endblock %}
 
 {% block stripe_keys %}

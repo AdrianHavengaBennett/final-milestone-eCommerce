@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from accounts.models import Profile
+from checkout.models import Order
 
 
 def register(request):
@@ -37,6 +39,8 @@ def profile(request):
 	rendered, with the ability to edit and save profile changes
 	"""
 
+	profile = get_object_or_404(Profile, user=request.user)
+
 	if request.method == 'POST':
 		user_update_form = UserUpdateForm(request.POST, instance=request.user)
 		profile_update_form = ProfileUpdateForm(request.POST,
@@ -51,11 +55,28 @@ def profile(request):
 	else:
 		user_update_form = UserUpdateForm(instance=request.user)
 		profile_update_form = ProfileUpdateForm(instance=request.user.profile)
+		orders = profile.orders.all()
 
 	context = {
 		'user_update_form': user_update_form,
 		'profile_update_form': profile_update_form,
+		'orders': orders,
 		'on_profile_page': True
 	}
 
 	return render(request, 'accounts/profile.html', context)
+
+
+def order_history(request, order_number):
+	order = get_object_or_404(Order, order_number=order_number)
+
+	messages.info(request, 
+		f'This is a past confirmation for order number {order_number}.'
+	)
+
+	context = {
+		'order': order,
+		'from_profile': True
+	}
+
+	return render(request, 'checkout/checkout_success.html', context)

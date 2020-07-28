@@ -4,6 +4,7 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from click_and_collect.models import ClickCollectLocations
+from accounts.models import Profile
 from .forms import OrderForm
 from .models import OrderLineProductItem, OrderLineTicketItem, Order
 from basket.contexts import basket_contents, do_db_query
@@ -121,6 +122,12 @@ def checkout_success(request, order_number):
 	"""Handles successful checkouts"""
 
 	order = get_object_or_404(Order, order_number=order_number)
+
+	if request.user.is_authenticated:
+		profile = Profile.objects.get(user=request.user)
+		order.user_profile = profile
+		order.save()
+
 	messages.success(request, f'Order successfully processed! \
 		Your order number is {order.order_number}. A confirmation email \
 		will be sent to {order.email}.')
