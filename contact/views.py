@@ -3,7 +3,13 @@ from django.core.exceptions import ObjectDoesNotExist
 from .forms import ContactForm
 from click_and_collect.models import ClickCollectLocations
 
-OUR_OFFICE = ClickCollectLocations.objects.filter(location_name__contains='Our Office').first()
+
+def get_office_location(request):
+	"""Helper function retrieves office location"""
+
+	our_office = ClickCollectLocations.objects.filter(location_name__contains='Our Office').first()
+
+	return our_office
 
 
 def contact_us(request):
@@ -18,9 +24,11 @@ def contact_us(request):
 	else:
 		form = ContactForm()
 
+	our_office = get_office_location(request)
+
 	context = {
 		'form': form,
-		'our_office': OUR_OFFICE
+		'our_office': our_office
 	}
 
 	return render(request, 'contact/contact.html', context)
@@ -31,4 +39,6 @@ def thank_you(request):
 	the thank_you.html page
 	"""
 
-	return render(request, 'contact/thank_you.html', {'our_office': OUR_OFFICE})
+	our_office = get_office_location(request)
+
+	return render(request, 'contact/thank_you.html', {'our_office': our_office})

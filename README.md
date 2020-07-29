@@ -158,6 +158,7 @@ Action | Expected outcome | Pass or Fail
 Successful login | redirect to home page | PASS
 Change color scheme in Profile | site-wide color-scheme change | PASS
 Change profile image in Profile | new profile image displayed at top of page | PASS
+Change profile image in Profile | open profile image in new tab and confirm image size is at max 300 x 300 pixels | PASS
 Hardcode delete or edit blog url when you're not the author | warning that you cannot proceed | PASS
 Clicking to "Blog About It" on product or show | new blog page loads with product or show pre-selected | PASS
 Clicking "New Post" in Blog home | redirect to new blog post form | PASS
