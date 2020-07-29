@@ -724,6 +724,7 @@ a#product-card {
 }
 
 #order-history-button {
+	font-size: .75rem;
 	text-decoration: underline;
 	border-radius: 4px;
 	color: #555555;
@@ -746,6 +747,10 @@ a#product-card {
 	right: 0;
     padding: 8px 16px;
     cursor: pointer;
+}
+
+#order-history-close-button>i:hover {
+	color: #c78d90;
 }
 
 /***************************************Stripe/Checkout*/
@@ -1269,6 +1274,7 @@ a#product-card {
 
 @media (min-width: 768px) {
 	#order-history-button {
+		font-size: 1rem;
 		margin-right: 1rem;
 	    margin-top: 3px;
 	}
