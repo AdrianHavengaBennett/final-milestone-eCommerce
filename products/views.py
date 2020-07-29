@@ -28,7 +28,7 @@ def do_pagination(request, products):
 
 	current_sorting = f'{sort}_{direction}'
 
-	paginator = Paginator(products, per_page=12)
+	paginator = Paginator(products, per_page=24)
 	page_number = request.GET.get('page', 1)
 	page = paginator.get_page(page_number)
 
