@@ -578,6 +578,14 @@ a#product-card {
   cursor: pointer;
 }
 
+.remove-item {
+  color: #dc3545 !important;
+}
+
+.update-link {
+  color: #17a2b8 !important;
+}
+
 .update-link,
 .remove-item {
   cursor: pointer;

@@ -43,13 +43,3 @@ class Profile(models.Model):
 
 	def __str__(self):
 		return self.user.username
-
-	def save(self, *args, **kwargs):
-		super().save(*args, **kwargs)
-
-		profile_image = Image.open(self.profile_image.name)
-
-		if profile_image.height > 300 or profile_image.width > 300:
-			target_size = (300, 300)
-			profile_image.thumbnail(target_size)
-			profile_image.save(self.profile_image.name)
