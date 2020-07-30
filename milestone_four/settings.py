@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
     'crispy_forms',
-    'storages',
     'channels',
+    'storages',
     'django.db.models.signals',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -174,6 +174,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'chat/static'),
     os.path.join(BASE_DIR, 'checkout/static'),
 )
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
