@@ -182,6 +182,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if 'USE_AWS' in os.environ:
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 21 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=946080000',
+    }
+
     # Bucket configuration
     AWS_STORAGE_BUCKET_NAME = 'music-n-more'
     AWS_S3_REGION_NAME = 'eu-west-2'
