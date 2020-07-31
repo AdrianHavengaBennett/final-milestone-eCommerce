@@ -123,9 +123,7 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': f'{dj_database_url.parse(os.environ.get("DATABASE_URL"))}?sslmode=require'
-    }
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 else:
     DATABASES = {
         'default': {
