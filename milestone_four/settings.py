@@ -28,8 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = 'DEVELOPMENT' in os.environ
-DEBUG = True
+DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['music-n-more.herokuapp.com', 'localhost']
 
@@ -62,6 +61,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -224,6 +224,6 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 
 django_heroku.settings(locals())
-# ssl_require = os.environ['ENV'] != 'development'
-locals()['DATABASES']['default'] = dj_database_url.config(
-    conn_max_age=django_heroku.MAX_CONN_AGE, ssl_require=False)
+if 'DATABASE_URL' in os.environ:
+    locals()['DATABASES']['default'] = dj_database_url.config(
+        conn_max_age=django_heroku.MAX_CONN_AGE, ssl_require=False)
