@@ -1285,6 +1285,34 @@ a#product-card {
 	}
 }
 
+@media (min-width: 600px) {
+	#search-bar {
+	    max-width: 80%;
+	    margin-left: 2rem;
+	}
+}
+
+@media (min-width: 640px) {
+	#search-bar {
+	    max-width: 76%;
+    	margin-left: 3.25rem;
+	}
+}
+
+@media (min-width: 667px) {
+	#search-bar {
+	    max-width: 75%;
+    	margin-left: 4rem;
+	}
+}
+
+@media (min-width: 731px) and (max-width: 767px) {
+	#search-bar {
+	    max-width: 65%;
+    	margin-left: 6.25rem;
+	}
+}
+
 @media screen and (max-width: 767px) {
 	input,
 	select,
@@ -1347,6 +1375,13 @@ a#product-card {
 	}
 	.checkout-info {
 	    font-size: 1rem;
+	}
+}
+
+@media (min-width: 824px) {
+	#search-bar {
+		max-width: 100%;
+	    margin-left: 0;
 	}
 }
 
