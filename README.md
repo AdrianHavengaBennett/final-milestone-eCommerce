@@ -285,6 +285,7 @@ For this project, I have used Github for static version control:
 
 ### Media
 - Background doodle courtesy of [@doodlebarn](https://www.freepik.com/doodlebarn)
+- Chat images courtesy of [Online Tech Tips](https://www.online-tech-tips.com/), [PiniMG](https://pinimg.com/), [Billboard](https://billboard.com/), [123RF](https://123rf.com/), [DBSMusic](https://dbsmusic.co.uk/), [YTIMG](https://ytimg.com/), [Scarlet & Gray](https://www.unlvfreepress.com/), [8Tracks](https://8tracks.com/)
 - Product images and product descriptions are courtesy of [Gear4Music](https://www.gear4music.com/)
 - Category images are courtesy of [Wedding Wire](https://www.weddingwire.co.uk/), [Wesley's Chapel](https://www.wesleyschapel.org.uk/), [superprof](https://www.superprof.co.uk/), [shopify](https://www.shopify.co.uk/), [Guitar](https://guitar.com/)
 - I do not own any of the above and use the content solely within an educational environment.
