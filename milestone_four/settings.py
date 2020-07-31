@@ -124,9 +124,8 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        'default': f'{dj_database_url.parse(os.environ.get("DATABASE_URL"))}?sslmode=require'
     }
-    del DATABASES['default']['OPTIONS']['sslmode']
 else:
     DATABASES = {
         'default': {
