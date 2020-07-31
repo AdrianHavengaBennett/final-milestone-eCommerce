@@ -1,1 +1,1 @@
-web: bin/start-pgbouncer-stunnel daphne milestone_four.asgi:application --port $PORT --bind 0.0.0.0 
+web: bin/start-pgbouncer-stunnel daphne -b 0.0.0.0 -p 8001 milestone_four.asgi:application

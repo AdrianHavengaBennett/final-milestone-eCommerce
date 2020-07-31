@@ -74,24 +74,24 @@ ROOT_URLCONF = 'milestone_four.urls'
 
 ASGI_APPLICATION = "milestone_four.routing.application"
 
-# if 'REDIS_URL' in os.environ:
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+if 'REDIS_URL' in os.environ:
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels_redis.core.RedisChannelLayer',
+            'CONFIG': {
+                'hosts': [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+            },
         },
-    },
-}
-# else:
-#     CHANNEL_LAYERS = {
-#         'default': {
-#             'BACKEND': 'channels_redis.core.RedisChannelLayer',
-#             'CONFIG': {
-#                 'hosts': [(os.getenv('MY_IP'), 6379)],
-#             },
-#         },
-#     }
+    }
+else:
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels_redis.core.RedisChannelLayer',
+            'CONFIG': {
+                'hosts': [(os.getenv('MY_IP'), 6379)],
+            },
+        },
+    }
 
 TEMPLATES = [
     {
@@ -224,4 +224,3 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 
 django_heroku.settings(locals())
-del DATABASES['default']['OPTIONS']['sslmode']
