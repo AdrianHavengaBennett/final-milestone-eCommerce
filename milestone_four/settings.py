@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import dj_database_url
 from os import path
 if path.exists('env.py'):
     import env
@@ -223,7 +223,7 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 
 import django_heroku
-import dj_database_url
+
 django_heroku.settings(locals())
 
 # ssl_require = os.environ['ENV'] != 'development'
