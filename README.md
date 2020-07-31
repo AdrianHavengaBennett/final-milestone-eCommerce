@@ -1,7 +1,5 @@
 # [Music'n'More](https://music-n-more.herokuapp.com/)
 
-##### Please note this is an ongoing project and hasn't been completed and deployed to production as yet.
-
 ### Musical equipment E-commerce online store with so much more to offer registered users.
 
 Music'n'More was founded by Adrian Havenga-Bennett in 2020 with a view of providing our customers with an immersive musical experience. The idea is to bring together fans of all genres and ages, from drummers to guitarists,
@@ -34,7 +32,12 @@ Start or continue your musical journey with us!
 
 ### Wireframes
 - For this project, at the design phase, I decided to use [Balsamiq](https://balsamiq.com/).
-- The wireframes can be found here: [Desktop](), [Tablet](https://www.dropbox.com/s/buctbt9xxiereey/ms_4_tablet.pdf?dl=0), [Mobile]()
+- The wireframes can be found here:
+[Desktop](https://www.dropbox.com/s/sfmcrf77k5esgej/ms_4_desktop-compressed.pdf?dl=0)
+[Tablet](https://www.dropbox.com/s/buctbt9xxiereey/ms_4_tablet.pdf?dl=0)
+[Mobile](https://www.dropbox.com/s/lwvh3qynnkc6mhw/ms_4_mobile-compressed.pdf?dl=0)
+I was inspired by Salesforce and Whatsapp to include a doodle in the background. As a musically-inspired website, the choice was clear. Props to the artist, who is thanked in the appropriate section of this document.
+Initial design was for a multicoloured background to make the doodle a little more interesting. But as I was about to implemented it, I had a thought on UX. So I decided to mould the themes with the background to give the user a choice of a site-wide colour scheme.
 
 ## Features
 
@@ -175,7 +178,91 @@ Clicking sign out | redirects to personal logout notification with ability to lo
 ## Deployment
 
 ### Heroku
-- TODO
+- The first thing I did was create fixture modules in each app for all of my data, like so:
+Open new Windows cmd terminal (using Powershell was not possible because the json data 	saves with utf-8 character incompatibilities - something to note), navigate to project directory, 	activate venv (cd Scripts and run 'activate' - not 'Activate.ps1' as this is for Powershell only), 	then type:
+`python manage.py dumpdata --format=json the-target-app > the-target-app_data.json`
+I then repeated this for every module containing data which I wanted to save.
+- Open Heroku in web browser and create new app.
+- Add addons to heroku project - postgres hobby-dev and redis hobby-dev - the latter required for my chat functionality.
+- Comment out old DATABASES in setting.py, replace with
+`DATABASES = {"default": dj_database_url.parse("paste DATABASE_URL here (found in heroku 	config. vars.")}`
+- Then run `python manage.py migrate` to run all migrations to new database.
+- Now, load your data:
+`python manage.py loaddata app_data` Note the order at which these are loaded. For example: A blog, needs a profile, which needs a user, so the load order is: user_data, then profile_data, then blog_data.
+- Go to project's settings.py and add app-name.herokuapp.com to ALLOWED_HOSTS list, as well as 'localhost'.
+`pip install pyscopg2-binary && dj_database_url && django-heroku` then:
+`pip freeze > requirements.txt`
+- Create Procfile and add `web: bin/start-pgbouncer-stunnel daphne milestone_four.asgi:application --port $PORT --bind 0.0.0.0` See additional notes below.
+- Back in settings.py, import django_heroku at the top, then add this to the bottom of the file:
+`django_heroku.settings(locals())
+if 'DATABASE_URL' in os.environ:
+    locals()['DATABASES']['default'] = dj_database_url.config(
+        conn_max_age=django_heroku.MAX_CONN_AGE, ssl_require=False)`
+- I add the following to ensure the correct database and redis server are running in production:
+`if 'DATABASE_URL' in os.environ:
+	    DATABASES = {
+	        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+	    }
+	else:
+	    DATABASES = {
+	        'default': {
+	            'ENGINE': 'django.db.backends.sqlite3',
+	            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	        }
+	    }
+if 'REDIS_URL' in os.environ:
+      CHANNEL_LAYERS = {
+      'default': {
+	       'BACKEND': 'channels_redis.core.RedisChannelLayer',
+         'CONFIG': {
+             'hosts': [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+        },
+    },
+}
+else:
+    CHANNEL_LAYERS = {
+         'default': {
+             'BACKEND': 'channels_redis.core.RedisChannelLayer',
+             'CONFIG': {
+                 'hosts': [(os.getenv('MY_IP'), 6379)],
+             },
+           },
+    }`
+- Generate new secret key (Google search: 'django secret key generator') and add to heroku config. vars
+- Add new local environment variable: DEVELOPMENT = '1' to env.py
+- In project's settings.py, change `DEBUG = 'DEVELOPMENT' in os.environ`
+- Create an AWS account/sign in and head over to S3
+- Create a new S3 bucket and IAM group and user with all applicable policies
+- Back in the project, `pip install boto3 && django_storages`, then `pip freeze > requirements.txt`
+- Add S3 access, secret key, maps api key, stripe keys, email, and USE_AWS=True to heroku config. vars. (if using an AWS S3 Bucket, make sure the config. vars. in heroku have no quotations; "" or '')
+- Then add the following in settings.py:
+`if 'USE_AWS' in os.environ:
+	AWS_STORAGE_BUCKET_NAME = 'music-n-more'
+	AWS_S3_REGION_NAME = 'eu-west-2' # EU (London)
+	AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+	AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+	AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'`
+- Then I created custom_storages.py at root level (where manage.py lives), and add the following:
+`from django.conf import settings
+from storages.backends.s3boto3 import S3Boto3Storage
+class StaticStorage(S3Boto3Storage):
+	location = settings.STATICFILES_LOCATION
+class MediaStorage(S3Boto3Storage):
+	location = settings.MEDIAFILES_LOCATION`
+- Now add the following to the 'USE_AWS' condition:
+`STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+STATICFILES_LOCATION = 'static'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+MEDIAFILES_LOCATION = 'media'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'`
+- Finally, in the terminal, I type:
+`git add .
+git commit -m "meaningful message about deployment settings"
+git push && git push heroku master (The latter if you have not setup automatic heroku pushes)`
+
+#### Additional notes
+I had to install some buildpacks for heroku (pgbouncer) to manage the number of connections to the database. This is because, due to using channels - which subsequently changes my project to an asynchronous project (asgi), the number of connections can spiral and cause exceptions. Postgres only provides 20 active connections on its free tier, so pgbouncer helps. From the docs: "PgBouncer maintains a pool of connections that your database transactions share." Running heroku pg in the terminal confirms 1/20 connections even after plenty of requests sent.
 
 ### Local
 - To run this project locally, I will:
@@ -197,11 +284,13 @@ For this project, I have used Github for static version control:
 - The checkout app's code was for the most part copied straight from the Code Institute modules.
 
 ### Media
+- Background doodle courtesy of [@doodlebarn](https://www.freepik.com/doodlebarn)
 - Product images and product descriptions are courtesy of [Gear4Music](https://www.gear4music.com/)
 - Category images are courtesy of [Wedding Wire](https://www.weddingwire.co.uk/), [Wesley's Chapel](https://www.wesleyschapel.org.uk/), [superprof](https://www.superprof.co.uk/), [shopify](https://www.shopify.co.uk/), [Guitar](https://guitar.com/)
-- I do not own any of the above and use the data solely within an educational environment.
+- I do not own any of the above and use the content solely within an educational environment.
 
 ### Thanks
+- Thanks go out to [The Code Institute](https://courses.codeinstitute.net/) student support team for helping me debug. You're all Saints!
 - Special thanks to Justin Mitchel at [codingforentrepreneurs](https://www.codingforentrepreneurs.com/) and Corey Schafer at [CoreyMS](https://coreyms.com/), both of whose YouTube Django tutorials have been a great help to me as a top up to what I've learned from [The Code Institute](https://courses.codeinstitute.net/).
 - Also thanks to all of the helpful answers from the kind folks over at [StackOverFlow](https://stackoverflow.com/).
 - Honourable mention to my mentor, Nishant Kumar, for his patience and guidance throughout my Full Stack Web Development journey with The Code Institute.

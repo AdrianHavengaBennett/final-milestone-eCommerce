@@ -493,8 +493,13 @@ a#product-card {
   padding-bottom: 0.25rem;
 }
 
+#chat-room-title ~ .product-img {
+  background-size: cover;
+}
+
 #chat-log {
   height: 30em;
+  font-size: 0.75rem !important;
 }
 
 #chat-log,
@@ -1229,6 +1234,13 @@ a#product-card {
 @media (min-width: 576px) {
   .navbar {
     width: 100%;
+  }
+}
+@media screen and (max-width: 767px) {
+  input,
+select,
+textarea {
+    font-size: 16px !important;
   }
 }
 @media (min-width: 768px) {
