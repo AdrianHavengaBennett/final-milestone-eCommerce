@@ -244,7 +244,7 @@ $(function() {
 
 	// bootstrap initialisations
 	$('.carousel').carousel({
-		interval: 2750
+		interval: 3500
 	});
 
 	$('.dropdown-toggle').dropdown();

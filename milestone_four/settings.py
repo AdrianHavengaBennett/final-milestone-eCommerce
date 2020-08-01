@@ -117,8 +117,6 @@ TEMPLATES = [
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
-# WSGI_APPLICATION = 'milestone_four.wsgi.application'
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
