@@ -1,9 +1,10 @@
 from django.urls import path
+
 from .views import (
-	blog_search,
-	products_search,
-	faqs_search,
-	shows_search
+    blog_search,
+    products_search,
+    faqs_search,
+    shows_search
 )
 
 urlpatterns = [

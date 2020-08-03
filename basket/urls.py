@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import show_basket, add_to_basket, update_basket, remove_from_basket
+
+from .views import (
+    show_basket,
+    add_to_basket,
+    update_basket,
+    remove_from_basket
+)
 
 urlpatterns = [
     path('', show_basket, name='basket'),

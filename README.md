@@ -264,6 +264,8 @@ git push && git push heroku master (The latter if you have not setup automatic h
 #### Additional notes
 I had to install some buildpacks for heroku (pgbouncer) to manage the number of connections to the database. This is because, due to using channels - which subsequently changes my project to an asynchronous project (asgi), the number of connections can spiral and cause exceptions. Postgres only provides 20 active connections on its free tier, so pgbouncer helps. From the docs: "PgBouncer maintains a pool of connections that your database transactions share." Running heroku pg in the terminal confirms 1/20 connections even after plenty of requests sent.
 
+##### Python code checked for PEP8 requirements through [PEP 8 checker](http://pep8online.com/) - ALL PASSED
+
 ### Local
 - To run this project locally, I will:
 1. open PowerShell; and 
