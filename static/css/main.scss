@@ -231,6 +231,7 @@ input[type="search"]::-webkit-input-placeholder {
 }
 
 .nav-link {
+	margin-bottom: 0.25rem;
 	display: inline;
 	padding: 0;
 	transition: border .35s ease-in-out;
@@ -329,7 +330,6 @@ form .dropdown {
 #faq-button {
 	border: none;
 	background: rgba(255,255,255,0);
-	box-shadow: 2px 2px #888888;
 	margin-top: 0;
 }
 

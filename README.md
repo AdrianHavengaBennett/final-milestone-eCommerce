@@ -32,9 +32,9 @@ Start or continue your musical journey with us!
 
 ### Wireframes
 - For this project, at the design phase, I decided to use [Balsamiq](https://balsamiq.com/).
-- The wireframes can be found here:
-[Desktop](https://www.dropbox.com/s/sfmcrf77k5esgej/ms_4_desktop-compressed.pdf?dl=0)
-[Tablet](https://www.dropbox.com/s/buctbt9xxiereey/ms_4_tablet.pdf?dl=0)
+- The wireframes can be found here: 
+[Desktop](https://www.dropbox.com/s/sfmcrf77k5esgej/ms_4_desktop-compressed.pdf?dl=0),
+[Tablet](https://www.dropbox.com/s/buctbt9xxiereey/ms_4_tablet.pdf?dl=0),
 [Mobile](https://www.dropbox.com/s/lwvh3qynnkc6mhw/ms_4_mobile-compressed.pdf?dl=0)
 I was inspired by Salesforce and Whatsapp to include a doodle in the background. As a musically-inspired website, the choice was clear. Props to the artist, who is thanked in the appropriate section of this document.
 Initial design was for a multicoloured background to make the doodle a little more interesting. But as I was about to implemented it, I had a thought on UX. So I decided to mould the themes with the background to give the user a choice of a site-wide colour scheme.
@@ -55,6 +55,7 @@ Initial design was for a multicoloured background to make the doodle a little mo
 
 ### Features left to implement
 - Chat feature is pretty basic but does a simple, effective job. Adding the ability to view an existing thread upon entering a room and also being able to tell if a user has left a room (see testing bug) will further add to the experience.
+- Integrating an emoji picker into the chat has proven to be quite tricky. This will be added in due time with a little more understanding of the concepts involved.
 - The checkout process suggests an email will be sent as a confirmation of an order. This is not actually the case and is a feature left to implement.
 
 ## Technologies Used
@@ -112,7 +113,7 @@ Initial design was for a multicoloured background to make the doodle a little mo
 - Delving deeper, one could run only a particular test class within the application's test module, like so:
 `python manage.py test my_app.tests.test_forms.TestUserRegisterForm`
 - Finally, to run only a particular test in the class above, type:
-`python manage.py test my_app.tests.test_forms.TestUserRegisterForm.test_does_this_thing_work`
+`python manage.py test my_app.tests.test_forms.TestUserRegisterForm.test_does_this_thing_work` (Note that each individual unit test must begin with the word "test")
 
 ### User Testing
 
@@ -173,7 +174,9 @@ Searching non-existent products, faqs, blogs, or shows | not found message quoti
 Clicking sign out | redirects to personal logout notification with ability to log back in | PASS
 
 #### Bugs
-- Adding a group_send() message to the disconnect() consumer in the chat application, when a user left the room, introduced a bug where the user who entered the room first couldn't leave before the user who entered after. This subsequently caused the websocket to crash on the server's side. Thus the functionality was removed until further understanding of the bug could be achieved and then rectified.
+- Adding a group_send() message to the disconnect() consumer in the chat application, when a user left the room, introduced a bug where the user who entered the room first couldn't leave before the user who entered after. This subsequently caused the websocket to crash on the server's side. Thus, the functionality was removed until further understanding of the bug could be achieved and then rectified.
+
+##### Python code checked for PEP8 requirements through [PEP 8 checker](http://pep8online.com/) - ALL PASSED
 
 ## Deployment
 
@@ -263,8 +266,6 @@ git push && git push heroku master (The latter if you have not setup automatic h
 
 #### Additional notes
 I had to install some buildpacks for heroku (pgbouncer) to manage the number of connections to the database. This is because, due to using channels - which subsequently changes my project to an asynchronous project (asgi), the number of connections can spiral and cause exceptions. Postgres only provides 20 active connections on its free tier, so pgbouncer helps. From the docs: "PgBouncer maintains a pool of connections that your database transactions share." Running heroku pg in the terminal confirms 1/20 connections even after plenty of requests sent.
-
-##### Python code checked for PEP8 requirements through [PEP 8 checker](http://pep8online.com/) - ALL PASSED
 
 ### Local
 - To run this project locally, I will:

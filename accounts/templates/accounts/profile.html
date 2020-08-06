@@ -57,12 +57,12 @@
 								<ul class="list-unstyled">
 									{% for item in order.productlineitems.all %}
 										<li class="small">
-											{{ item.product.name }} x {{ item.product.quantity }}
+											{{ item.product.name }} x {{ item.quantity }}
 										</li>
 									{% endfor %}
 									{% for item in order.ticketlineitems.all %}
 										<li class="small">
-											{{ item.ticket.artist }} x {{ item.ticket.quantity }}
+											{{ item.ticket.artist }} x {{ item.quantity }}
 										</li>
 									{% endfor %}
 								</ul>
