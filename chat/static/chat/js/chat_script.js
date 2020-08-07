@@ -27,7 +27,8 @@ chatSocket.onclose = function(e) {
 
 var elem = document.getElementById('chat-message-input');
 window.onload = function () {
-    elem.scrollIntoView().focus();
+    elem.scrollIntoView();
+    elem.focus();
 }
 
 document.querySelector('#chat-message-input').onkeyup = function(e) {
