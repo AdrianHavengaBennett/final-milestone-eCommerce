@@ -11,6 +11,9 @@ from checkout.models import Order
 def register(request):
     """Registers a new customer and saves the info to our database"""
 
+    if request.user.is_authenticated:
+        return redirect('products-home')
+
     if request.method == 'POST':
         form = UserRegisterForm(request.POST, request.FILES)
         if form.is_valid():

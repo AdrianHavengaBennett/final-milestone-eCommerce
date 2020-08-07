@@ -1,28 +1,30 @@
+/*jshint esversion: 6 */
+
 function initMap() {
 	var map1Options = {
 		zoom: 16,
 		center: {lat: 51.6753699, lng: -4.9153599}
-	}
+	};
 
 	var map2Options = {
 		zoom: 16,
 		center: {lat: 51.6743266, lng: -4.8953292}
-	}
+	};
 
 	var map3Options = {
 		zoom: 16,
 		center: {lat: 51.6742321, lng: -4.9093182}
-	}
+	};
 
 	var map4Options = {
 		zoom: 16,
 		center: {lat: 51.618475, lng: -3.936483}
-	}
+	};
 
 	var map5Options = {
 		zoom: 16,
 		center: {lat: 51.619013, lng: -3.935707}
-	}
+	};
 
 	var map1 = new google.maps.Map(document.getElementById('map1'), map1Options);
 	var marker1 = new google.maps.Marker({
@@ -192,7 +194,7 @@ $(function() {
 		e.preventDefault();
 		var location = $(this).val();
 		var data = {location};
-		if (data['location'] === '') {
+		if (data.location === '') {
 			$('#collection-details').hide();
 			phoneNumber.val('');
 			streetAddress1.val('');
@@ -200,7 +202,7 @@ $(function() {
 			townOrCity.val('');
 			county.val('');
 			postcode.val('');
-		} else if (data['location'] !== '') {
+		} else if (data.location !== '') {
 			var url = 'ajax/get_location_info';
 			$.ajax({
 				type: 'GET',
@@ -228,7 +230,7 @@ $(function() {
 					);
 				},
 				error : function(response) {
-		   			console.log(response)
+		   			console.log(response);
 		   		}
 			});
 		}
@@ -236,11 +238,11 @@ $(function() {
 
 	$('#order-history-button').click(function() {
 		$('#order-history-container').show(100, 'swing');
-	})
+	});
 
 	$('#order-history-close-button').click(function() {
 		$('#order-history-container').hide(100, 'swing');
-	})
+	});
 
 	// bootstrap initialisations
 	$('.carousel').carousel({

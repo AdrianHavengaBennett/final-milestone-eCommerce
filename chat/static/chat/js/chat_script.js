@@ -1,17 +1,15 @@
+/*jshint esversion: 6 */
+
 const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-var loc = window.location
-var wsStart = 'ws://'
+var loc = window.location;
+var wsStart = 'ws://';
 if (loc.protocol == 'https:') {
-    wsStart = 'wss://'
+    wsStart = 'wss://';
 }
 
 const chatSocket = new WebSocket(
-    wsStart
-    + loc.host
-    + '/ws/chat/'
-    + roomName
-    + '/'
+    wsStart + loc.host + '/ws/chat/' + roomName + '/'
 );
 
 var textarea = document.getElementById('chat-log');
@@ -29,7 +27,7 @@ var elem = document.getElementById('chat-message-input');
 window.onload = function () {
     elem.scrollIntoView();
     elem.focus();
-}
+};
 
 document.querySelector('#chat-message-input').onkeyup = function(e) {
     if (e.keyCode === 13) {  // enter, return

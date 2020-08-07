@@ -38,6 +38,7 @@ urlpatterns = [
     path('accounts/', include(accounts_urls)),
     path('login/',
         auth_views.LoginView.as_view(
+            redirect_authenticated_user=True,
             template_name='accounts/login.html',
             authentication_form=CustomAuthForm),
             name='login'),

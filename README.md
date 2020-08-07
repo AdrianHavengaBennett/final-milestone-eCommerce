@@ -177,6 +177,7 @@ Clicking sign out | redirects to personal logout notification with ability to lo
 - Adding a group_send() message to the disconnect() consumer in the chat application, when a user left the room, introduced a bug where the user who entered the room first couldn't leave before the user who entered after. This subsequently caused the websocket to crash on the server's side. Thus, the functionality was removed until further understanding of the bug could be achieved and then rectified.
 
 ##### Python code checked for PEP8 requirements through [PEP 8 checker](http://pep8online.com/) - ALL PASSED
+##### Javascript code checked for errors and warning through [JSHint](https://jshint.com/) - ALL PASSED
 
 ## Deployment
 

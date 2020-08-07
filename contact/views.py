@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.models import User
 
 from .forms import ContactForm
 from click_and_collect.models import ClickCollectLocations
@@ -24,7 +25,17 @@ def contact_us(request):
         if form.is_valid():
             return redirect('thank-you')
     else:
-        form = ContactForm()
+        if request.user.is_authenticated:
+            try:
+                user = User.objects.get(email=request.user.email)
+                form = ContactForm(initial={
+                    'name': f'{user.first_name} {user.last_name}',
+                    'email': user.email
+                })
+            except User.DoesNotExist:
+                form = ContactForm()
+        else:
+            form = ContactForm()
 
     our_office = get_office_location(request)
 

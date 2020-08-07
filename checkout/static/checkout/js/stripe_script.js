@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 
@@ -33,7 +35,7 @@ card.addEventListener('change', function(event) {
         var html = `
             <i class="fa fa-times" aria-hidden="true"></i>
             <span>${event.error.message}</span>
-        `
+        `;
         $(errorDiv).html(html);
     } else {
         errorDiv.textContent = '';
@@ -62,7 +64,7 @@ form.addEventListener('submit', function(event) {
             var html = `
                 <i class="fa fa-times" aria-hidden="true"></i>
                 <span>${result.error.message}</span>
-            `
+            `;
             $(errorDiv).html(html);
 
             $('#payment-form').fadeToggle(100);
