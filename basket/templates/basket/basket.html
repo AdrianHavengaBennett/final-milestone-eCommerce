@@ -36,7 +36,7 @@
 							{% if item.basket_obj.artist %}
 								<td class="p-2 w-25 d-none d-sm-table-cell">
 									<a href="{% url 'show-details' item.basket_obj.artist.id %}">
-										<img class="img-fluid" src="{{ item.basket_obj.artist.artist_image.url }}">
+										<img class="img-fluid" src="{{ item.basket_obj.artist.artist_image.url }}" alt="Artist image">
 									</a>
 								</td>
 								<td class="py-3 w-25">
@@ -49,7 +49,7 @@
 							{% else %}
 								<td class="p-2 w-25 d-none d-sm-table-cell">
 									<a href="{% url 'product-detail' item.basket_obj.id %}">
-										<img class="img-fluid" src="{{ item.basket_obj.image.url }}">
+										<img class="img-fluid" src="{{ item.basket_obj.image.url }}" alt="Product image">
 									</a>
 								</td>
 								<td class="py-3 w-25">

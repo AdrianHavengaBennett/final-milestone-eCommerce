@@ -32,7 +32,7 @@
             <div class="row" id="top-container">
                 <div class="col-8 col-lg-3 order-lg-1">
                     <a href="{% url 'products-home' %}">
-                        <div id="site-logo" style="background-image: url('/static/images/logo/logo.png')"></div>
+                        <div id="site-logo" style="background-image: url('/static/images/logo/logo.png')" alt="Website logo"></div>
                     </a>
                 </div>
                 <!-- Rightside Icons -->
@@ -44,7 +44,8 @@
                         <span class="topnav-separator d-none d-md-inline">|</span>
 
                         <a class="top-container-icon d-none d-md-inline order-3" href="{% url 'profile' %}" data-toggle="tooltip" title="Your Profile">
-                            <img class="rounded-circle justify-content-center account-img" src="{{ user.profile.profile_image.url }}"><span class="sr-only">Profile image</span>
+                            <img class="rounded-circle justify-content-center account-img" src="{{ user.profile.profile_image.url }}" alt="Profile image">
+                            <span class="sr-only">Profile image</span>
                         </a>
                         <span class="topnav-separator d-none d-md-inline">|</span>
                     {% else %}

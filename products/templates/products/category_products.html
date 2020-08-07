@@ -11,7 +11,7 @@
 </nav>
 
 <div class="panel-body card text-center">
-	<div class="category-img" style="background-image: url('{{ MEDIA_URL }}{{ category_image }}')"></div>
+	<div class="category-img" style="background-image: url('{{ MEDIA_URL }}{{ category_image }}')" alt="Category image"></div>
 </div>
 
 <hr>
@@ -35,7 +35,7 @@
 		<a id="product-card" href="{% url 'product-detail' product.id %}">
 			<div class="panel-body card text-center">
 				<div class="img-container">
-					<div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')"></div>
+					<div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image.url }}')" alt="Product image"></div>
 				</div>
 	            <h4>{{ product.name }}</h4>
 	            {% if product.id == 1 or product.id == 2 %}

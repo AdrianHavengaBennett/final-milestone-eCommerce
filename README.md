@@ -177,7 +177,9 @@ Clicking sign out | redirects to personal logout notification with ability to lo
 - Adding a group_send() message to the disconnect() consumer in the chat application, when a user left the room, introduced a bug where the user who entered the room first couldn't leave before the user who entered after. This subsequently caused the websocket to crash on the server's side. Thus, the functionality was removed until further understanding of the bug could be achieved and then rectified.
 
 ##### Python code checked for PEP8 requirements through [PEP 8 checker](http://pep8online.com/) - ALL PASSED
-##### Javascript code checked for errors and warning through [JSHint](https://jshint.com/) - ALL PASSED
+##### Javascript code checked for errors and warnings through [JSHint](https://jshint.com/) - ALL PASSED
+##### CSS code checked for errors and warnings through [Jigsaw](https://jigsaw.w3.org/css-validator/) - ALL PASSED
+##### HTML checked through [W3C](https://validator.w3.org/) - FAILED due to templating language and subsequent HTML structure.
 
 ## Deployment
 
@@ -289,9 +291,9 @@ For this project, I have used Github for static version control:
 
 ### Media
 - Background doodle courtesy of [@doodlebarn](https://www.freepik.com/doodlebarn)
-- Chat images courtesy of [Online Tech Tips](https://www.online-tech-tips.com/), [PiniMG](https://pinimg.com/), [Billboard](https://billboard.com/), [123RF](https://123rf.com/), [DBSMusic](https://dbsmusic.co.uk/), [YTIMG](https://ytimg.com/), [Scarlet & Gray](https://www.unlvfreepress.com/), [8Tracks](https://8tracks.com/)
+- Chat images courtesy of [Online Tech Tips](https://www.online-tech-tips.com/), [PiniMG](https://pinimg.com/), [Billboard](https://billboard.com/), [123RF](https://123rf.com/), [DBSMusic](https://dbsmusic.co.uk/), [YTIMG](https://ytimg.com/), [Scarlet & Gray](https://www.unlvfreepress.com/), [8Tracks](https://8tracks.com/), [Fandom](https://www.fandom.com/)
 - Product images and product descriptions are courtesy of [Gear4Music](https://www.gear4music.com/)
-- Category images are courtesy of [Wedding Wire](https://www.weddingwire.co.uk/), [Wesley's Chapel](https://www.wesleyschapel.org.uk/), [superprof](https://www.superprof.co.uk/), [shopify](https://www.shopify.co.uk/), [Guitar](https://guitar.com/)
+- Category images are courtesy of [Wedding Wire](https://www.weddingwire.co.uk/), [Wesley's Chapel](https://www.wesleyschapel.org.uk/), [superprof](https://www.superprof.co.uk/), [shopify](https://www.shopify.co.uk/), [Anderton's Blog](https://blog.andertons.co.uk/), [OUPblog](https://blog.oup.com/)
 - I do not own any of the above and use the content solely within an educational environment.
 
 ### Thanks

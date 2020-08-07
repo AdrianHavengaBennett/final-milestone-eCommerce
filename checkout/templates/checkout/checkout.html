@@ -29,11 +29,11 @@
                     <div class="col-3 mb-1">
                         {% if item.basket_obj.artist %}
 							<a href="{% url 'show-details' item.basket_obj.artist.id %}">
-								<img class="img-fluid" src="{{ item.basket_obj.artist.artist_image.url }}">
+								<img class="img-fluid" src="{{ item.basket_obj.artist.artist_image.url }}" alt="Artist image">
 							</a>
 						{% else %}
 							<a href="{% url 'product-detail' item.basket_obj.id %}">
-								<img class="img-fluid" src="{{ item.basket_obj.image.url }}">
+								<img class="img-fluid" src="{{ item.basket_obj.image.url }}" alt="Product image">
 							</a>
 						{% endif %}
                     </div>

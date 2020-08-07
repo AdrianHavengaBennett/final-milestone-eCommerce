@@ -22,7 +22,7 @@
 						<div class="row">
 							{% if item.basket_obj.artist %}
 								<div class="col-3 my-1">
-									<img class="w-100" src="{{ item.basket_obj.artist.artist_image.url }}">
+									<img class="w-100" src="{{ item.basket_obj.artist.artist_image.url }}" alt="Artist image">
 								</div>
 								<div class="col-9">
 									<p class="my-0"><strong>{{ item.basket_obj.artist }}</strong></p>
@@ -30,7 +30,7 @@
 								</div>
 							{% else %}
 								<div class="col-3 my-1">
-									<img class="w-100" src="{{ item.basket_obj.image.url }}">
+									<img class="w-100" src="{{ item.basket_obj.image.url }}" alt="Product image">
 								</div>
 								<div class="col-9">
 									<p class="my-0"><strong>{{ item.basket_obj.name }}</strong></p>

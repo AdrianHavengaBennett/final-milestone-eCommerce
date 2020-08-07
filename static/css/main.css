@@ -342,7 +342,7 @@ form .dropdown {
 
 #shows-detail-content .product-img {
   background-size: cover;
-  height: 8rem;
+  height: 12rem;
   margin: 0.75rem;
 }
 
@@ -1219,7 +1219,7 @@ a#product-card {
   }
 
   .product-img {
-    background-size: 75%;
+    background-size: 65%;
   }
 }
 @media (min-width: 476px) {
@@ -1228,7 +1228,7 @@ a#product-card {
   }
 
   .product-img {
-    background-size: 60%;
+    background-size: 50%;
   }
 }
 @media (min-width: 576px) {
@@ -1323,7 +1323,7 @@ textarea {
   }
 
   .product-img {
-    background-size: 43%;
+    background-size: 80%;
   }
 
   #product-detail-content .product-img {

@@ -34,7 +34,7 @@
 			{% for post in page.object_list %}
 			<a href="{% url 'post-detail' post.id %}">
 				<article class="media content-section">
-					<img class="rounded-circle article-img" src="{{ post.author.profile.profile_image.url }}">
+					<img class="rounded-circle article-img" src="{{ post.author.profile.profile_image.url }}" alt="Profile image">
 					<div class="media-body">
 						<div class="article-metadata">
 							<span id="post-author" class="mr-2">{{ post.author }}</span>
