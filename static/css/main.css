@@ -137,8 +137,10 @@ footer p {
 }
 
 #search-bar {
+  max-width: 70%;
   z-index: 1;
   top: 2rem;
+  margin-left: 1rem;
 }
 
 #p-search-button,
@@ -1250,8 +1252,8 @@ a#product-card {
 }
 @media (min-width: 667px) {
   #search-bar {
-    max-width: 75%;
-    margin-left: 4rem;
+    max-width: 66%;
+    margin-left: 6.5rem;
   }
 }
 @media (min-width: 731px) and (max-width: 767px) {
@@ -1338,7 +1340,7 @@ textarea {
     font-size: 1rem;
   }
 }
-@media (min-width: 824px) {
+@media (min-width: 991px) {
   #search-bar {
     max-width: 100%;
     margin-left: 0;
