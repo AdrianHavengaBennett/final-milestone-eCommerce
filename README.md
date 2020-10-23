@@ -6,7 +6,7 @@ Music'n'More was founded by Adrian Havenga-Bennett in 2020 with a view of provid
 from djs to bassists, from those who want to learn an instrument to those who have years of experience. 
 
 Joining our community will unlock the ability to chat to all sorts of music lovers and creators about anything you wish, from 50s to 90s, Electronic to Punk Rock, or Pop to Metal! 
-Our Chat feature has the chatroom for you (like to see a particular chatroom? No problem, give us a shout and we'll coinsider adding it!). 
+Our Chat feature has the chatroom for you (like to see a particular chatroom? No problem, give us a shout and we'll consider adding it!). 
 
 Start a blog about a product or a show, or just anything in general. Experienced musicians might start an advice blog. Avid giggers can get a group together to see some of the shows 
 we offer our users at discount ticket prices. 
